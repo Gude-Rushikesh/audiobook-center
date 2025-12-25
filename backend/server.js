@@ -27,10 +27,13 @@ mongoose
 
 
 // Auth routes
+app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", authRoutes);
 app.use("/api/collections", collectionRoutes);
 app.use("/api/books", bookRoutes);
 app.use("/api/chapters", chapterRoutes);
+
+
 
 
 

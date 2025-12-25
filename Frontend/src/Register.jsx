@@ -4,6 +4,9 @@ import { useState } from "react";
 import axios from "axios";
 const API_BASE = import.meta.env.VITE_API_URL;
 
+import bgImage from "../assets/photos/image2.jpg";
+
+
 
 export default function Register() {
   const navigate = useNavigate();
@@ -55,7 +58,7 @@ export default function Register() {
   <div
     className="min-h-screen bg-cover bg-center relative"
     style={{
-      backgroundImage: "url('src/assets/photos/image2.jpg')",
+      backgroundImage: `url(${bgImage})`,
     }}
   >
     {/* Dark overlay */}
