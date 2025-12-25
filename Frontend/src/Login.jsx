@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import bgImage from "../assets/photos/image2.jpg";
+// import bgImage from "../assets/photos/image2.jpg";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ export default function Login() {
         <div
           className="min-h-screen bg-cover bg-center relative"
           style={{
-            backgroundImage: `url(${bgImage})`,
+            backgroundImage: `url("/login-bg.jpg")`,
           }}
         >
           {/* Dark overlay */}

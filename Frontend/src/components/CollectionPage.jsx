@@ -1159,7 +1159,7 @@ export default function CollectionPage() {
             >
               <div style={{ height: t.booksRail.card.image.height }}>
                 <img
-                  src={`${API_BASE}/${book.coverImage}`}
+                  src={`${API_BASE}/uploads/${book.coverImage}`}
                   alt={book.title}
                   className="w-full h-full object-cover"
                 />
