@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+body{
+  background-color: white  ;
+}
+
+
+/* @keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-bg {
+    @apply bg-gradient-to-r from-purple-600 via-pink-500 to-red-500;
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+} */
+
+@font-face {
+  font-family: "myfont";
+  src: url("/src/assets/fonts/myfont.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "greatvibes";
+  src: url("/src/assets/fonts/GreatVibes-Regular.ttf") format("truetype");
+}
+
+
+@font-face {
+  font-family: "adinealt";
+  src: url("/src/assets/fonts/AdineKirnberg-Alternate.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "adine";
+  src: url("/src/assets/fonts/AdineKirnberg.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "gerald";
+  src: url("/src/assets/fonts/GERALDINE.ttf") format("truetype");
+}
