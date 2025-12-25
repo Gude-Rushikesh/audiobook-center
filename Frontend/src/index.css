@@ -42,3 +42,35 @@ body{
   font-family: "gerald";
   src: url("/src/assets/fonts/GERALDINE.ttf") format("truetype");
 }
+
+/* ===============================
+   Tailwind v4 Theme Extensions
+   =============================== */
+:root {
+  --font-display: "Cinzel", serif;
+  --font-ui: "Inter", system-ui, sans-serif;
+}
+
+/* ===============================
+   Font Utilities
+   =============================== */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-ui {
+  font-family: var(--font-ui);
+}
+
+/* ===============================
+   Custom Utilities
+   =============================== */
+/* Hide scrollbar but keep scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none;    /* Firefox */
+}
