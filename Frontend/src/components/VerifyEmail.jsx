@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { motion } from "framer-motion";
 const API_BASE = import.meta.env.VITE_API_URL;
 
 
