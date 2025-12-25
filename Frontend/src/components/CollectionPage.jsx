@@ -915,6 +915,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { resolveMedia } from "@/utils/resolveMedia";
 const API_BASE = import.meta.env.VITE_API_URL;
 
 
@@ -1028,21 +1029,21 @@ export default function CollectionPage() {
     >
       {/* AUDIO */}
       {t.audio.ambient?.src && (
-        <audio
-          ref={bgAudioRef}
-          src={t.audio.ambient.src}
-          loop={t.audio.ambient.loop}
-          muted={muted}
-          preload="auto"
-        />
+      <audio
+        ref={bgAudioRef}
+        src={resolveMedia(t.audio.ambient.src)}
+        loop={t.audio.ambient.loop}
+        muted={muted}
+        preload="auto"
+      />
       )}
 
-      {t.audio.interaction?.bookClick && (
-        <audio
-          ref={whooshRef}
-          src={t.audio.interaction.bookClick}
-          preload="auto"
-        />
+    {t.audio.interaction?.bookClick && (
+      <audio
+        ref={whooshRef}
+        src={resolveMedia(t.audio.interaction.bookClick)}
+        preload="auto"
+      />
       )}
 
       {/* 🔝 TOP BAR */}
@@ -1079,7 +1080,7 @@ export default function CollectionPage() {
         {/* Hero image (DATA DRIVEN – NOT HARDCODED) */}
         {t.hero.image?.src && (
           <img
-            src={`${API_BASE}/uploads/${t.hero.image.src}`}
+            src={resolveMedia(t.hero.image.src)}
             alt={collection.title}
             className="
               absolute
@@ -1087,7 +1088,6 @@ export default function CollectionPage() {
               -translate-x-1/2 -translate-y-1/2
               object-contain
               pointer-events-none
-              select-none
             "
             style={{
               width:
