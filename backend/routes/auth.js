@@ -45,11 +45,17 @@ const router = express.Router();
         expiresAt: Date.now() + 24 * 60 * 60 * 1000,
       });
 
-      await sendVerificationEmail(newUser.email, token);
+        try {
+          await sendVerificationEmail(newUser.email, token);
+        } catch (emailErr) {
+          console.error("Email send failed:", emailErr.message);
+          // DO NOT throw error
+        }
 
-      res.json({
-        message: "Registration successful. Please check your email to verify your account.",
-      });
+        res.json({
+          message: "User registered successfully. Please verify your email.",
+        });
+
     } catch (err) {
       console.error("Register error:", err);
       res.status(500).json({ error: "Registration failed" });

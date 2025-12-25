@@ -48,7 +48,7 @@ return (
   <div
     className="min-h-screen bg-cover bg-center relative"
     style={{
-      backgroundImage: "url('Frontend/src/assets/photos/image2.jpg')",
+      backgroundImage: `url("/auth-bg.jpg")`,
     }}
   >
     {/* Dark overlay */}
