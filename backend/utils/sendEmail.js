@@ -9,7 +9,7 @@ export const sendVerificationEmail = async (email, token) => {
     },
   });
 
-  const link = `http://localhost:5173/verify-email?token=${token}`;
+  const link = `${process.env.CLIENT_URL}/verify-email?token=${token}`;
 
   await transporter.sendMail({
     from: "Audiobook App <no-reply@audiobook.com>",
