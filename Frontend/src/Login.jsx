@@ -46,7 +46,7 @@ export default function Login() {
         <div
           className="min-h-screen bg-cover bg-center relative"
           style={{
-            backgroundImage: `url("/login-bg.jpg")`,
+            backgroundImage: `url("/auth-bg.jpg")`,
           }}
         >
           {/* Dark overlay */}
