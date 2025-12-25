@@ -10,38 +10,52 @@ import { sendVerificationEmail } from "../utils/sendEmail.js";
 const router = express.Router();
 
 // // -------- REGISTER --------
-      router.post("/register", async (req, res) => {
-        try {
-          const { name, email, password } = req.body;
+  router.post("/register", async (req, res) => {
+    try {
+      const { name, email, password } = req.body;
 
-          const existingUser = await User.findOne({ email });
-          if (existingUser)
-            return res.status(400).json({ error: "Email already exists" });
+      let existingUser = await User.findOne({ email });
 
-          const hashedPassword = await bcrypt.hash(password, 10);
+      // 🟡 CASE: user exists but NOT verified → allow re-register
+      if (existingUser && !existingUser.isVerified) {
+        await User.deleteOne({ _id: existingUser._id });
+        await EmailToken.deleteMany({ userId: existingUser._id });
+      }
 
-          const newUser = new User({
-            name,
-            email,
-            password: hashedPassword,
-          });
-          await newUser.save();
+      // 🔴 CASE: user exists AND verified → block
+      if (existingUser && existingUser.isVerified) {
+        return res.status(400).json({ error: "Email already exists" });
+      }
 
-          const token = crypto.randomBytes(32).toString("hex");
+      const hashedPassword = await bcrypt.hash(password, 10);
 
-          await EmailToken.create({
-            userId: newUser._id,
-            token,
-            expiresAt: Date.now() + 24 * 60 * 60 * 1000,
-          });
-
-          await sendVerificationEmail(newUser.email, token);
-
-          res.json({ message: "User registered successfully. Please verify your email." });
-        } catch (err) {
-          res.status(500).json({ error: err.message });
-        }
+      const newUser = new User({
+        name,
+        email,
+        password: hashedPassword,
+        isVerified: false,
       });
+      await newUser.save();
+
+      const token = crypto.randomBytes(32).toString("hex");
+
+      await EmailToken.create({
+        userId: newUser._id,
+        token,
+        expiresAt: Date.now() + 24 * 60 * 60 * 1000,
+      });
+
+      await sendVerificationEmail(newUser.email, token);
+
+      res.json({
+        message: "Registration successful. Please check your email to verify your account.",
+      });
+    } catch (err) {
+      console.error("Register error:", err);
+      res.status(500).json({ error: "Registration failed" });
+    }
+  });
+
 
         router.get("/verify-email", async (req, res) => {
           try {
