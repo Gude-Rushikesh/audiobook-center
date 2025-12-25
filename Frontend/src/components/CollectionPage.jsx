@@ -915,7 +915,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { resolveMedia } from "@/utils/resolveMedia";
+import { resolveMedia } from "../utils/resolveMedia";
 const API_BASE = import.meta.env.VITE_API_URL;
 
 
