@@ -14,8 +14,9 @@ export default function BookChapters({ onSelectChapter }) {
   useEffect(() => {
     const fetchBook = async () => {
       try {
+        const API_BASE = import.meta.env.VITE_API_URL;
         const res = await axios.get(
-          `http://localhost:5000/api/books/${bookId}`
+          `${API_BASE}/api/books/${bookId}`
         );
         setBook(res.data);
       } catch (err) {
@@ -69,11 +70,11 @@ export default function BookChapters({ onSelectChapter }) {
       <section className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row gap-10">
 
         {/* Cover */}
-        <div className="w-[260px] h-[380px] rounded-2xl overflow-hidden
+        <div className="w-65 h-95 rounded-2xl overflow-hidden
                         shadow-[0_20px_60px_rgba(0,0,0,0.6)]
                         ring-1 ring-white/10">
           <img
-            src={`http://localhost:5000/uploads/${book.coverImage}`}
+            src={`${API_BASE}/uploads/${book.coverImage}`}
             alt={book.title}
             className="w-full h-full object-cover"
           />

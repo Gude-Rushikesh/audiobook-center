@@ -19,8 +19,9 @@ export default function VerifyEmail() {
 
     const verifyEmail = async () => {
       try {
+        const API_BASE = import.meta.env.VITE_API_URL;
         const res = await axios.get(
-          `http://localhost:5000/api/auth/verify-email?token=${token}`
+          `${API_BASE}/api/auth/verify-email?token=${token}`
         );
 
         setStatus("success");

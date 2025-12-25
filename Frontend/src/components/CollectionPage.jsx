@@ -934,8 +934,9 @@ export default function CollectionPage() {
   useEffect(() => {
     const fetchCollection = async () => {
       try {
+        const API_BASE = import.meta.env.VITE_API_URL;
         const res = await fetch(
-          `http://localhost:5000/api/collections/${collectionId}`
+          `${API_BASE}/api/collections/${collectionId}`
         );
         const data = await res.json();
 
@@ -1156,7 +1157,7 @@ export default function CollectionPage() {
             >
               <div style={{ height: t.booksRail.card.image.height }}>
                 <img
-                  src={`http://localhost:5000/uploads/${book.coverImage}`}
+                  src={`${API_BASE}/${book.coverImage}`}
                   alt={book.title}
                   className="w-full h-full object-cover"
                 />

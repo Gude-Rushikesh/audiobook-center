@@ -177,7 +177,8 @@ export default function BookToAudio() {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/collections");
+        const API_BASE = import.meta.env.VITE_API_URL;
+        const res = await axios.get(`${API_BASE}/api/collections`);
         setCollections(res.data);
       } catch (err) {
         console.error("Failed to load collections");
@@ -268,13 +269,13 @@ export default function BookToAudio() {
         const BookCard = ({ collection }) => (
         <div
           onClick={() => navigate(`/collection/${collection._id}`)}
-          className="relative min-w-[220px] h-[330px] rounded-2xl overflow-hidden
+          className="relative min-w-55 h-82.5 rounded-2xl overflow-hidden
                     shadow-md cursor-pointer
                     transition-all duration-300
                     hover:-translate-y-2 hover:shadow-2xl"
         >
           <img
-            src={`http://localhost:5000/uploads/${collection.coverImage}`}
+            src={`${API_BASE}/uploads/${collection.coverImage}`}
             alt={collection.title}
             className="w-full h-full object-cover"
           />

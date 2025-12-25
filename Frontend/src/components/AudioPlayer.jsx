@@ -893,7 +893,7 @@ export default function AudioPlayer({ chapter }) {
       Number(localStorage.getItem(`chapter-progress-${chapter._id}`)) || 0;
 
     audioRef.current.src =
-      `http://localhost:5000/api/stream?link=${encodeURIComponent(
+      `${API_BASE}/api/stream?link=${encodeURIComponent(
         chapter.megaLink
       )}`;
 
