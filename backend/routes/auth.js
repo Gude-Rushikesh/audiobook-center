@@ -51,7 +51,7 @@ const router = express.Router();
           console.error("Email send failed:", emailErr.message);
           // DO NOT throw error
         }
-
+        console.log("📥 Register request received");
         res.json({
           message: "User registered successfully. Please verify your email.",
         });

@@ -2,56 +2,76 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+
 const API_BASE = import.meta.env.VITE_API_URL;
-
-
-
 
 export default function Register() {
   const navigate = useNavigate();
+
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
   const [error, setError] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
-
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // ⛔ Prevent multiple clicks
+    if (loading) return;
+
+    setError("");
+
+    // ✅ Frontend validations
     if (!fullName || !email || !password || !confirmPassword) {
       setError("All fields are required!");
       return;
     }
+
     if (!email.includes("@")) {
       setError("Enter a valid email!");
       return;
     }
+
     if (password !== confirmPassword) {
       setError("Passwords do not match!");
       return;
     }
 
     try {
-      // const API_BASE = import.meta.env.VITE_API_URL;
-      const res = await axios.post(`${API_BASE}/api/auth/register`, {
-        name: fullName,
-        email,
-        password,
-      });
+      setLoading(true);
 
+      await axios.post(
+        `${API_BASE}/api/auth/register`,
+        {
+          name: fullName,
+          email,
+          password,
+        },
+        {
+          timeout: 10000, // ✅ 10 seconds (IMPORTANT)
+        }
+      );
 
+      // ✅ Success popup
+      setShowSuccess(true);
 
+      setTimeout(() => {
+        navigate("/login");
+      }, 2200);
 
-    setShowSuccess(true);
-     setTimeout(() => {
-     navigate("/login");
-    }, 2200);
     } catch (err) {
       setError(err.response?.data?.error || "Registration failed");
+    } finally {
+      setLoading(false);
     }
   };
+
+  // 👇 JSX return stays EXACTLY as you already have it
+}
 
   return (
   <div
@@ -209,6 +229,6 @@ export default function Register() {
 
   </div>
 );
-}
+
 
 
