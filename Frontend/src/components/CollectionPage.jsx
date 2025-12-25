@@ -1079,7 +1079,7 @@ export default function CollectionPage() {
         {/* Hero image (DATA DRIVEN – NOT HARDCODED) */}
         {t.hero.image?.src && (
           <img
-            src={t.hero.image.src}
+            src={`${API_BASE}/uploads/${t.hero.image.src}`}
             alt={collection.title}
             className="
               absolute
