@@ -10,6 +10,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+  const API_BASE = import.meta.env.VITE_API_URL;
+
 
   
 
@@ -18,7 +20,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const API_BASE = import.meta.env.VITE_API_URL;
+      // const API_BASE = import.meta.env.VITE_API_URL;
       const res = await axios.post(`${API_BASE}/api/auth/login`, {
         email,
         password,

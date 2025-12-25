@@ -831,6 +831,8 @@
 
 import { useRef, useState, useEffect } from "react";
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 const SPEEDS = [1, 1.25, 1.5, 2];
 
 export default function AudioPlayer({ chapter }) {

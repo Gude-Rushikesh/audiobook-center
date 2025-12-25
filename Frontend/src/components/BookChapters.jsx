@@ -3,6 +3,9 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import AudioPlayer from "./AudioPlayer";
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
+
 export default function BookChapters({ onSelectChapter }) {
   const navigate = useNavigate();
   const { bookId } = useParams();

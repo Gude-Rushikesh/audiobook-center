@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+const API_BASE = import.meta.env.VITE_API_URL;
+
 
 export default function VerifyEmail() {
   const [searchParams] = useSearchParams();
@@ -19,7 +21,7 @@ export default function VerifyEmail() {
 
     const verifyEmail = async () => {
       try {
-        const API_BASE = import.meta.env.VITE_API_URL;
+        // const API_BASE = import.meta.env.VITE_API_URL;
         const res = await axios.get(
           `${API_BASE}/api/auth/verify-email?token=${token}`
         );

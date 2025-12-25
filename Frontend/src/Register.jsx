@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+const API_BASE = import.meta.env.VITE_API_URL;
 
 
 export default function Register() {
@@ -31,7 +32,7 @@ export default function Register() {
     }
 
     try {
-      const API_BASE = import.meta.env.VITE_API_URL;
+      // const API_BASE = import.meta.env.VITE_API_URL;
       const res = await axios.post(`${API_BASE}/api/auth/register`, {
         name: fullName,
         email,

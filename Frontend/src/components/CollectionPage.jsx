@@ -915,6 +915,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+const API_BASE = import.meta.env.VITE_API_URL;
+
 
 export default function CollectionPage() {
   const { collectionId } = useParams();
