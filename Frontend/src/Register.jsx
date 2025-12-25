@@ -56,7 +56,7 @@ export default function Register() {
         }
       );
 
-      // ✅ Success popup
+      // ✅ Success popup//
       setShowSuccess(true);
 
       setTimeout(() => {
