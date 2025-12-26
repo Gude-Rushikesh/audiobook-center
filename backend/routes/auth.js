@@ -31,7 +31,7 @@ const router = express.Router();
       name,
       email,
       password: hashedPassword,
-      isVerified: false,
+      isVerified: true,
     });
 
     await newUser.save();
@@ -46,7 +46,7 @@ const router = express.Router();
 
     // ✅ SEND RESPONSE FIRST
     res.json({
-      message: "User registered successfully. Please verify your email.",
+      message: "User registered successfully.", //Please verify your email.
     });
 
     // ✅ EMAIL IS FIRE-AND-FORGET
