@@ -303,18 +303,18 @@ export default function BookToAudio() {
 
       {/* 🔝 NAVBAR */}
             <section className="bg-black h-14 px-6 sticky top-0 z-30">
-              <div className="grid grid-cols-3 items-center h-full">
+              <div className="grid grid-cols-2 md:grid-cols-3 items-center h-full">
 
                 {/* LEFT — BRAND */}
                 <div
                   onClick={() => navigate("/")}
-                  className="text-white text-2xl font-display font-medium cursor-pointer"
+                  className="text-white text-lg md:text-2xl font-display font-medium cursor-pointer"
                 >
                   Audiobook Center
                 </div>
 
                 {/* CENTER — SEARCH */}
-                <div className="flex justify-center">
+                <div className="hidden md:flex justify-center">
                   <div className="flex items-center gap-2
                                   bg-white/90 rounded-full
                                   px-4 py-1.5 w-[60%]
@@ -354,13 +354,13 @@ export default function BookToAudio() {
       {/* 🎧 HERO SECTION 🅰️ HERO — Calm & Reflective*/}
             
       <section className="flex flex-col items-center justify-center
-                          text-center px-6 pt-18 pb-28">
+                          text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
 
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-gray-900 leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-gray-900 leading-tight">
           Welcome to Audiobook Center
         </h2>
 
-        <p className="max-w-2xl text-gray-900 mt-8 text-base md:text-xl leading-relaxed font-display">
+        <p className="max-w-2xl sm:max-w-2xl text-gray-900 mt-6 sm:mt-8 text-sm sm:text-base md:text-xl leading-relaxed font-display">
           A curated space for audiobooks — from epic fantasy and timeless classics
           to emotional stories and thought-provoking journeys.
           <br />
@@ -376,7 +376,7 @@ export default function BookToAudio() {
 
         <button
           onClick={() => scrollToId("categories")}
-          className="mt-07 px-10 py-3 rounded-full
+          className="mt-7 px-8 sm:px-10 py-3 rounded-full
                     bg-black text-white text-large font-semibold
                     tracking-wide shadow-sm
                     hover:bg-black/90 transition"
@@ -434,10 +434,10 @@ export default function BookToAudio() {
           <button
             key={category.title}
             onClick={() => scrollToId(category.title)}
-            className={`border-black px-8 py-4 rounded-full
-                        text-sm font-large
+            className={`border-black px-8 py-4 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-full
+                        text-xs sm:text-sm font-semibold
                         transition-all
-                        hover:-translate-y-1px hover:shadow-sm
+                        hover:-translate-y-1 hover:shadow-sm
                         ${CATEGORY_STYLES[category.title]}`}
           >
             {category.title}
@@ -467,7 +467,7 @@ export default function BookToAudio() {
                 </h3>
               </div>
                 
-            <div className="relative">
+            <div className="relative min-w-40 sm:min-w-50 md:min-w-55 h-60 sm:h-75 md:h-82.5 rounded-2xl overflow-hidden">
               {/* RIGHT ARROW */}
               <button
                 onClick={() =>
