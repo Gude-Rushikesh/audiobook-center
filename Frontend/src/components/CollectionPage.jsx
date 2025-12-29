@@ -251,7 +251,7 @@ export default function CollectionPage() {
               }}
             >
               <div style={{ height: 
-              window.innerWidth < 640 ? "240px" : t.booksRail.card.image.height,
+              window.innerWidth < 640 ? "250px" : t.booksRail.card.image.height,
                }}>
                 <img
                   src={`${API_BASE}/uploads/${book.coverImage}`}
