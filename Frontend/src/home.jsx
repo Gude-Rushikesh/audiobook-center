@@ -149,15 +149,18 @@ function Home() {
             <div>
                 {/* HEADER */}
               <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/40 border-b border-white/10">
-                <div className="h-14 px-4 flex items-center justify-between">
+                <div className="h-14 px-4 grid grid-cols-3 items-center">
+
+
+                  <div />
                   
                   {/* CENTER TITLE (true center of screen) */}
-                  <h1 className="absolute left-1/2 -translate-x-1/2 text-white font-display text-lg sm:text-2xl md:text-3xl tracking-widest">
+                  <h1 className="text-center text-white font-display text-base sm:text-xl md:text-3xl tracking-widest">
                     Audiobook Center
                   </h1>
 
                   {/* RIGHT BUTTONS */}
-                  <div className="flex gap-2">
+                  <div className="flex justify-end gap-2">
                     <Link to="/register">
                       <button className="px-3 py-1.5 rounded-md bg-white text-black text-sm font-medium">
                         Register
@@ -226,6 +229,34 @@ function Home() {
           </div>
         </section>
 
+      {/* SECTION 5 — CTA */}
+      <section className="flex flex-col items-center justify-center gap-4 mt-20 mb-24 px-6">
+        <Link to="/register">
+          <button className="px-8 py-3 rounded-md bg-white text-black text-base font-medium hover:bg-gray-100 transition">
+            Start your journey
+          </button>
+        </Link>
+      </section>
+
+
+      {/* SECTION 6 — DISCLAIMER */}
+      <footer className="py-4 px-4 text-center backdrop-blur-md bg-black/40 min-h-16 text-lg text-white">
+        Audiobook Center is a personal project created for learning, exploration,
+        and storytelling. All content and features are intended for educational
+        and demonstrative purposes only.
+      </footer>
+
+    </div>
+  </div>
+  );
+}
+
+export default Home;
+
+
+
+
+
       {/* SECTION 4 — QUOTE
           <section className="h-[40vh] flex items-center justify-center px-8">
             <blockquote className="max-w-3xl text-center">
@@ -254,27 +285,3 @@ function Home() {
           </p>
         </div>
       </section> */}
-
-      {/* SECTION 5 — CTA */}
-      <section className="flex flex-col items-center justify-center gap-4 mt-20 mb-24 px-6">
-        <Link to="/register">
-          <button className="px-8 py-3 rounded-md bg-white text-black text-base font-medium hover:bg-gray-100 transition">
-            Start your journey
-          </button>
-        </Link>
-      </section>
-
-
-      {/* SECTION 6 — DISCLAIMER */}
-      <footer className="py-4 px-4 text-center backdrop-blur-md bg-black/40 min-h-16 text-lg text-white">
-        Audiobook Center is a personal project created for learning, exploration,
-        and storytelling. All content and features are intended for educational
-        and demonstrative purposes only.
-      </footer>
-
-    </div>
-  </div>
-  );
-}
-
-export default Home;
