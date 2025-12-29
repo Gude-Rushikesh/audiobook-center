@@ -162,12 +162,12 @@ function Home() {
                   {/* RIGHT BUTTONS */}
                   <div className="flex justify-end gap-2">
                     <Link to="/register">
-                      <button className="px-3 py-1.5 rounded-md bg-white text-black text-sm font-medium">
+                      <button className="px-2 py-1.5 rounded-md bg-white text-black text-sm font-medium">
                         Register
                       </button>
                     </Link>
                     <Link to="/login">
-                      <button className="px-3 py-1.5 rounded-md bg-white text-black text-sm font-medium">
+                      <button className="px-2 py-1.5 rounded-md bg-white text-black text-sm font-medium">
                         Login
                       </button>
                     </Link>
@@ -208,7 +208,7 @@ function Home() {
       </section>
 
 
-      <section className="flex justify-center px-6 mt-24">
+      <section className="flex justify-center px-6 mt-20">
           <div className="max-w-3xl text-center">
             <div className="font-display text-base sm:text-lg md:text-2xl text-white/80 leading-snug md:leading-relaxed space-y-5 md:space-y-6">
               <p>
