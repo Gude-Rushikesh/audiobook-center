@@ -133,17 +133,17 @@ export default function CollectionPage() {
       )}
 
       {/* 🔝 TOP BAR */}
-      <div className="flex items-center justify-between px-8 py-4">
+      <div className="flex items-center justify-between px-4 sm:px-8 py-3">
         {t.topBar.showBackButton && (
           <button
             onClick={() => navigate(-1)}
-            className="bg-black/70 px-4 py-2 rounded hover:bg-black"
+            className="text-sm sm:text-base px-3 py-1.5 bg-black/40 sm:bg-black/70 opacity-80 rounded hover:bg-white"
           >
             ← Back
           </button>
         )}
 
-        <h1 className="text-2xl sm:text-3xl md:text-5xl text-center font-display font-semibold">
+        <h1 className="text-xl sm:text-3xl md:text-5xl text-center font-display font-semibold">
           {collection.title}
           </h1>
 
@@ -153,13 +153,16 @@ export default function CollectionPage() {
             className="text-sm opacity-80 hover:opacity-100"
           >
             {muted ? "🔇 Muted" : "🔊 Sound"}
+            <span className="hidden sm:inline ml-1">
+              {muted ? "muted" : "Sound"}
+            </span>
           </button>
         )}
       </div>
 
       {/* 🧙 HERO SECTION (TEMPLATE-SAFE) */}
       <div
-        className="relative overflow-hidden min-h-75 md:min-h-95"
+        className="relative overflow-hidden min-h-55 sm:min-h-65 md:min-h-95"
         style={{ height: heroHeight }}
       >
         {/* Base gradient */}
@@ -206,7 +209,7 @@ export default function CollectionPage() {
       {/* 📚 BOOKS RAIL */}
       <section className="mt-10 px-10">
         <div
-          className="flex overflow-x-auto pb-6 scrollbar-hide"
+          className="flex overflow-x-auto pb-6 no-scrollbar"
           style={{ gap: window.innerWidth < 640 ? "24px": t.booksRail.gap }}
         >
           {collection.books.map((book) => (
