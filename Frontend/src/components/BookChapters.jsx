@@ -75,7 +75,8 @@ export default function BookChapters({ onSelectChapter }) {
         {/* Cover */}
         <div className="w-65 h-95 rounded-2xl overflow-hidden
                         shadow-[0_20px_60px_rgba(0,0,0,0.6)]
-                        ring-1 ring-white/10">
+                        ring-1 ring-white/10
+                        mx-auto md:mx-0">
           <img
             src={`${API_BASE}/uploads/${book.coverImage}`}
             alt={book.title}
@@ -85,7 +86,7 @@ export default function BookChapters({ onSelectChapter }) {
 
         {/* Info */}
         <div className="flex-1 font-display space-y-4">
-          <h1 className="text-5xl md:text-5xl font-bold leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
             {book.title}
           </h1>
 
