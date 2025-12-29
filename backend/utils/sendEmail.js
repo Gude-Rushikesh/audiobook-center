@@ -1,7 +1,17 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
+let resend = null;
+
+function getResend() {
+  if (!resend) {
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY is missing");
+    }
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resend;
+}
 export const sendVerificationEmail = async (email, token) => {
   const link = `${process.env.CLIENT_URL}/verify-email?token=${token}`;
 

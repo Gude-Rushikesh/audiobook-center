@@ -146,27 +146,33 @@ import bgImg from "./assets/photos/forest.jpg"; // foggy forest background
 
 function Home() {
   return (
-    <div>
-      <div>
-              {/* HEADER */}
-              <header className="relative left-1/2 -translate-x-1/2 z-50 backdrop-blur-md bg-black/40 h-16  flex items-center justify-between px-6 border-b border-white/10">
-                <h1 className="text-white font-display text-3xl tracking-widest absolute left-1/2 -translate-x-1/2">
-                  Audiobook Center
-                </h1>
-                <div className="flex gap-3">
-                  <Link to="/register">
-                    <button className="px-4 py-1.5 rounded-md bg-white text-black text-sm font-medium">
-                      Register
-                    </button>
-                  </Link>
-                  <Link to="/login">
-                    <button className="px-4 py-1.5 rounded-md bg-white text-black text-sm font-medium">
-                      Login
-                    </button>
-                  </Link>
+            <div>
+                {/* HEADER */}
+              <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/40 h-16 border-b border-white/10">
+                <div className="relative h-full px-6 flex items-center">
+                  
+                  {/* CENTER TITLE (true center of screen) */}
+                  <h1 className="absolute left-1/2 -translate-x-1/2 text-white font-display text-lg sm:text-2xl md:text-3xl tracking-widest">
+                    Audiobook Center
+                  </h1>
+
+                  {/* RIGHT BUTTONS */}
+                  <div className="ml-auto flex gap-2">
+                    <Link to="/register">
+                      <button className="px-3 py-1.5 rounded-md bg-white text-black text-sm font-medium">
+                        Register
+                      </button>
+                    </Link>
+                    <Link to="/login">
+                      <button className="px-3 py-1.5 rounded-md bg-white text-black text-sm font-medium">
+                        Login
+                      </button>
+                    </Link>
+                  </div>
+
                 </div>
               </header>
-            </div>
+
       
     <div className="relative min-h-screen font-ui text-white">
       {/* FIXED BACKGROUND */}
@@ -177,23 +183,23 @@ function Home() {
       <div className="fixed inset-0 -z-10 bg-black/25" />
 
       {/* SECTION 1 — INVITATION */}
-      <section className="h-[40vh] flex flex-col items-center justify-center px-8 text-center">
-        <h2 className="font-display text-5xl leading-tight mb-8 max-w-5xl">
+      <section className="min-h-[40vh] flex flex-col items-center justify-center px-6 text-center pt-20">
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight mb-6 max-w-5xl">
           We invite you into an immersive listening experience
         </h2>
-        <p className="max-w-2xl text-2xl font-display text-white/80 leading-relaxed">
+        <p className="max-w-2xl text-base sm:text-lg md:text-2xl font-display text-white/80 leading-relaxed">
           Audiobook Center is a quiet space created for those who wish to step
           beyond the everyday and enter stories shaped by different minds,
           lives, and realities.
         </p>
       </section>
 
-      <section className="flex justify-center px-6 mt-15">
-        <div className="w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl">
+      <section className="flex justify-center px-4 mt-12">
+        <div className="w-full max-w-5xl rounded-xl overflow-hidden shadow-2xl">
           <img
             src={relaxedImg}
             alt="Relaxed listening"
-            className="w-full h-auto object-cover"
+            className="w-full aspect-video object-cover"
           />
         </div>
       </section>
@@ -201,22 +207,22 @@ function Home() {
 
       <section className="flex justify-center px-6 mt-24">
           <div className="max-w-3xl text-center">
-            <p className="font-display text-lg md:text-2xl text-white/80 leading-relaxed space-y-6">
-              <span className="block">
+            <div className="font-display text-base sm:text-lg md:text-2xl text-white/80 leading-snug md:leading-relaxed space-y-5 md:space-y-6">
+              <p>
                 To listen to a story is to momentarily leave your own world.
                 This is time set aside for reflection, imagination, and presence.
-              </span>
+              </p>
 
-              <span className="block">
+              <p>
                 Through another person’s voice, thoughts, and choices, you
                 experience perspectives that are not your own yet feel deeply human.
-              </span>
+              </p>
 
-              <span className="block">
+              <p>
                 Every story offers a way to understand life differently,
                 to inhabit another reality, and to live, for a while, another life.
-              </span>
-            </p>
+              </p>
+              </div>
           </div>
         </section>
 
@@ -250,9 +256,9 @@ function Home() {
       </section> */}
 
       {/* SECTION 5 — CTA */}
-      <section className="flex flex-col items-center justify-center gap-4 mt-24 mb-24 px-6">
+      <section className="flex flex-col items-center justify-center gap-4 mt-20 mb-24 px-6">
         <Link to="/register">
-          <button className="px-6 py-2.5 rounded-md bg-white text-black text-base font-medium hover:bg-gray-100 transition">
+          <button className="px-8 py-3 rounded-md bg-white text-black text-base font-medium hover:bg-gray-100 transition">
             Start your journey
           </button>
         </Link>
@@ -260,7 +266,7 @@ function Home() {
 
 
       {/* SECTION 6 — DISCLAIMER */}
-      <footer className="py-4 px-4 text-center backdrop-blur-md bg-black/40 h-16 text-lg text-white">
+      <footer className="py-4 px-4 text-center backdrop-blur-md bg-black/40 min-h-16 text-lg text-white">
         Audiobook Center is a personal project created for learning, exploration,
         and storytelling. All content and features are intended for educational
         and demonstrative purposes only.

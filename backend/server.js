@@ -1,7 +1,9 @@
+import dotenv from "dotenv";
+dotenv.config(); 
+// console.log("🔑 RESEND:", process.env.RESEND_API_KEY);
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
 import collectionRoutes from "./routes/collectionRoutes.js";
 import chapterRoutes from "./routes/chapterRoutes.js";
@@ -9,7 +11,7 @@ import bookRoutes from "./routes/bookRoutes.js";
 
 import { Storage, File } from "megajs";   // ⬅ correct import
 
-dotenv.config();
+// dotenv.config();
 
 const app = express();
 
