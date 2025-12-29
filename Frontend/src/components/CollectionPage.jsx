@@ -137,8 +137,7 @@ export default function CollectionPage() {
         {t.topBar.showBackButton && (
           <button
             onClick={() => navigate(-1)}
-            className="text-sm sm:text-base px-3 py-1.5 bg-black/40 sm:bg-black/70 opacity-80 rounded hover:bg-white"
-          >
+            className="text-sm sm:text-base px-3 py-1.5 bg-black/40 sm:bg-black/70 opacity-80 rounded hover:bg-white hover:text-black">
             ← Back
           </button>
         )}
