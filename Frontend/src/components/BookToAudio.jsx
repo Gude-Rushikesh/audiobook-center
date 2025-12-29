@@ -269,7 +269,7 @@ export default function BookToAudio() {
         const BookCard = ({ collection }) => (
         <div
           onClick={() => navigate(`/collection/${collection._id}`)}
-          className="relative min-w-55 h-82.5 rounded-2xl overflow-hidden
+          className="relative min-w-40 sm:min-w-50 h-60 sm:h-75 md:h-82.5 rounded-2xl overflow-hidden
                     shadow-md cursor-pointer
                     transition-all duration-300
                     hover:-translate-y-2 hover:shadow-2xl"
@@ -341,7 +341,7 @@ export default function BookToAudio() {
                     className="bg-white text-black font-semibold
                               rounded-md h-8 px-4"
                   >
-                    Home
+                    Logout 
                   </button>
                 </div>
 
@@ -434,7 +434,7 @@ export default function BookToAudio() {
           <button
             key={category.title}
             onClick={() => scrollToId(category.title)}
-            className={`border-black px-8 py-4 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-full
+            className={`border-black px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-full
                         text-xs sm:text-sm font-semibold
                         transition-all
                         hover:-translate-y-1 hover:shadow-sm
@@ -467,7 +467,7 @@ export default function BookToAudio() {
                 </h3>
               </div>
                 
-            <div className="relative min-w-40 sm:min-w-50 md:min-w-55 h-60 sm:h-75 md:h-82.5 rounded-2xl overflow-hidden">
+            <div className="relative">
               {/* RIGHT ARROW */}
               <button
                 onClick={() =>
@@ -486,7 +486,7 @@ export default function BookToAudio() {
                 {/* SCROLL ROW */}
                 <div
                   ref={(el) => (rowRefs.current[category.title] = el)}
-                  className="flex gap-14 overflow-x-auto pb-4 pt-2 no-scrollbar"
+                  className="flex gap-6 sm:gap-10 md:gap-14 overflow-x-auto pb-4 pt-2 no-scrollbar"
                 >
                   {category.items.map((collection) => (
                     <BookCard key={collection._id} collection={collection} />
