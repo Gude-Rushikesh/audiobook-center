@@ -143,7 +143,9 @@ export default function CollectionPage() {
           </button>
         )}
 
-        <h1 className="text-5xl text-center font-display font-semibold">{collection.title}</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-5xl text-center font-display font-semibold">
+          {collection.title}
+          </h1>
 
         {t.topBar.showSoundToggle && t.audio.ambient?.src && (
           <button
@@ -157,7 +159,7 @@ export default function CollectionPage() {
 
       {/* 🧙 HERO SECTION (TEMPLATE-SAFE) */}
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden min-h-75 md:min-h-95"
         style={{ height: heroHeight }}
       >
         {/* Base gradient */}
@@ -179,7 +181,7 @@ export default function CollectionPage() {
               width:
                 window.innerWidth >= 768
                   ? t.hero.image.width.desktop
-                  : t.hero.image.width.mobile,
+                  : "90vw",
               opacity: t.hero.image.opacity ?? 0.6,
             }}
           />
@@ -205,7 +207,7 @@ export default function CollectionPage() {
       <section className="mt-10 px-10">
         <div
           className="flex overflow-x-auto pb-6 scrollbar-hide"
-          style={{ gap: t.booksRail.gap }}
+          style={{ gap: window.innerWidth < 640 ? "24px": t.booksRail.gap }}
         >
           {collection.books.map((book) => (
             <div
@@ -217,6 +219,7 @@ export default function CollectionPage() {
                 }, t.booksRail.card.hover.transitionMs);
               }}
               onMouseEnter={(e) => {
+                if (window.innerWidth < 768) return;
                 if (!t.booksRail.card.hover.lift) return;
                 e.currentTarget.style.transform = `translateY(-${t.booksRail.card.hover.liftAmount})`;
               }}
@@ -238,7 +241,8 @@ export default function CollectionPage() {
                 hover:ring-indigo-400
               "
               style={{
-                minWidth: t.booksRail.card.minWidth,
+                minWidth: 
+                window.innerWidth < 640 ? "160px":t.booksRail.card.minWidth,
                 backgroundColor: t.booksRail.card.background,
                 transitionDuration: `${t.booksRail.card.hover.transitionMs}ms`,
               }}
@@ -261,7 +265,7 @@ export default function CollectionPage() {
 
       {/* 📖 EXTRA SECTION */}
       {t.extraSection.enabled && (
-        <section className="px-10 mt-20 max-w-3xl text-gray-300">
+        <section className="px-6 sm:px-10 mt-14 sm:mt-20 max-w-3xl text-gray-300">
           <h3 className="text-xl font-semibold text-white mb-3">
             {t.extraSection.title}
           </h3>
