@@ -434,8 +434,8 @@ export default function BookToAudio() {
           <button
             key={category.title}
             onClick={() => scrollToId(category.title)}
-            className={`border-black px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-full
-                        text-xs sm:text-sm font-semibold
+            className={`border-black px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 rounded-full
+                        text-xs sm:text-base md:text-lg font-semibold
                         transition-all
                         hover:-translate-y-1 hover:shadow-sm
                         ${CATEGORY_STYLES[category.title]}`}

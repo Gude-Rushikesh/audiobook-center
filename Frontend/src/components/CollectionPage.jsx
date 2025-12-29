@@ -245,7 +245,7 @@ export default function CollectionPage() {
               "
               style={{
                 minWidth: 
-                window.innerWidth < 640 ? "185px":t.booksRail.card.minWidth,
+                window.innerWidth < 640 ? "190px":t.booksRail.card.minWidth,
                 backgroundColor: t.booksRail.card.background,
                 transitionDuration: `${t.booksRail.card.hover.transitionMs}ms`,
               }}
