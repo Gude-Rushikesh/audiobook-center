@@ -435,7 +435,7 @@ export default function BookToAudio() {
             key={category.title}
             onClick={() => scrollToId(category.title)}
             className={`border-black px-8 py-4 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-full
-                        text-xs sm:text-sm font-semibold
+                        text-lg sm:text-sm font-semibold
                         transition-all
                         hover:-translate-y-1 hover:shadow-sm
                         ${CATEGORY_STYLES[category.title]}`}
