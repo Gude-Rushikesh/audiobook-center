@@ -148,8 +148,8 @@ function Home() {
   return (
             <div>
                 {/* HEADER */}
-              <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/40 h-16 border-b border-white/10">
-                <div className="relative h-full px-6 flex items-center">
+              <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/40 border-b border-white/10">
+                <div className="h-14 px-4 flex items-center justify-between">
                   
                   {/* CENTER TITLE (true center of screen) */}
                   <h1 className="absolute left-1/2 -translate-x-1/2 text-white font-display text-lg sm:text-2xl md:text-3xl tracking-widest">
