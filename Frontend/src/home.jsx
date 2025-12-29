@@ -157,7 +157,7 @@ function Home() {
                   </h1>
 
                   {/* RIGHT BUTTONS */}
-                  <div className="ml-auto flex gap-2">
+                  <div className="flex gap-2">
                     <Link to="/register">
                       <button className="px-3 py-1.5 rounded-md bg-white text-black text-sm font-medium">
                         Register
