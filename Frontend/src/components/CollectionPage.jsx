@@ -250,7 +250,9 @@ export default function CollectionPage() {
                 transitionDuration: `${t.booksRail.card.hover.transitionMs}ms`,
               }}
             >
-              <div style={{ height: t.booksRail.card.image.height }}>
+              <div style={{ height: 
+              window.innerWidth < 640 ? "240px" : t.booksRail.card.image.height,
+               }}>
                 <img
                   src={`${API_BASE}/uploads/${book.coverImage}`}
                   alt={book.title}
