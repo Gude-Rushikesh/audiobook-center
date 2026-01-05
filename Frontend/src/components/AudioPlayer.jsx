@@ -1222,7 +1222,7 @@ export default function AudioPlayer({
                 onClick={() => setIsExpanded(false)}
                 className="text-xl font-bold"
               >
-                ⭣
+                ⬇
               </button>
               <span className="text-sm opacity-70">
                 Chapter {currentIndex + 1}
