@@ -1220,9 +1220,9 @@ export default function AudioPlayer({
             <div className="p-4 flex items-center justify-between">
               <button
                 onClick={() => setIsExpanded(false)}
-                className="text-lg"
+                className="text-xl font-bold"
               >
-                ⬇
+                ⭣
               </button>
               <span className="text-sm opacity-70">
                 Chapter {currentIndex + 1}
@@ -1245,7 +1245,7 @@ export default function AudioPlayer({
               </div>
 
               {/* CHAPTER TITLE */}
-              <p className="text-center text-lg font-semibold mt-3">
+              <p className="text-center text-lg font-semibold mt-3 mb-2">
                 {chapter.title}
               </p>
 
