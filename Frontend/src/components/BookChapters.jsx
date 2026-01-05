@@ -150,7 +150,7 @@ export default function BookChapters({ onSelectChapter }) {
                         document.dispatchEvent(new Event("open-player"));
                       }, 50);
                     }
-                  }}
+                  }}    
                   className={`
                     group cursor-pointer
                     rounded-xl px-6 py-4
