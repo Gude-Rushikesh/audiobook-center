@@ -14,8 +14,8 @@ export default function BookChapters({ onSelectChapter }) {
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(null);
 
-  const selectedChapter =
-  currentIndex !== null ? book.chapters[currentIndex] : null;
+  // const selectedChapter =
+  // currentIndex >= 0 ? book.chapters[currentIndex] : null;
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -138,17 +138,13 @@ export default function BookChapters({ onSelectChapter }) {
         ) : (
           <div className="space-y-4">
             {book.chapters.map((chapter, index) => {
-              const isActive = selectedChapter?._id === chapter._id;
+              const isActive = index === currentIndex;
 
               return (
 
                 <div
                   key={chapter._id}
-                  onClick={() => {
-                    setCurrentIndex(index);
-                    onSelectChapter?.(chapter);
-                  }}
-
+                  onClick={() => setCurrentIndex(index)}
                   className={`
                     group cursor-pointer
                     rounded-xl px-6 py-4
@@ -195,22 +191,17 @@ export default function BookChapters({ onSelectChapter }) {
       </section>
 
       {/* 🎧 PLAYER */}
-      <AudioPlayer 
-      book={book}
-      chapter={selectedChapter}
-      chapters={book.chapters}
-      currentIndex={selectedChapter
-        ? book.chapters.findIndex(
-        c => c.id === selectedChapter?._id
-      )
-    : 0
-  }
-      onChangeChapter={(index) => {
-        selectedChapter(book.chapters[index]);
-      }}
-       />
-    </div>
-  );
-}
+            <AudioPlayer
+              book={book}
+              chapter={currentIndex !== null ? book.chapters[currentIndex] : null}
+              chapters={book.chapters}
+              currentIndex={currentIndex}
+              onChangeChapter={(index) => {
+                setCurrentIndex(index);
+              }}
+            />
+        </div>
+      );
+    }
 
 
