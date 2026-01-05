@@ -942,6 +942,27 @@ export default function AudioPlayer({
 
   /* ---------------- CONTROLS ---------------- */
 
+  useEffect(() => {
+      const open = () => setIsExpanded(true);
+
+      document.addEventListener("open-player", open);
+
+      return () => {
+        document.removeEventListener("open-player", open);
+      };
+    }, []);
+
+
+
+    useEffect(() => {
+        document.body.style.overflow = isExpanded ? "hidden" : "auto";
+
+        return () => {
+          document.body.style.overflow = "auto";
+        };
+      }, [isExpanded]);
+
+
 
 
   // Previous button
