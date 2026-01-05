@@ -1069,7 +1069,7 @@ export default function AudioPlayer({
         <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
 
           {/* TITLE */}
-          <p className="text-xl truncate text-center text-white/80">
+          <p className="text-sm truncate text-center text-white/80">
             🎧 {chapter.title}
           </p>
 
@@ -1126,7 +1126,7 @@ export default function AudioPlayer({
 
 
             {/* ELAPSED */}
-            <span className="text-xl text-white/70 w-14 tabular-nums text-right">
+            <span className="text-lg text-white/70 w-14 tabular-nums text-right">
               {formatTime(currentTime)}
             </span>
 
@@ -1146,7 +1146,7 @@ export default function AudioPlayer({
 
 
             {/* TOTAL */}
-            <span className="text-xl text-white/70 w-14 tabular-nums">
+            <span className="text-lg text-white/70 w-14 tabular-nums">
               {formatTime(totalDuration)}
             </span>
 
@@ -1159,7 +1159,7 @@ export default function AudioPlayer({
                 e.stopPropagation();
                 jumpBackward();
               }}
-              className="text-xl px-2.5 py-1.5 rounded-md
+              className="text-lg px-2 py-1 rounded-md
                         bg-white/10 hover:bg-white text-black transition"
               >
                 ↺30s
@@ -1170,7 +1170,7 @@ export default function AudioPlayer({
                   e.stopPropagation();
                   jumpForward();
                 }}
-                className="text-xl px-2.5 py-1.5 rounded-md
+                className="text-lg px-2 py-1 rounded-md
                           bg-white/10 hover:bg-white text-black transition"
               >
                 30s↻
@@ -1181,7 +1181,7 @@ export default function AudioPlayer({
                 e.stopPropagation();
                 changeSpeed();
               }}
-              className="text-xl px-2.5 py-1.5 rounded-md
+              className="text-lg px-3 py-1 rounded-md
                          bg-white/10 hover:bg-white/20 transition"
               >
                 {SPEEDS[speedIndex]}x
