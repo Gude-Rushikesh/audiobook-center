@@ -1211,100 +1211,116 @@ export default function AudioPlayer({
         </div>
       </div>
 
-          {isExpanded && (
-              <div className="fixed inset-0 z-100 bg-black text-white md:hidden">
+        {isExpanded && (
+          <div className="fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col">
 
-                {/* HEADER */}
-                <div className="p-4 flex items-center justify-between">
-                  <button
-                    onClick={() => setIsExpanded(false)}
-                    className="text-xl"
-                  >
-                    ⬇
-                  </button>
-                  <span className="text-sm opacity-70">
-                    Chapter {currentIndex + 1}
-                  </span>
-                  <div />
+            {/* HEADER */}
+            <div className="p-4 flex items-center justify-between">
+              <button
+                onClick={() => setIsExpanded(false)}
+                className="text-xl"
+              >
+                ⬇
+              </button>
+              <span className="text-sm opacity-70">
+                Chapter {currentIndex + 1}
+              </span>
+              <div />
+            </div>
+
+            {/* CONTENT */}
+            <div className="flex-1 flex flex-col items-center justify-center px-6">
+
+              {/* BOOK POSTER */}
+              <div className="w-64 h-64 rounded-2xl overflow-hidden shadow-2xl mb-6">
+                <img
+                  src={`${API_BASE}/uploads/${chapter.coverImage || ""}`}
+                  alt="Book Cover"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* CHAPTER TITLE */}
+              <p className="text-center text-lg font-semibold mb-10">
+                {chapter.title}
+              </p>
+
+            </div>
+
+            {/* CONTROLS AREA */}
+            <div className="px-6 pb-8 space-y-6">
+
+              {/* MAIN CONTROLS */}
+              <div className="flex items-center justify-center gap-12">
+                <button
+                  onClick={goToPreviousChapter}
+                  disabled={currentIndex === 0}
+                  className="text-3xl disabled:opacity-30"
+                >
+                  ⏮
+                </button>
+
+                <button
+                  onClick={togglePlay}
+                  className="w-20 h-20 rounded-full bg-white text-black
+                            flex items-center justify-center text-3xl shadow-lg"
+                >
+                  {isPlaying ? "❚❚" : "▶"}
+                </button>
+
+                <button
+                  onClick={goToNextChapter}
+                  disabled={currentIndex >= chapters.length - 1}
+                  className="text-3xl disabled:opacity-30"
+                >
+                  ⏭
+                </button>
+              </div>
+
+              {/* JUMP + SPEED */}
+              <div className="flex items-center justify-center gap-6">
+                <button
+                  onClick={jumpBackward}
+                  className="px-4 py-2 rounded-full bg-white/10"
+                >
+                  ↺30s
+                </button>
+
+                <button
+                  onClick={jumpForward}
+                  className="px-4 py-2 rounded-full bg-white/10"
+                >
+                  30s↻
+                </button>
+
+                <button
+                  onClick={changeSpeed}
+                  className="px-4 py-2 rounded-full bg-white/10"
+                >
+                  {SPEEDS[speedIndex]}x
+                </button>
+              </div>
+
+              {/* PROGRESS */}
+              <div className="space-y-2">
+                <input
+                  type="range"
+                  min="0"
+                  max={totalDuration || 1}
+                  value={currentTime}
+                  onChange={(e) => handleSeek(Number(e.target.value))}
+                  className="w-full h-1 rounded-full bg-white/20 accent-red-500"
+                />
+
+                <div className="flex justify-between text-xs opacity-70">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{formatTime(totalDuration)}</span>
                 </div>
+              </div>
 
-                {/* CENTER */}
-                <div className="flex-1 flex flex-col items-center justify-center gap-6 px-6">
+            </div>
+          </div>
+        )}
 
-                  {/* Book Image Placeholder */}
-                  <div className="w-56 h-56 rounded-2xl bg-white/10 flex items-center justify-center text-6xl">
-                    📘
-                  </div>
-
-                  {/* Chapter Title */}
-                  <p className="text-center text-lg font-medium">
-                    {chapter.title}
-                  </p>
-
-                  {/* MAIN CONTROLS */}
-                  <div className="flex items-center gap-10 mt-6">
-
-                    <button
-                      onClick={goToPreviousChapter}
-                      disabled={currentIndex === 0}
-                      className="text-3xl disabled:opacity-30"
-                    >
-                      ⏮
-                    </button>
-
-                    <button
-                      onClick={togglePlay}
-                      className="w-20 h-20 rounded-full bg-white text-black
-                                flex items-center justify-center text-3xl"
-                    >
-                      {isPlaying ? "❚❚" : "▶"}
-                    </button>
-
-                    <button
-                      onClick={goToNextChapter}
-                      disabled={currentIndex >= chapters.length - 1}
-                      className="text-3xl disabled:opacity-30"
-                    >
-                      ⏭
-                    </button>
-
-                  </div>
-                </div>
-
-                {/* PROGRESS + JUMP */}
-                <div className="px-6 pb-8 space-y-4">
-
-                  <input
-                    type="range"
-                    min="0"
-                    max={totalDuration || 1}
-                    value={currentTime}
-                    onChange={(e) => handleSeek(Number(e.target.value))}
-                    className="w-full h-1 rounded-full bg-white/20 accent-red-500"
-                  />
-
-                  <div className="flex justify-between text-xs opacity-70">
-                    <span>{formatTime(currentTime)}</span>
-                    <span>{formatTime(totalDuration)}</span>
-                  </div>
-
-                  <div className="flex justify-end gap-4">
-
-                    <button onClick={jumpBackward} className="px-3 py-1 bg-white/10 rounded-md">
-                      ↺30s
-                    </button>
-
-                    <button onClick={jumpForward} className="px-3 py-1 bg-white/10 rounded-md">
-                      30s↻
-                    </button>
-
-                    <button onClick={changeSpeed} className="px-3 py-1 bg-white/10 rounded-md">
-                      {SPEEDS[speedIndex]}x
-                    </button>
-
-                    </div>
-                  </div>
-                </div>
-              )}
             </>
   )}
