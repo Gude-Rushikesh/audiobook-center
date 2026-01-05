@@ -1062,7 +1062,7 @@ export default function AudioPlayer({
 
 
   return (
-
+    <>
     <div className="fixed bottom-0 left-0 right-0 z-50"
       onClick={() => {if (window.innerWidth < 768 && !isExpanded) {setIsExpanded(true);}}}>
       <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
@@ -1112,7 +1112,10 @@ export default function AudioPlayer({
 
             {/* Next Chapter */}
             <button 
-              onClick={goToNextChapter}
+              onClick={(e) => {
+                e.stopPropagation();
+                goToNextChapter();
+              }}
               disabled={!chapters || currentIndex >= chapters.length - 1}
               className="w-10 h-10 rounded-full bg-white text-black 
                                flex items-center justify-center
@@ -1205,7 +1208,8 @@ export default function AudioPlayer({
             // onEnded={() => setIsPlaying(false)}
           />
           </div>
-
+        </div>
+      </div>
 
           {isExpanded && (
               <div className="fixed inset-0 z-100 bg-black text-white md:hidden">
@@ -1302,7 +1306,5 @@ export default function AudioPlayer({
                   </div>
                 </div>
               )}
-        </div>
-      </div>
-  );
-}
+            </>
+  )}
