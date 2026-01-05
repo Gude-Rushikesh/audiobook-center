@@ -1223,9 +1223,9 @@ export default function AudioPlayer({
               >
                 ⬇
               </button>
-              <span className="text-sm opacity-70">
+              {/* <span className="text-sm opacity-70">
                 Chapter {currentIndex + 1}
-              </span>
+              </span> */}
               <div />
             </div>
 
@@ -1233,7 +1233,7 @@ export default function AudioPlayer({
             <div className="flex-1 flex flex-col items-center justify-center px-6">
 
               {/* BOOK POSTER */}
-              <div className="w-64 h-64 rounded-2xl overflow-hidden shadow-2xl mb-6">
+              <div className="w-70 h-84 rounded-2xl overflow-hidden shadow-2xl mb-6">
                 <img
                   src={
                     book?.coverImage ? `${API_BASE}/uploads/${book.coverImage}`:"/placeholder-cover.jpg"
@@ -1244,7 +1244,7 @@ export default function AudioPlayer({
               </div>
 
               {/* CHAPTER TITLE */}
-              <p className="text-center text-lg font-semibold mb-10">
+              <p className="text-center text-lg font-semibold mb-7">
                 {chapter.title}
               </p>
 
