@@ -939,6 +939,8 @@ export default function AudioPlayer({
 
   /* ---------------- CONTROLS ---------------- */
 
+
+
   // Previous button
     const goToPreviousChapter = () => {
       if (!chapters || currentIndex <= 0) return;
@@ -951,6 +953,9 @@ export default function AudioPlayer({
 
     onChangeChapter(currentIndex - 1);
     };
+
+
+
 
     // Play button Logic
 
@@ -965,6 +970,9 @@ export default function AudioPlayer({
         setIsPlaying(false);
       }
     };
+
+
+
     
     // Next button
 
@@ -985,17 +993,20 @@ export default function AudioPlayer({
     audioRef.current.playbackRate = SPEEDS[next];
   };
 
-  const handleEnded = () => {
-    if (!chapters) return;
+
+    //handelEnded
+
+    const handleEnded = () => {
+      if (!chapters) return;
 
     // save completed chapter progress
     localStorage.setItem(
       `chapter-progress-${chapter._id}`,
-      audioRef.current.duration.tostring()
+      audioRef.current.duration.toString()
     );
 
     // if not last chapter, go next
-    if (currentIndex < chapter.length - 1) {
+    if (currentIndex < chapters.length - 1) {
       onChangeChapter(currentIndex + 1);
     } else {
       setIsPlaying(false);
@@ -1039,10 +1050,9 @@ export default function AudioPlayer({
             <button 
               onClick={goToPreviousChapter}
               disabled={currentIndex === 0}
-              className="w-10 h-10 rounded-full bg-white/10 text-white 
+              className="w-11 h-11 rounded-full bg-white/10 text-white 
                                 flex items-center justify-center
-                                hover:bg-white/20 transition
-                                disabled:opacity-40 disabled:cursor-not-allowed"
+                               hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
               ⏮
               </button>
@@ -1059,12 +1069,15 @@ export default function AudioPlayer({
               {isPlaying ? "❚❚" : "▶"}
             </button>
 
+
+
             <button 
               onClick={goToNextChapter}
-              className="w-10 h-10 rounded-full bg-white/10 text-white 
+              disabled={!chapters || currentIndex >= chapters.length - 1}
+              className="w-11 h-11 rounded-full bg-white text-black 
                                flex items-center justify-center
-                               hover:bg-white/20 transition
-                               disabled:opacity-40 disabled:cursor-not-allowed"
+                               hover:scale-105 transition 
+                               disabled:opacity-50 disabled:cursor-not-allowed"
             >
             ⏭
             </button>

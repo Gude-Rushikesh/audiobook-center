@@ -12,7 +12,10 @@ export default function BookChapters({ onSelectChapter }) {
 
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [selectedChapter, setSelectedChapter] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(null);
+
+  const selectedChapter =
+  currentIndex !== null ? book.chapters[currentIndex] : null;
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -138,12 +141,14 @@ export default function BookChapters({ onSelectChapter }) {
               const isActive = selectedChapter?._id === chapter._id;
 
               return (
+
                 <div
                   key={chapter._id}
                   onClick={() => {
-                    setSelectedChapter(chapter);
+                    setCurrentIndex(index);
                     onSelectChapter?.(chapter);
                   }}
+
                   className={`
                     group cursor-pointer
                     rounded-xl px-6 py-4
@@ -190,7 +195,12 @@ export default function BookChapters({ onSelectChapter }) {
       </section>
 
       {/* 🎧 PLAYER */}
-      <AudioPlayer chapter={selectedChapter} />
+      <AudioPlayer 
+      chapter={selectedChapter}
+      chapters={book.chapters}
+      currentIndex={currentIndex}
+      onChangeChapter={setCurrentIndex}
+       />
     </div>
   );
 }
