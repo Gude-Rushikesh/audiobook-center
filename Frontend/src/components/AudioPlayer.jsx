@@ -1213,7 +1213,7 @@ export default function AudioPlayer({
       </div>
 
         {isExpanded && (
-          <div className="fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col">
+          <div className="fixed inset-0 z-80 bg-black text-white md:hidden flex flex-col">
 
             {/* HEADER */}
             <div className="p-4 flex items-center justify-between">
@@ -1244,7 +1244,7 @@ export default function AudioPlayer({
               </div>
 
               {/* CHAPTER TITLE */}
-              <p className="text-center text-lg font-semibold mb-2">
+              <p className="text-center text-lg font-semibold mt-2">
                 {chapter.title}
               </p>
 
