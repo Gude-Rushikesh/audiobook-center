@@ -829,282 +829,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useRef, useState, useEffect } from "react";
-
-// const API_BASE = import.meta.env.VITE_API_URL;
-
-// const SPEEDS = [1, 1.25, 1.5, 2];
-
-// export default function AudioPlayer({ chapter }) {
-//   if (!chapter) return null;
-
-//   const audioRef = useRef(null);
-//   const saveIntervalRef = useRef(null);
-
-//   const [isPlaying, setIsPlaying] = useState(false);
-//   const [isBuffering, setIsBuffering] = useState(false);
-//   const [currentTime, setCurrentTime] = useState(0);
-//   const [totalDuration, setTotalDuration] = useState(0);
-//   const [speedIndex, setSpeedIndex] = useState(0);
-
-//   /* ---------------- TIME HELPERS ---------------- */
-
-//   const parseDuration = (str) => {
-//     if (!str) return 0;
-//     const parts = str.split(":").map(Number);
-
-//     if (parts.length === 3) {
-//       const [h, m, s] = parts;
-//       return h * 3600 + m * 60 + s;
-//     }
-
-//     if (parts.length === 2) {
-//       const [m, s] = parts;
-//       return m * 60 + s;
-//     }
-
-//     return 0;
-//   };
-
-//   const formatTime = (time) => {
-//     if (!time || isNaN(time)) return "0:00";
-
-//     const t = Math.floor(time);
-//     const h = Math.floor(t / 3600);
-//     const m = Math.floor((t % 3600) / 60);
-//     const s = t % 60;
-
-//     if (h > 0) {
-//       return `${h}:${m.toString().padStart(2, "0")}:${s
-//         .toString()
-//         .padStart(2, "0")}`;
-//     }
-
-//     return `${m}:${s.toString().padStart(2, "0")}`;
-//   };
-
-//   /* ---------------- LOAD CHAPTER + RESUME ---------------- */
-
-//   useEffect(() => {
-//     if (!audioRef.current) return;
-
-//     const durationSeconds = parseDuration(chapter.duration);
-//     setTotalDuration(durationSeconds);
-
-//     const savedTime =
-//       Number(localStorage.getItem(`chapter-progress-${chapter._id}`)) || 0;
-
-//     audioRef.current.src =
-//       `${API_BASE}/api/stream?link=${encodeURIComponent(
-//         chapter.megaLink
-//       )}`;
-
-//     audioRef.current.load();
-
-//     audioRef.current.onloadedmetadata = () => {
-//       if (savedTime > 0 && savedTime < durationSeconds - 5) {
-//         audioRef.current.currentTime = savedTime;
-//         setCurrentTime(savedTime);
-//       }
-//       audioRef.current.play();
-//       setIsPlaying(true);
-//     };
-
-//     return () => {
-//       clearInterval(saveIntervalRef.current);
-//     };
-//   }, [chapter]);
-
-//   /* ---------------- SAVE PROGRESS ---------------- */
-
-//   useEffect(() => {
-//     if (!audioRef.current) return;
-
-//     saveIntervalRef.current = setInterval(() => {
-//       localStorage.setItem(
-//         `chapter-progress-${chapter._id}`,
-//         audioRef.current.currentTime.toString()
-//       );
-//     }, 3000);
-
-//     return () => clearInterval(saveIntervalRef.current);
-//   }, [chapter]);
-
-//   /* ---------------- CONTROLS ---------------- */
-
-//   const togglePlay = () => {
-//     if (!audioRef.current) return;
-
-//     if (audioRef.current.paused) {
-//       audioRef.current.play();
-//       setIsPlaying(true);
-//     } else {
-//       audioRef.current.pause();
-//       setIsPlaying(false);
-//     }
-//   };
-
-//   const changeSpeed = () => {
-//     const next = (speedIndex + 1) % SPEEDS.length;
-//     setSpeedIndex(next);
-//     audioRef.current.playbackRate = SPEEDS[next];
-//   };
-
-//   const handleSeek = (value) => {
-//     if (!audioRef.current) return;
-
-//     audioRef.current.pause();
-//     setIsBuffering(true);
-//     audioRef.current.currentTime = value;
-
-//     audioRef.current.oncanplay = () => {
-//       audioRef.current.play();
-//       setIsBuffering(false);
-//       setIsPlaying(true);
-//     };
-//   };
-
-//   const handleTimeUpdate = () => {
-//     setCurrentTime(audioRef.current.currentTime);
-//   };
-
-//   /* ---------------- UI ---------------- */
-
-//   return (
-//     <div className="fixed bottom-0 left-0 right-0 z-50">
-//       <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
-//         <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
-
-//           {/* TITLE */}
-//           <p className="text-sm truncate text-white/80">
-//             🎧 {chapter.title}
-//           </p>
-
-//           {/* CONTROLS */}
-//           <div className="flex items-center gap-4">
-
-//             {/* PLAY */}
-//             <button
-//               onClick={togglePlay}
-//               disabled={isBuffering}
-//               className="w-11 h-11 rounded-full bg-white text-black
-//                          flex items-center justify-center
-//                          hover:scale-105 transition disabled:opacity-50"
-//             >
-//               {isPlaying ? "❚❚" : "▶"}
-//             </button>
-
-//             {/* ELAPSED */}
-//             <span className="text-xs text-white/70 w-14 tabular-nums text-right">
-//               {formatTime(currentTime)}
-//             </span>
-
-//             {/* PROGRESS */}
-//             <input
-//               type="range"
-//               min="0"
-//               max={totalDuration || 1}
-//               value={currentTime}
-//               onChange={(e) => handleSeek(Number(e.target.value))}
-//               className="flex-1 h-1 rounded-full appearance-none
-//                          bg-white/20 accent-red-500 cursor-pointer"
-//             />
-
-//             {/* TOTAL */}
-//             <span className="text-xs text-white/70 w-14 tabular-nums">
-//               {formatTime(totalDuration)}
-//             </span>
-
-//             {/* SPEED */}
-//             <button
-//               onClick={changeSpeed}
-//               className="text-xs px-3 py-1 rounded-md
-//                          bg-white/10 hover:bg-white/20 transition"
-//             >
-//               {SPEEDS[speedIndex]}x
-//             </button>
-//           </div>
-
-//           {isBuffering && (
-//             <p className="text-xs text-white/50">
-//               Buffering audio…
-//             </p>
-//           )}
-
-//           <audio
-//             ref={audioRef}
-//             preload="metadata"
-//             onTimeUpdate={handleTimeUpdate}
-//             onWaiting={() => setIsBuffering(true)}
-//             onPlaying={() => setIsBuffering(false)}
-//             onEnded={() => setIsPlaying(false)}
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
 import { useRef, useState, useEffect } from "react";
 
 const API_BASE = import.meta.env.VITE_API_URL;
+
 const SPEEDS = [1, 1.25, 1.5, 2];
 
-export default function AudioPlayer({
-  chapter,
-  chapters = [],
-  currentIndex = 0,
-  onChangeChapter
-}) {
+export default function AudioPlayer({ chapter }) {
   if (!chapter) return null;
 
   const audioRef = useRef(null);
@@ -1115,27 +846,44 @@ export default function AudioPlayer({
   const [currentTime, setCurrentTime] = useState(0);
   const [totalDuration, setTotalDuration] = useState(0);
   const [speedIndex, setSpeedIndex] = useState(0);
-  const [expanded, setExpanded] = useState(false); // mobile fullscreen
 
   /* ---------------- TIME HELPERS ---------------- */
 
   const parseDuration = (str) => {
     if (!str) return 0;
     const parts = str.split(":").map(Number);
-    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
-    if (parts.length === 2) return parts[0] * 60 + parts[1];
+
+    if (parts.length === 3) {
+      const [h, m, s] = parts;
+      return h * 3600 + m * 60 + s;
+    }
+
+    if (parts.length === 2) {
+      const [m, s] = parts;
+      return m * 60 + s;
+    }
+
     return 0;
   };
 
-  const formatTime = (t) => {
-    if (!t || isNaN(t)) return "0:00";
-    const s = Math.floor(t);
-    const m = Math.floor(s / 60);
-    const sec = s % 60;
-    return `${m}:${sec.toString().padStart(2, "0")}`;
+  const formatTime = (time) => {
+    if (!time || isNaN(time)) return "0:00";
+
+    const t = Math.floor(time);
+    const h = Math.floor(t / 3600);
+    const m = Math.floor((t % 3600) / 60);
+    const s = t % 60;
+
+    if (h > 0) {
+      return `${h}:${m.toString().padStart(2, "0")}:${s
+        .toString()
+        .padStart(2, "0")}`;
+    }
+
+    return `${m}:${s.toString().padStart(2, "0")}`;
   };
 
-  /* ---------------- LOAD CHAPTER ---------------- */
+  /* ---------------- LOAD CHAPTER + RESUME ---------------- */
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -1143,24 +891,28 @@ export default function AudioPlayer({
     const durationSeconds = parseDuration(chapter.duration);
     setTotalDuration(durationSeconds);
 
-    const saved =
+    const savedTime =
       Number(localStorage.getItem(`chapter-progress-${chapter._id}`)) || 0;
 
     audioRef.current.src =
-      `${API_BASE}/api/stream?link=${encodeURIComponent(chapter.megaLink)}`;
+      `${API_BASE}/api/stream?link=${encodeURIComponent(
+        chapter.megaLink
+      )}`;
 
     audioRef.current.load();
 
     audioRef.current.onloadedmetadata = () => {
-      if (saved > 0 && saved < durationSeconds - 5) {
-        audioRef.current.currentTime = saved;
-        setCurrentTime(saved);
+      if (savedTime > 0 && savedTime < durationSeconds - 5) {
+        audioRef.current.currentTime = savedTime;
+        setCurrentTime(savedTime);
       }
       audioRef.current.play();
       setIsPlaying(true);
     };
 
-    return () => clearInterval(saveIntervalRef.current);
+    return () => {
+      clearInterval(saveIntervalRef.current);
+    };
   }, [chapter]);
 
   /* ---------------- SAVE PROGRESS ---------------- */
@@ -1181,6 +933,8 @@ export default function AudioPlayer({
   /* ---------------- CONTROLS ---------------- */
 
   const togglePlay = () => {
+    if (!audioRef.current) return;
+
     if (audioRef.current.paused) {
       audioRef.current.play();
       setIsPlaying(true);
@@ -1196,124 +950,97 @@ export default function AudioPlayer({
     audioRef.current.playbackRate = SPEEDS[next];
   };
 
-  const seekTo = (val) => {
-    audioRef.current.currentTime = val;
-    setCurrentTime(val);
+  const handleSeek = (value) => {
+    if (!audioRef.current) return;
+
+    audioRef.current.pause();
+    setIsBuffering(true);
+    audioRef.current.currentTime = value;
+
+    audioRef.current.oncanplay = () => {
+      audioRef.current.play();
+      setIsBuffering(false);
+      setIsPlaying(true);
+    };
   };
 
-  const jump = (sec) => {
-    const next = Math.min(
-      totalDuration,
-      Math.max(0, audioRef.current.currentTime + sec)
-    );
-    seekTo(next);
+  const handleTimeUpdate = () => {
+    setCurrentTime(audioRef.current.currentTime);
   };
-
-  const prevDisabled = currentIndex === 0;
-  const nextDisabled = currentIndex === chapters.length - 1;
 
   /* ---------------- UI ---------------- */
 
   return (
-    <>
-      {/* MINI PLAYER */}
-      <div
-        className="fixed bottom-0 left-0 right-0 z-50 bg-black/90 backdrop-blur border-t border-white/10"
-        onClick={() => setExpanded(true)}
-      >
-        <div className="max-w-6xl mx-auto px-6 py-3 text-white">
-          <p className="text-sm truncate">🎧 {chapter.title}</p>
-          <div className="flex items-center gap-3 mt-2">
+    <div className="fixed bottom-0 left-0 right-0 z-50">
+      <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
+
+          {/* TITLE */}
+          <p className="text-sm truncate text-white/80">
+            🎧 {chapter.title}
+          </p>
+
+          {/* CONTROLS */}
+          <div className="flex items-center gap-4">
+
+            {/* PLAY */}
             <button
-              onClick={(e) => { e.stopPropagation(); togglePlay(); }}
-              className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center"
+              onClick={togglePlay}
+              disabled={isBuffering}
+              className="w-11 h-11 rounded-full bg-white text-black
+                         flex items-center justify-center
+                         hover:scale-105 transition disabled:opacity-50"
             >
               {isPlaying ? "❚❚" : "▶"}
             </button>
+
+            {/* ELAPSED */}
+            <span className="text-xs text-white/70 w-14 tabular-nums text-right">
+              {formatTime(currentTime)}
+            </span>
+
+            {/* PROGRESS */}
             <input
               type="range"
               min="0"
               max={totalDuration || 1}
               value={currentTime}
-              onChange={(e) => seekTo(Number(e.target.value))}
-              className="flex-1"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* EXPANDED PLAYER (MOBILE + DESKTOP) */}
-      {expanded && (
-        <div className="fixed inset-0 z-60 bg-black text-white flex flex-col">
-          {/* HEADER */}
-          <div className="p-4 flex items-center gap-3">
-            <button onClick={() => setExpanded(false)}>⬇</button>
-            <p className="text-sm truncate">{chapter.title}</p>
-          </div>
-
-          {/* CENTER */}
-          <div className="flex-1 flex flex-col items-center justify-center gap-6">
-            <div className="w-48 h-48 bg-white/10 rounded-xl flex items-center justify-center text-6xl">
-              📘
-            </div>
-
-            <div className="flex items-center gap-8 text-3xl">
-              <button
-                disabled={prevDisabled}
-                onClick={() => onChangeChapter(currentIndex - 1)}
-                className="disabled:opacity-30"
-              >
-                ⏮
-              </button>
-
-              <button
-                onClick={togglePlay}
-                className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center"
-              >
-                {isPlaying ? "❚❚" : "▶"}
-              </button>
-
-              <button
-                disabled={nextDisabled}
-                onClick={() => onChangeChapter(currentIndex + 1)}
-                className="disabled:opacity-30"
-              >
-                ⏭
-              </button>
-            </div>
-          </div>
-
-          {/* SEEK */}
-          <div className="px-6 pb-6 space-y-3">
-            <input
-              type="range"
-              min="0"
-              max={totalDuration || 1}
-              value={currentTime}
-              onChange={(e) => seekTo(Number(e.target.value))}
-              className="w-full"
+              onChange={(e) => handleSeek(Number(e.target.value))}
+              className="flex-1 h-1 rounded-full appearance-none
+                         bg-white/20 accent-red-500 cursor-pointer"
             />
 
-            <div className="flex items-center justify-between text-xs">
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(totalDuration)}</span>
-            </div>
+            {/* TOTAL */}
+            <span className="text-xs text-white/70 w-14 tabular-nums">
+              {formatTime(totalDuration)}
+            </span>
 
-            <div className="flex items-center justify-end gap-4">
-              <button onClick={() => jump(-30)}>↺ 30s</button>
-              <button onClick={() => jump(30)}>30s ↻</button>
-              <button onClick={changeSpeed}>{SPEEDS[speedIndex]}x</button>
-            </div>
+            {/* SPEED */}
+            <button
+              onClick={changeSpeed}
+              className="text-xs px-3 py-1 rounded-md
+                         bg-white/10 hover:bg-white/20 transition"
+            >
+              {SPEEDS[speedIndex]}x
+            </button>
           </div>
+
+          {isBuffering && (
+            <p className="text-xs text-white/50">
+              Buffering audio…
+            </p>
+          )}
 
           <audio
             ref={audioRef}
             preload="metadata"
-            onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
+            onTimeUpdate={handleTimeUpdate}
+            onWaiting={() => setIsBuffering(true)}
+            onPlaying={() => setIsBuffering(false)}
             onEnded={() => setIsPlaying(false)}
           />
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }

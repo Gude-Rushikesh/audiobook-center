@@ -190,14 +190,7 @@ export default function BookChapters({ onSelectChapter }) {
       </section>
 
       {/* 🎧 PLAYER */}
-      {/* <AudioPlayer chapter={selectedChapter} /> */}
-      <AudioPlayer
-        chapter={currentChapter}
-        chapters={chapters}
-        currentIndex={currentIndex}
-        onChangeChapter={(newIndex) => setCurrentIndex(newIndex)}
-      />
-
+      <AudioPlayer chapter={selectedChapter} />
     </div>
   );
 }
