@@ -211,7 +211,8 @@ export default function BookToAudio() {
               if (usedIds.has(col._id)) return false;
 
               const matched = category.match.some(key =>
-                col.title.toLowerCase().includes(key)
+                col.title.toLowerCase().includes(key) ||
+                col.author?.toLowerCase().includes(key)
               );
 
               if (matched) {

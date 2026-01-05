@@ -8,147 +8,244 @@ dotenv.config();
 const chapters = 
 [
   {
-    "title": "Prologue – Letters from Captain Walton",
-    "duration": "36:33",
-    "megaLink": "https://mega.nz/file/JB1lRKiK#_XwK6h55ZwC7827Qi5Dig5OSNAtUsqLBd4tu7e--zvU",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Prologue – A Childhood of Isolation",
+    "duration": "05:57",
+    "megaLink": "https://mega.nz/file/UFMV1bLT#yjeHVEND3yEILkWNpvfwQWV7rohReH2KTtsApKwrIPo",
+    "bookId": "695a245f37873b197184b26b"
+  },
+
+  {
+    "title": "Chapter 1 – Gateshead and the Red-Room",
+    "duration": "12:40",
+    "megaLink": "https://mega.nz/file/hFkn1JzK#xNn1zzSwkUl057hnijsq9mxv5ZQ1xYl1--by9RfECjg",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 01 – Childhood and Early Education",
-    "duration": "10:30",
-    "megaLink": "https://mega.nz/file/gJklVR6Q#sZnvAIA85Rk3G4mRpXwnt5DlNJ1hrUg_uoGgG57rlG4",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 2 – Punishment and Defiance",
+    "duration": "17:59",
+    "megaLink": "https://mega.nz/file/VVk10YIC#e6idzNgn1sxSWYhcP_MC7bCIWXV9r1uputaLUkJ_QTY",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 02 – Obsession with Science",
-    "duration": "17:08",
-    "megaLink": "https://mega.nz/file/sQEBWQbY#AuvE5pbayNWjdj02_gq3K5qmBiG5xHBGUTmIv7FcEtI",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 3 – Illness and Kindness",
+    "duration": "21:18",
+    "megaLink": "https://mega.nz/file/JE03#link_placeholder",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 03 – The Creation Begins",
-    "duration": "31:50",
-    "megaLink": "https://mega.nz/file/8VsXiYpQ#s8MXZFNeCTDuvi8HwkAebyE91FiyuqNTlU9w9fZfPwk",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 4 – Farewell to Gateshead",
+    "duration": "32:20",
+    "megaLink": "https://mega.nz/file/JUtRFawJ#bp_5rxjBv27ETk2AmcUpzqvHn2YXtuij8_-wROZF23w",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 04 – The Creature Awakens",
-    "duration": "17:08",
-    "megaLink": "https://mega.nz/file/kAMRgJTR#BPFaY8SnnG3e_nuoHcY4wnBOTJMMXgqhUEXRh-La3H4",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 5 – Lowood Institution",
+    "duration": "31:07",
+    "megaLink": "https://mega.nz/file/gZ0X1SrL#9MfDgZ2WqY1-pESk14tZbtK_d39G7Vx4Em6PkKJM7n4",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 05 – Horror and Regret",
-    "duration": "19:34",
-    "megaLink": "https://mega.nz/file/YRkziBpD#dKA4866Shf8B_kJb0zYU6lSRX4__y2vshcPO1jorT6s",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 6 – Friendship with Helen Burns",
+    "duration": "19:55",
+    "megaLink": "hhttps://mega.nz/file/RAtRRCoZ#gPphftVCpt-cQ9SEFcj_RQdKOlxUX_OwSei-zWr9tws",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 06 – Recovery and Letters",
-    "duration": "21:44",
-    "megaLink": "https://mega.nz/file/AMMhUSbL#ggP12_1sTkU_kqeI8iY6e3JrNqEz8rWC3eOJMh7MM6Q",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 7 – Public Humiliation",
+    "duration": "22:11",
+    "megaLink": "https://mega.nz/file/FdkTHLbR#QUBGQxQ_79v18frVzJa_y1gI5zE9jfsgftvu6weM5lA",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 07 – Tragedy Strikes",
-    "duration": "20:36",
-    "megaLink": "https://mega.nz/file/EdlWALRD#FOC4jO0oFgR0qujDD6eRq2polmcb-eZx6mtAMQqfUDA",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 8 – Vindication and Loss",
+    "duration": "22:22",
+    "megaLink": "https://mega.nz/file/cZUAjYTI#dUw3lP-4gVSj53ho64O6QPD_y4V1nupA5UJ5Uilda28",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 08 – A False Accusation",
-    "duration": "13:44",
-    "megaLink": "https://mega.nz/file/NVMylToQ#981Cm0dN166YoUgtAZLKlS42fAVzLOQezI3RMZvbqFQ",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 9 – Years of Growth",
+    "duration": "23:50",
+    "megaLink": "https://mega.nz/file/BJdSnKrC#Ss1cCDoS2LLogkDBELlkot3GJUp16xfRCHXRRAiseE0",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 09 – Guilt and Grief",
-    "duration": "16:26",
-    "megaLink": "https://mega.nz/file/IQ0BEToS#UJ4BH92HOfLPsW2mFlLPZNLADPoeqtjNTTaexDFCP7s",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 10 – A New Beginning",
+    "duration": "29:52",
+    "megaLink": "https://mega.nz/file/JY9ixT4B#um_C1V7a_rDcircFnk3_O-Nbt2hCLTKGYXOhpNJfJYA",
+    "bookId": "695a245f37873b197184b26b"
+  },
+
+  {
+    "title": "Chapter 11 – Thornfield Hall",
+    "duration": "40:41",
+    "megaLink": "https://mega.nz/file/xJ0xCRLK#FFWxCw-c3WSpNyXCFlWKIOfy6pLx3jXWdLxa72LTVOc",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 10 – The Monster Speaks",
-    "duration": "17:44",
-    "megaLink": "https://mega.nz/file/1dk1GICI#dXibsA2x8PvZiYe5GrI1KTAfrcDbUYJr46ZiJWKxSiI",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 12 – Solitude and Reflection",
+    "duration": "28:25",
+    "megaLink": "https://mega.nz/file/hV0XFBBS#30rDXWMqI7fUEemUXJEV74rP-R2L6LAkv7ZKa6Cqhs8",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 11 – The Creature’s Story",
-    "duration": "13:46",
-    "megaLink": "https://mega.nz/file/cclD2YRS#qKkSbOlInmzz_KA2Vs7s7a66GTWCLPvMXOHKKKifWRg",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 13 – Rochester Appears",
+    "duration": "26:30",
+    "megaLink": "https://mega.nz/file/pJ8WjAxA#S2hdjueottkdIBE7XdBg_5pIaghaqcMs5luaNIFhQtE",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 12 – Learning Humanity",
-    "duration": "13:23",
-    "megaLink": "https://mega.nz/file/kA8xFQBK#JdCSDQBaDduse1lxNIweTN-eh1rlewmO1Ubs4hXYzRc",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 14 – Conversations by the Fire",
+    "duration": "32:40",
+    "megaLink": "https://mega.nz/file/wRcDACja#zTfEsmtm0p7dGUGKXwuuSnUcZiqTVAroiiTGhJPnDoo",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 13 – Rejection and Rage",
-    "duration": "27:08",
-    "megaLink": "https://mega.nz/file/UZtSHQ6a#LjWUc_QP8ZN2-r2CHicgjf7qYuY9fFSAOlE6CmDBRWI",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 15 – Fire in the Night",
+    "duration": "34:05",
+    "megaLink": "https://mega.nz/file/lcUFBBqB#Oh8fvBa4qy4AqigoC0K0Au_RBPZ80U6eUxyedkuij1g",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 14 – Despair and Violence",
-    "duration": "22:13",
-    "megaLink": "https://mega.nz/file/wBMRnRzT#0PI-AnQK0duD1Ine7C93n1v3X50AQfjypYTWOCGQsO8",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 16 – Growing Affection",
+    "duration": "21:01",
+    "megaLink": "https://mega.nz/file/4MlRESDA#szj1zAHFSLvy752ktQg8NBeAJN9FRrexdFDJcWuLBBA",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 15 – The Demand",
-    "duration": "13:32",
-    "megaLink": "https://mega.nz/file/lEUhhC6a#byti9i1vQNsJHktms60sm08zWguVqfU-_tOdp7ptRHw",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 17 – Arrival of Guests",
+    "duration": "47:02",
+    "megaLink": "https://mega.nz/file/QVMBVLqI#hfjfqoAptrPPbXYxQeg0-HfHgv-kDLlwY9StjKRsXBI",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 16 – A New Creation",
-    "duration": "19:52",
-    "megaLink": "https://mega.nz/file/McEkCTAZ#r6imD2J99FtpDKXRmI9DWwZdsFzdP8kVgfZD2SYj1fQ",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 18 – Jealousy and Revelation",
+    "duration": "35:02",
+    "megaLink": "https://mega.nz/file/MRMEFYBL#yL2rjxhzOEYETOstV5Uj79mwVI7sclLeTsKbMKs5pxw",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 17 – Destruction of Hope",
-    "duration": "16:48",
-    "megaLink": "https://mega.nz/file/wQ9ikIoY#4MPy6H2eYnH6ce_zHsOCRgZ5norryZgO3oSKGbE9MmU",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 19 – Secrets and Suspicion",
+    "duration": "26:52",
+    "megaLink": "https://mega.nz/file/Uc8nyaib#HSkeuocMzaM4uyAFxYkJhGSxdHW5z7KGKxby4Lit0ZM",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 18 – Revenge",
-    "duration": "24:58",
-    "megaLink": "https://mega.nz/file/4ZckjBQY#42rxpQLNPbLjCJYM3qYzrIxLV8Tb246hJqDD0q1YTb4",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 20 – The Proposal",
+    "duration": "39:29",
+    "megaLink": "https://mega.nz/file/xZ1R2Aoa#-pI2yZE_rSLKVcwwINKdFUP7vqEwAIviWJ71sTQDvG4",
+    "bookId": "695a245f37873b197184b26b"
+  },
+
+  {
+    "title": "Chapter 21 – An Unexpected Inheritance",
+    "duration": "53:56",
+    "megaLink": "https://mega.nz/file/AEtWhDSR#Rihm7Sph4amNqi7mGLaafh9U6VXJBWR5zAACkkRVhK4",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 19 – The Final Tragedy",
-    "duration": "40:51",
-    "megaLink": "https://mega.nz/file/9c8FAJpQ#xoI5QixIpI6chAwu4hUH2YLbmqcxuqnBglAHUbu0mGk",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 22 – Wedding Preparations",
+    "duration": "25:13",
+    "megaLink": "https://mega.nz/file/UUswVQaK#ClcuK6T_PiVEHYQs8iKu_dyk9E-NbDwNEc1WJYp-JF0",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 20 – Pursuit Across the Ice",
-    "duration": "19:26",
-    "megaLink": "https://mega.nz/file/MEtnhLJL#YH4Il9p6DAzCD18orR1NOPbb28nN3Nz5HZJRtJEeT9Y",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 23 – Doubts and Dreams",
+    "duration": "34:24",
+    "megaLink": "https://mega.nz/file/sMdGGBhA#DW76xsQgW7nNrTosYpCRvWLZpkpWO2GWHXcy-Vcydag",
+    "bookId": "695a245f37873b197184b26b"
   },
   {
-    "title": "Chapter 21 – The End of the Creator",
-    "duration": "1:01:24",
-    "megaLink": "https://mega.nz/file/FRsUTASL#I64ceopaHEWgxo9BEQcBX0lpy9tcU9IslnZicD2hdpM",
-    "bookId": "694d00ec0d5937a33026f9ad"
+    "title": "Chapter 24 – The Veil Torn",
+    "duration": "40:25",
+    "megaLink": "https://mega.nz/file/oIsjibTC#1a6vJmIdyfiF1SVbA6O10s-qkw0fBnc7t4gwN6nZWeM",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 25 – The Wedding Interrupted",
+    "duration": "34:21",
+    "megaLink": "https://mega.nz/file/EJEVwAba#hjS71ayyrPDMxBExnkMiPD6OEi8zufbFSoGJniqUSQg",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 26 – Truth Revealed",
+    "duration": "31:28",
+    "megaLink": "https://mega.nz/file/4UdjAapY#vZA8xI-f3MKcCeRfgJeLz-L1s8NRy8YXoXPh9w9UZPY",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 27 – Flight from Thornfield",
+    "duration": "1:25:26",
+    "megaLink": "https://mega.nz/file/YVFAQZJY#oJYorfq0bgBEuTcR8CgTo0w1iz91-vSvYCUCvv_Zuf0",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 28 – Wandering and Hunger",
+    "duration": "50:29",
+    "megaLink": "https://mega.nz/file/8ddRyTYT#f7D7vhw5qM7tKeuz6BXO30VMNfWNDuad47I7BM_X0uo",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 29 – Shelter at Moor House",
+    "duration": "28:34",
+    "megaLink": "https://mega.nz/file/tREiDawJ#jwpz_dHbeANf2v3ewNyJCEkcpI7cxgtbdD4pBzlCeA4",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 30 – New Duties and Resolve",
+    "duration": "24:04",
+    "megaLink": "https://mega.nz/file/BYc1xBYI#1yt_RmBGxT7oy7Kkt4Hmt5tcUn8RUsmY5SWjKY2SF2U",
+    "bookId": "695a245f37873b197184b26b"
+  },
+
+  {
+    "title": "Chapter 31 – A Tempting Offer",
+    "duration": "19:59",
+    "megaLink": "https://mega.nz/file/lEtzSaYb#L1ddnwNP8MlzUhVVo8NF2SapMwUoXalSNO8UO7GMIFY",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 32 – Conflict of Heart and Mind",
+    "duration": "28:47",
+    "megaLink": "https://mega.nz/file/sd9iQTRC#jOXMA8RZWJFNY0lUpQGPBI8-pkpkgvSWjJPwZyCeEYE",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 33 – The Call of Love",
+    "duration": "38:02",
+    "megaLink": "https://mega.nz/file/tZUDABJS#DIXvyyMm_x5ZHed_ebhTZcaKVav4cW0gPYOt5uqdVJI",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 34 – Return to Thornfield",
+    "duration": "58:22",
+    "megaLink": "https://mega.nz/file/9Zd1hLxY#5mQEcnIZ_kbeIOxOnXxhG0aEUpaT8RrKsui0BEP4P3c",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 35 – Ruins and Revelation",
+    "duration": "28:18",
+    "megaLink": "https://mega.nz/file/MR1iGBoJ#eqyo3VXWUfR1sZJ4o6-iT2zcy0DF02J6QvEqXJ_sL5U",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 36 – Reunion",
+    "duration": "24:13",
+    "megaLink": "https://mega.nz/file/oZ9lSIBD#JYRVdmkmVRHn2koBjrmNw-dWSuAw8m4sK29VpfdvFlY",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 37 – Renewal and Hope",
+    "duration": "47:59",
+    "megaLink": "https://mega.nz/file/5MdmVCJR#WvyVB8lknwTxNDtbjn-ByD3t9CSSKMNXfi4DHlPLs5Q",
+    "bookId": "695a245f37873b197184b26b"
+  },
+  {
+    "title": "Chapter 38 – A Life of Equality and Love",
+    "duration": "11:23",
+    "megaLink": "https://mega.nz/file/UAlSjYzb#4yJ45cUMQPpqcn3AYq9nzPGX5l18sq0E4nKQ_Eowxx0",
+    "bookId": "695a245f37873b197184b26b"
   }
 ]
-
-
-
-
-
-
-
-
-
 
 
 async function seed() {
