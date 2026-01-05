@@ -944,10 +944,50 @@ export default function AudioPlayer({ chapter }) {
     }
   };
 
+  const goToPreviousChapter = () => {
+    if (!chapter || currentIndex <= 0) return;
+
+  //save current progress
+  localStorage.setItem(
+    `chapter-progress-${chapter._id}`,
+    audioRef.current.currentTime.toString()
+  );
+
+  onChangeChapter(currentIndx - 1);
+  };
+
   const changeSpeed = () => {
     const next = (speedIndex + 1) % SPEEDS.length;
     setSpeedIndex(next);
     audioRef.current.playbackRate = SPEEDS[next];
+  };
+
+  const goToNextChapter = () => {
+    if (!chapter || currentIndex >= BookChapters.length - 1) return;
+
+    localStorage.setItem(
+      `chapter-progress-${chapter._id}`,
+      audioRef.current.currentTime.toString()
+    );
+
+    onChangeChapter(currentIndex + 1);
+  };
+
+  const handleEnded = () => {
+    if (!chapter) return;
+
+    // save completed chapter progress
+    localStorage.setItem(
+      `chapter-progress-${chapter._id}`,
+      audioRef.current.duration.tostring()
+    );
+
+    // if not last chapter, go next
+    if (currentIndex < chapter.length - 1) {
+      onChangeChapter(currentIndex + 1);
+    } else {
+      setIsPlaying(false);
+    }
   };
 
   const handleSeek = (value) => {
@@ -976,12 +1016,25 @@ export default function AudioPlayer({ chapter }) {
         <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
 
           {/* TITLE */}
-          <p className="text-sm truncate text-white/80">
+          <p className="text-sm truncate text-center text-white/80">
             🎧 {chapter.title}
           </p>
 
           {/* CONTROLS */}
           <div className="flex items-center gap-4">
+
+            {/* Previous */}
+            <button 
+              onClick={goToPreviousChapter}
+              disabled={currentIndex === 0}
+              className="w-10 h-10 rounded-full bg-white/10 text-while 
+                                flex items-center justify-center
+                                hover:bg-white/20 transition
+                                disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+              ⏮
+              </button>
+
 
             {/* PLAY */}
             <button
@@ -989,9 +1042,19 @@ export default function AudioPlayer({ chapter }) {
               disabled={isBuffering}
               className="w-11 h-11 rounded-full bg-white text-black
                          flex items-center justify-center
-                         hover:scale-105 transition disabled:opacity-50"
+                         hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isPlaying ? "❚❚" : "▶"}
+            </button>
+
+            <button 
+              onClick={goToNextChapter}
+              className="w-10 h-10 rounded-full bg-white/10 text-while 
+                               flex items-center justify-center
+                               hover:bg-white/20 transition
+                               disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+            ⏭
             </button>
 
             {/* ELAPSED */}
@@ -1037,7 +1100,7 @@ export default function AudioPlayer({ chapter }) {
             onTimeUpdate={handleTimeUpdate}
             onWaiting={() => setIsBuffering(true)}
             onPlaying={() => setIsBuffering(false)}
-            onEnded={() => setIsPlaying(false)}
+            // onEnded={() => setIsPlaying(false)}
           />
         </div>
       </div>
