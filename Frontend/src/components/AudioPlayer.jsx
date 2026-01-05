@@ -836,6 +836,7 @@ const API_BASE = import.meta.env.VITE_API_URL;
 const SPEEDS = [1, 1.25, 1.5, 2];
 
 export default function AudioPlayer({ 
+  book,
   chapter,
   chapters,
   currentIndex,
@@ -1218,7 +1219,7 @@ export default function AudioPlayer({
             <div className="p-4 flex items-center justify-between">
               <button
                 onClick={() => setIsExpanded(false)}
-                className="text-xl"
+                className="text-lg"
               >
                 ⬇
               </button>
@@ -1234,8 +1235,10 @@ export default function AudioPlayer({
               {/* BOOK POSTER */}
               <div className="w-64 h-64 rounded-2xl overflow-hidden shadow-2xl mb-6">
                 <img
-                  src={`${API_BASE}/uploads/${chapter.coverImage || ""}`}
-                  alt="Book Cover"
+                  src={
+                    book?.coverImage ? `${API_BASE}/uploads/${book.coverImage}`:"/placeholder-cover.jpg"
+                  }
+                  alt={book.title || "Book cover"}
                   className="w-full h-full object-cover"
                 />
               </div>

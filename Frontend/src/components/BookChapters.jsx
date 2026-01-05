@@ -196,10 +196,15 @@ export default function BookChapters({ onSelectChapter }) {
 
       {/* 🎧 PLAYER */}
       <AudioPlayer 
+      book={book}
       chapter={selectedChapter}
       chapters={book.chapters}
-      currentIndex={currentIndex}
-      onChangeChapter={setCurrentIndex}
+      currentIndex={book.chapters.findIndex(
+        c => c.id === selectedChapter?._id
+      )}
+      onChangeChapter={(index) => {
+        selectedChapter(book.chapters[index]);
+      }}
        />
     </div>
   );
