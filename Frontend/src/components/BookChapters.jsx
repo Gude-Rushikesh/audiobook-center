@@ -199,9 +199,12 @@ export default function BookChapters({ onSelectChapter }) {
       book={book}
       chapter={selectedChapter}
       chapters={book.chapters}
-      currentIndex={book.chapters.findIndex(
+      currentIndex={selectedChapter
+        ? book.chapters.findIndex(
         c => c.id === selectedChapter?._id
-      )}
+      )
+    : 0
+  }
       onChangeChapter={(index) => {
         selectedChapter(book.chapters[index]);
       }}
