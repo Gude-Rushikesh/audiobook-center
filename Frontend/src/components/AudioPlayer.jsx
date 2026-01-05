@@ -1213,8 +1213,9 @@ export default function AudioPlayer({
       </div>
 
         {isExpanded && (
-          <div className="fixed inset-0 z-80 bg-black text-white md:hidden flex flex-col">
-
+          <div className="fixed inset-0 z-80 bg-black text-white md:hidden flex flex-col"
+               onClick={(e) => e.stopPropagation()}
+              >
             {/* HEADER */}
             <div className="p-4 flex items-center justify-between">
               <button
@@ -1223,9 +1224,9 @@ export default function AudioPlayer({
               >
                 ⬇
               </button>
-              {/* <span className="text-sm opacity-70">
+              <span className="text-sm opacity-70">
                 Chapter {currentIndex + 1}
-              </span> */}
+              </span>
               <div />
             </div>
 
@@ -1238,7 +1239,7 @@ export default function AudioPlayer({
                   src={
                     book?.coverImage ? `${API_BASE}/uploads/${book.coverImage}`:"/placeholder-cover.jpg"
                   }
-                  alt={book.title || "Book cover"}
+                  alt={book?.title || "Book cover"}
                   className="w-full h-full object-cover"
                 />
               </div>
