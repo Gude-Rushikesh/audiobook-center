@@ -1064,7 +1064,7 @@ export default function AudioPlayer({
   return (
 
     <div className="fixed bottom-0 left-0 right-0 z-50"
-      onClick={() => {if (window.innerWidth < 768 && !IsExpanded) {setIsExpanded(true);}}}>
+      onClick={() => {if (window.innerWidth < 768 && !isExpanded) {setIsExpanded(true);}}}>
       <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
 
