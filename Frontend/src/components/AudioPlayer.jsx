@@ -1185,7 +1185,7 @@ export default function AudioPlayer({
                 jumpBackward();
               }}
               className="text-xs px-2 py-1 rounded-md
-                        bg-white hover:bg-white text-black transition"
+                        bg-black text-white hover:bg-white hover:text-black transition"
               >
                 ↺30s
               </button>
@@ -1196,7 +1196,7 @@ export default function AudioPlayer({
                   jumpForward();
                 }}
                 className="text-xs px-2 py-1 rounded-md
-                          bg-white hover:bg-white text-black transition"
+                          bg-black text-white hover:bg-white hover:text-black transition"
               >
                 30s↻
               </button>
