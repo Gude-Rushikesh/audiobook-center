@@ -1146,7 +1146,7 @@ export default function AudioPlayer({
 
 
             {/* TOTAL */}
-            <span className="text-xs text-white/70 w-14 tabular-nums">
+            <span className="text-xl text-white/70 w-14 tabular-nums">
               {formatTime(totalDuration)}
             </span>
 
@@ -1159,8 +1159,8 @@ export default function AudioPlayer({
                 e.stopPropagation();
                 jumpBackward();
               }}
-              className="text-xs px-2 py-1 rounded-md
-                        bg-white/10 hover:bg-white transition"
+              className="text-xl px-2 py-1 rounded-md
+                        bg-white/10 hover:bg-white text-black transition"
               >
                 ↺30s
               </button>
@@ -1170,8 +1170,8 @@ export default function AudioPlayer({
                   e.stopPropagation();
                   jumpForward();
                 }}
-                className="text-xs px-2 py-1 rounded-md
-                          bg-white/10 hover:bg-white/20 transition"
+                className="text-xl px-2 py-1 rounded-md
+                          bg-white/10 hover:bg-white text-black transition"
               >
                 30s↻
               </button>
@@ -1181,7 +1181,7 @@ export default function AudioPlayer({
                 e.stopPropagation();
                 changeSpeed();
               }}
-              className="text-xs px-3 py-1 rounded-md
+              className="text-xl px-3 py-1 rounded-md
                          bg-white/10 hover:bg-white/20 transition"
               >
                 {SPEEDS[speedIndex]}x
