@@ -835,7 +835,14 @@ const API_BASE = import.meta.env.VITE_API_URL;
 
 const SPEEDS = [1, 1.25, 1.5, 2];
 
-export default function AudioPlayer({ chapter }) {
+export default function AudioPlayer({ 
+  chapter,
+  chapters,
+  currentIndex,
+  onChangeChapter,
+  
+  }) {
+  
   if (!chapter) return null;
 
   const audioRef = useRef(null);
@@ -932,29 +939,45 @@ export default function AudioPlayer({ chapter }) {
 
   /* ---------------- CONTROLS ---------------- */
 
-  const togglePlay = () => {
-    if (!audioRef.current) return;
+  // Previous button
+    const goToPreviousChapter = () => {
+      if (!chapters || currentIndex <= 0) return;
 
-    if (audioRef.current.paused) {
-      audioRef.current.play();
-      setIsPlaying(true);
-    } else {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
+    //save current progress
+    localStorage.setItem(
+      `chapter-progress-${chapter._id}`,
+      audioRef.current.currentTime.toString()
+    );
 
-  const goToPreviousChapter = () => {
-    if (!chapter || currentIndex <= 0) return;
+    onChangeChapter(currentIndex - 1);
+    };
 
-  //save current progress
-  localStorage.setItem(
-    `chapter-progress-${chapter._id}`,
-    audioRef.current.currentTime.toString()
-  );
+    // Play button Logic
 
-  onChangeChapter(currentIndx - 1);
-  };
+    const togglePlay = () => {
+      if (!audioRef.current) return;
+
+      if (audioRef.current.paused) {
+        audioRef.current.play();
+        setIsPlaying(true);
+      } else {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    };
+    
+    // Next button
+
+    const goToNextChapter = () => {
+    if (!chapters || currentIndex >= chapters.length - 1) return;
+
+      localStorage.setItem(
+        `chapter-progress-${chapter._id}`,
+        audioRef.current.currentTime.toString()
+      );
+
+      onChangeChapter(currentIndex + 1);
+    };
 
   const changeSpeed = () => {
     const next = (speedIndex + 1) % SPEEDS.length;
@@ -962,19 +985,8 @@ export default function AudioPlayer({ chapter }) {
     audioRef.current.playbackRate = SPEEDS[next];
   };
 
-  const goToNextChapter = () => {
-    if (!chapter || currentIndex >= BookChapters.length - 1) return;
-
-    localStorage.setItem(
-      `chapter-progress-${chapter._id}`,
-      audioRef.current.currentTime.toString()
-    );
-
-    onChangeChapter(currentIndex + 1);
-  };
-
   const handleEnded = () => {
-    if (!chapter) return;
+    if (!chapters) return;
 
     // save completed chapter progress
     localStorage.setItem(
@@ -1027,7 +1039,7 @@ export default function AudioPlayer({ chapter }) {
             <button 
               onClick={goToPreviousChapter}
               disabled={currentIndex === 0}
-              className="w-10 h-10 rounded-full bg-white/10 text-while 
+              className="w-10 h-10 rounded-full bg-white/10 text-white 
                                 flex items-center justify-center
                                 hover:bg-white/20 transition
                                 disabled:opacity-40 disabled:cursor-not-allowed"
@@ -1049,7 +1061,7 @@ export default function AudioPlayer({ chapter }) {
 
             <button 
               onClick={goToNextChapter}
-              className="w-10 h-10 rounded-full bg-white/10 text-while 
+              className="w-10 h-10 rounded-full bg-white/10 text-white 
                                flex items-center justify-center
                                hover:bg-white/20 transition
                                disabled:opacity-40 disabled:cursor-not-allowed"
@@ -1100,6 +1112,7 @@ export default function AudioPlayer({ chapter }) {
             onTimeUpdate={handleTimeUpdate}
             onWaiting={() => setIsBuffering(true)}
             onPlaying={() => setIsBuffering(false)}
+            onEnded={handleEnded}
             // onEnded={() => setIsPlaying(false)}
           />
         </div>
