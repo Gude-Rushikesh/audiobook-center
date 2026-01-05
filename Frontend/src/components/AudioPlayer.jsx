@@ -1234,7 +1234,7 @@ export default function AudioPlayer({
             <div className="flex-1 flex flex-col items-center justify-center px-6">
 
               {/* BOOK POSTER */}
-              <div className="w-64 h-90 rounded-2xl overflow-hidden shadow-2xl mb-2">
+              <div className="w-64 h-96 rounded-2xl overflow-hidden shadow-2xl mb-2">
                 <img
                   src={
                     book?.coverImage ? `${API_BASE}/uploads/${book.coverImage}`:"/placeholder-cover.jpg"
@@ -1245,7 +1245,7 @@ export default function AudioPlayer({
               </div>
 
               {/* CHAPTER TITLE */}
-              <p className="text-center text-lg font-semibold mt-2">
+              <p className="text-center text-lg font-semibold mt-3">
                 {chapter.title}
               </p>
 
