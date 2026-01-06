@@ -1272,6 +1272,8 @@ export default function AudioPlayer({
                 >
                   {isPlaying ? "❚❚" : "▶"}
                 </button>
+              </div>
+            )}
 
 
           {/* fullscreen JSX */}
@@ -1387,7 +1389,5 @@ export default function AudioPlayer({
             </div>
           </div>
         )}
-      </div>
-    )}
 </>
 )}
