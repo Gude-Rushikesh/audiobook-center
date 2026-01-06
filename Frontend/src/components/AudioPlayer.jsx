@@ -1418,16 +1418,6 @@ return (
               Buffering audio…
             </p>
           )}
-
-          <audio
-            ref={audioRef}
-            preload="metadata"
-            onTimeUpdate={handleTimeUpdate}
-            onWaiting={() => setIsBuffering(true)}
-            onPlaying={() => setIsBuffering(false)}
-            onEnded={handleEnded}
-            // onEnded={() => setIsPlaying(false)}
-          />
           </div>
         </div>
       </div>
@@ -1586,6 +1576,16 @@ return (
             </div>
           </div>
         )}
+
+          <audio
+            ref={audioRef}
+            preload="metadata"
+            onTimeUpdate={handleTimeUpdate}
+            onWaiting={() => setIsBuffering(true)}
+            onPlaying={() => setIsBuffering(false)}
+            onEnded={handleEnded}
+            // onEnded={() => setIsPlaying(false)}
+          />
   </>
 );
 }
