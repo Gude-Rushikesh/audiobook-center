@@ -1085,309 +1085,459 @@ export default function AudioPlayer({
 
 
 
-  return (
-    <>
-    <div className="fixed bottom-0 left-0 right-0 z-50">
-      <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
+//   return (
+//     <>
+//     <div className="fixed bottom-0 left-0 right-0 z-50">
+//       <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
+//         <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
 
-          {/* TITLE */}
-          <p className="text-sm truncate text-center text-white/80">
-            🎧 {chapter.title}
-          </p>
+//           {/* TITLE */}
+//           <p className="text-sm truncate text-center text-white/80">
+//             🎧 {chapter.title}
+//           </p>
 
-          {/* CONTROLS */}
-          <div className="flex items-center gap-4">
+//           {/* CONTROLS */}
+//           <div className="flex items-center gap-4">
 
-            {/* Previous Chapter */}
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                goToPreviousChapter();
-              }}
-              disabled={currentIndex === 0}
-              className="w-10 h-10 rounded-full bg-white text-black 
-                                flex items-center justify-center
-                               hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-              ⏮
-              </button>
-
-
-
-
-            {/* PLAY */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                togglePlay();
-              }}
-              disabled={isBuffering}
-              className="w-10 h-10 rounded-full bg-white text-black
-                         flex items-center justify-center
-                         hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isPlaying ? "❚❚" : "▶"}
-            </button>
+//             {/* Previous Chapter */}
+//             <button 
+//               onClick={(e) => {
+//                 e.stopPropagation();
+//                 goToPreviousChapter();
+//               }}
+//               disabled={currentIndex === 0}
+//               className="w-10 h-10 rounded-full bg-white text-black 
+//                                 flex items-center justify-center
+//                                hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
+//               >
+//               ⏮
+//               </button>
 
 
 
 
-            {/* Next Chapter */}
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                goToNextChapter();
-              }}
-              disabled={!chapters || currentIndex >= chapters.length - 1}
-              className="w-10 h-10 rounded-full bg-white text-black 
-                               flex items-center justify-center
-                               hover:scale-105 transition 
-                               disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-            ⏭
-            </button>
+//             {/* PLAY */}
+//             <button
+//               onClick={(e) => {
+//                 e.stopPropagation();
+//                 togglePlay();
+//               }}
+//               disabled={isBuffering}
+//               className="w-10 h-10 rounded-full bg-white text-black
+//                          flex items-center justify-center
+//                          hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
+//             >
+//               {isPlaying ? "❚❚" : "▶"}
+//             </button>
 
 
 
 
-            {/* ELAPSED */}
-            <span className="text-xs text-white/70 w-14 tabular-nums text-right">
-              {formatTime(currentTime)}
-            </span>
-
-
-
-            {/* PROGRESS */}
-            <input
-              type="range"
-              min="0"
-              max={totalDuration || 1}
-              value={currentTime}
-              onChange={(e) => handleSeek(Number(e.target.value))}
-              className="flex-1 h-1 rounded-full appearance-none
-                         bg-white/20 accent-red-500 cursor-pointer"
-            />
-
-
-
-            {/* TOTAL */}
-            <span className="text-xs text-white/70 w-14 tabular-nums">
-              {formatTime(totalDuration)}
-            </span>
+//             {/* Next Chapter */}
+//             <button 
+//               onClick={(e) => {
+//                 e.stopPropagation();
+//                 goToNextChapter();
+//               }}
+//               disabled={!chapters || currentIndex >= chapters.length - 1}
+//               className="w-10 h-10 rounded-full bg-white text-black 
+//                                flex items-center justify-center
+//                                hover:scale-105 transition 
+//                                disabled:opacity-50 disabled:cursor-not-allowed"
+//             >
+//             ⏭
+//             </button>
 
 
 
 
-            {/* SPEED */}
-              <button
-              onClick={(e) => {
-                e.stopPropagation();
-                jumpBackward();
-              }}
-              className="text-xs px-2 py-1 rounded-md
-                        bg-black text-white hover:bg-white hover:text-black transition"
-              >
-                ↺30s
-              </button>
+//             {/* ELAPSED */}
+//             <span className="text-xs text-white/70 w-14 tabular-nums text-right">
+//               {formatTime(currentTime)}
+//             </span>
 
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  jumpForward();
-                }}
-                className="text-xs px-2 py-1 rounded-md
-                          bg-black text-white hover:bg-white hover:text-black transition"
-              >
-                30s↻
-              </button>
 
-              <button
-              onClick={(e) => {
-                e.stopPropagation();
-                changeSpeed();
-              }}
-              className="text-xs px-3 py-1 rounded-md
-                         bg-white/10 hover:bg-white/20 transition"
-              >
-                {SPEEDS[speedIndex]}x
-              </button> 
 
-          </div>
+//             {/* PROGRESS */}
+//             <input
+//               type="range"
+//               min="0"
+//               max={totalDuration || 1}
+//               value={currentTime}
+//               onChange={(e) => handleSeek(Number(e.target.value))}
+//               className="flex-1 h-1 rounded-full appearance-none
+//                          bg-white/20 accent-red-500 cursor-pointer"
+//             />
 
-          {isBuffering && (
-            <p className="text-xs text-white/50">
-              Buffering audio…
+
+
+//             {/* TOTAL */}
+//             <span className="text-xs text-white/70 w-14 tabular-nums">
+//               {formatTime(totalDuration)}
+//             </span>
+
+
+
+
+//             {/* SPEED */}
+//               <button
+//               onClick={(e) => {
+//                 e.stopPropagation();
+//                 jumpBackward();
+//               }}
+//               className="text-xs px-2 py-1 rounded-md
+//                         bg-black text-white hover:bg-white hover:text-black transition"
+//               >
+//                 ↺30s
+//               </button>
+
+//               <button
+//                 onClick={(e) => {
+//                   e.stopPropagation();
+//                   jumpForward();
+//                 }}
+//                 className="text-xs px-2 py-1 rounded-md
+//                           bg-black text-white hover:bg-white hover:text-black transition"
+//               >
+//                 30s↻
+//               </button>
+
+//               <button
+//               onClick={(e) => {
+//                 e.stopPropagation();
+//                 changeSpeed();
+//               }}
+//               className="text-xs px-3 py-1 rounded-md
+//                          bg-white/10 hover:bg-white/20 transition"
+//               >
+//                 {SPEEDS[speedIndex]}x
+//               </button> 
+
+//           </div>
+
+//           {isBuffering && (
+//             <p className="text-xs text-white/50">
+//               Buffering audio…
+//             </p>
+//           )}
+
+//           <audio
+//             ref={audioRef}
+//             preload="metadata"
+//             onTimeUpdate={handleTimeUpdate}
+//             onWaiting={() => setIsBuffering(true)}
+//             onPlaying={() => setIsBuffering(false)}
+//             onEnded={handleEnded}
+//             // onEnded={() => setIsPlaying(false)}
+//           />
+//           </div>
+//         </div>
+//       </div>
+
+
+//                         {/* MOBILE MINI PLAYER */}
+//             {isMobile && !isExpanded && (
+//               <div
+//                 className="fixed bottom-0 left-0 right-0 z-50
+//                           bg-black/90 backdrop-blur-xl
+//                           px-4 py-3 flex items-center gap-3"
+//                 onClick={() => setIsExpanded(true)}
+//               >
+//                 {/* Thumbnail */}
+//                 <div className="w-10 h-10 rounded-md overflow-hidden bg-white/10">
+//                   <img
+//                     src={
+//                       book?.coverImage
+//                         ? `${API_BASE}/uploads/${book.coverImage}`
+//                         : "/placeholder-cover.jpg"
+//                     }
+//                     alt="cover"
+//                     className="w-full h-full object-cover"
+//                   />
+//                 </div>
+
+//                 {/* Title */}
+//                 <p className="flex-1 text-sm truncate text-white">
+//                   {chapter.title}
+//                 </p>
+
+//                 {/* Play / Pause */}
+//                 <button
+//                   onClick={(e) => {
+//                     e.stopPropagation();
+//                     togglePlay();
+//                   }}
+//                   className="w-10 h-10 rounded-full bg-white text-black
+//                             flex items-center justify-center"
+//                 >
+//                   {isPlaying ? "❚❚" : "▶"}
+//                 </button>
+//               </div>
+//             )}
+
+
+//           {/* fullscreen JSX */}
+//         {isMobile && isExpanded && (
+//           <div className="fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col"
+//                onClick={(e) => e.stopPropagation()}
+//               >
+//             {/* HEADER */}
+//             <div className="p-4 flex items-center justify-between">
+//               <button
+//                 onClick={() => setIsExpanded(false)}
+//                 className="text-xl font-bold"
+//               >
+//                 ⬇
+//               </button>
+//               <span className="text-sm opacity-70">
+//                 Chapter {currentIndex + 1}
+//               </span>
+//               <div />
+//             </div>
+
+//             {/* CONTENT */}
+//             <div className="flex-1 flex flex-col items-center justify-center px-6">
+
+//               {/* BOOK POSTER */}
+//               <div className="w-64 h-100 rounded-2xl overflow-hidden shadow-2xl mb-2">
+//                 <img
+//                   src={
+//                     book?.coverImage ? `${API_BASE}/uploads/${book.coverImage}`:"/placeholder-cover.jpg"
+//                   }
+//                   alt={book?.title || "Book cover"}
+//                   className="w-full h-full object-cover"
+//                 />
+//               </div>
+
+//               {/* CHAPTER TITLE */}
+//               <p className="text-center text-lg font-semibold mt-3 mb-2">
+//                 {chapter.title}
+//               </p>
+
+//             </div>
+
+//             {/* CONTROLS AREA */}
+//             <div className="px-6 pb-8 space-y-6">
+
+//               {/* MAIN CONTROLS */}
+//               <div className="flex items-center justify-center gap-12">
+//                 <button
+//                   onClick={goToPreviousChapter}
+//                   disabled={currentIndex === 0}
+//                   className="text-3xl disabled:opacity-30"
+//                 >
+//                   ⏮
+//                 </button>
+
+//                 <button
+//                   onClick={togglePlay}
+//                   className="w-20 h-20 rounded-full bg-white text-black
+//                             flex items-center justify-center text-3xl shadow-lg"
+//                 >
+//                   {isPlaying ? "❚❚" : "▶"}
+//                 </button>
+
+//                 <button
+//                   onClick={goToNextChapter}
+//                   disabled={currentIndex >= chapters.length - 1}
+//                   className="text-3xl disabled:opacity-30"
+//                 >
+//                   ⏭
+//                 </button>
+//               </div>
+
+//               {/* JUMP + SPEED */}
+//               <div className="flex items-center justify-center gap-6">
+//                 <button
+//                   onClick={jumpBackward}
+//                   className="px-4 py-2 rounded-full bg-white/10"
+//                 >
+//                   ↺30s
+//                 </button>
+
+//                 <button
+//                   onClick={jumpForward}
+//                   className="px-4 py-2 rounded-full bg-white/10"
+//                 >
+//                   30s↻
+//                 </button>
+
+//                 <button
+//                   onClick={changeSpeed}
+//                   className="px-4 py-2 rounded-full bg-white/10"
+//                 >
+//                   {SPEEDS[speedIndex]}x
+//                 </button>
+//               </div>
+
+//               {/* PROGRESS */}
+//               <div className="space-y-2">
+//                 <input
+//                   type="range"
+//                   min="0"
+//                   max={totalDuration || 1}
+//                   value={currentTime}
+//                   onChange={(e) => handleSeek(Number(e.target.value))}
+//                   className="w-full h-1 rounded-full bg-white/20 accent-red-500"
+//                 />
+
+//                 <div className="flex justify-between text-xs opacity-70">
+//                   <span>{formatTime(currentTime)}</span>
+//                   <span>{formatTime(totalDuration)}</span>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         )}
+// </>
+// )}
+
+return (
+  <>
+    {/* ================= DESKTOP PLAYER ================= */}
+    {!isMobile && (
+      <div className="fixed bottom-0 left-0 right-0 z-50">
+        <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
+          <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
+
+            <p className="text-sm truncate text-center text-white/80">
+              🎧 {chapter.title}
             </p>
-          )}
 
-          <audio
-            ref={audioRef}
-            preload="metadata"
-            onTimeUpdate={handleTimeUpdate}
-            onWaiting={() => setIsBuffering(true)}
-            onPlaying={() => setIsBuffering(false)}
-            onEnded={handleEnded}
-            // onEnded={() => setIsPlaying(false)}
-          />
+            <div className="flex items-center gap-4">
+
+              <button onClick={goToPreviousChapter} disabled={currentIndex === 0}
+                className="w-10 h-10 rounded-full bg-white text-black">
+                ⏮
+              </button>
+
+              <button onClick={togglePlay}
+                className="w-10 h-10 rounded-full bg-white text-black">
+                {isPlaying ? "❚❚" : "▶"}
+              </button>
+
+              <button onClick={goToNextChapter}
+                disabled={currentIndex >= chapters.length - 1}
+                className="w-10 h-10 rounded-full bg-white text-black">
+                ⏭
+              </button>
+
+              <span className="text-xs w-14 text-right">
+                {formatTime(currentTime)}
+              </span>
+
+              <input
+                type="range"
+                min="0"
+                max={totalDuration || 1}
+                value={currentTime}
+                onChange={(e) => handleSeek(Number(e.target.value))}
+                className="flex-1 h-1 bg-white/20"
+              />
+
+              <span className="text-xs w-14">
+                {formatTime(totalDuration)}
+              </span>
+
+              <button onClick={jumpBackward}>↺30s</button>
+              <button onClick={jumpForward}>30s↻</button>
+              <button onClick={changeSpeed}>{SPEEDS[speedIndex]}x</button>
+
+            </div>
+
+            <audio
+              ref={audioRef}
+              onTimeUpdate={handleTimeUpdate}
+              onEnded={handleEnded}
+            />
           </div>
         </div>
       </div>
+    )}
 
+    {/* ================= MOBILE MINI PLAYER ================= */}
+    {isMobile && !isExpanded && (
+      <div
+        className="fixed bottom-0 left-0 right-0 z-50
+                   bg-black/90 backdrop-blur-xl
+                   px-4 py-3 flex items-center gap-3"
+        onClick={() => setIsExpanded(true)}
+      >
+        <div className="w-10 h-10 rounded-md overflow-hidden">
+          <img
+            src={book?.coverImage
+              ? `${API_BASE}/uploads/${book.coverImage}`
+              : "/placeholder-cover.jpg"}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-                        {/* MOBILE MINI PLAYER */}
-            {isMobile && !isExpanded && (
-              <div
-                className="fixed bottom-0 left-0 right-0 z-50
-                          bg-black/90 backdrop-blur-xl
-                          px-4 py-3 flex items-center gap-3"
-                onClick={() => setIsExpanded(true)}
-              >
-                {/* Thumbnail */}
-                <div className="w-10 h-10 rounded-md overflow-hidden bg-white/10">
-                  <img
-                    src={
-                      book?.coverImage
-                        ? `${API_BASE}/uploads/${book.coverImage}`
-                        : "/placeholder-cover.jpg"
-                    }
-                    alt="cover"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+        <p className="flex-1 text-sm truncate">
+          {chapter.title}
+        </p>
 
-                {/* Title */}
-                <p className="flex-1 text-sm truncate text-white">
-                  {chapter.title}
-                </p>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            togglePlay();
+          }}
+          className="w-10 h-10 rounded-full bg-white text-black"
+        >
+          {isPlaying ? "❚❚" : "▶"}
+        </button>
+      </div>
+    )}
 
-                {/* Play / Pause */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    togglePlay();
-                  }}
-                  className="w-10 h-10 rounded-full bg-white text-black
-                            flex items-center justify-center"
-                >
-                  {isPlaying ? "❚❚" : "▶"}
-                </button>
-              </div>
-            )}
+    {/* ================= MOBILE FULLSCREEN ================= */}
+    {isMobile && isExpanded && (
+      <div className="fixed inset-0 z-100 bg-black flex flex-col">
 
+        <div className="p-4 flex justify-between">
+          <button onClick={() => setIsExpanded(false)}>⬇</button>
+          <span>Chapter {currentIndex + 1}</span>
+          <div />
+        </div>
 
-          {/* fullscreen JSX */}
-        {isMobile && isExpanded && (
-          <div className="fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col"
-               onClick={(e) => e.stopPropagation()}
-              >
-            {/* HEADER */}
-            <div className="p-4 flex items-center justify-between">
-              <button
-                onClick={() => setIsExpanded(false)}
-                className="text-xl font-bold"
-              >
-                ⬇
-              </button>
-              <span className="text-sm opacity-70">
-                Chapter {currentIndex + 1}
-              </span>
-              <div />
-            </div>
+        <div className="flex-1 flex flex-col items-center justify-center">
+          <img
+            src={book?.coverImage
+              ? `${API_BASE}/uploads/${book.coverImage}`
+              : "/placeholder-cover.jpg"}
+            className="w-64 rounded-2xl mb-4"
+          />
 
-            {/* CONTENT */}
-            <div className="flex-1 flex flex-col items-center justify-center px-6">
+          <p className="text-lg font-semibold">{chapter.title}</p>
+        </div>
 
-              {/* BOOK POSTER */}
-              <div className="w-64 h-100 rounded-2xl overflow-hidden shadow-2xl mb-2">
-                <img
-                  src={
-                    book?.coverImage ? `${API_BASE}/uploads/${book.coverImage}`:"/placeholder-cover.jpg"
-                  }
-                  alt={book?.title || "Book cover"}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+        <div className="px-6 pb-8 space-y-6">
 
-              {/* CHAPTER TITLE */}
-              <p className="text-center text-lg font-semibold mt-3 mb-2">
-                {chapter.title}
-              </p>
-
-            </div>
-
-            {/* CONTROLS AREA */}
-            <div className="px-6 pb-8 space-y-6">
-
-              {/* MAIN CONTROLS */}
-              <div className="flex items-center justify-center gap-12">
-                <button
-                  onClick={goToPreviousChapter}
-                  disabled={currentIndex === 0}
-                  className="text-3xl disabled:opacity-30"
-                >
-                  ⏮
-                </button>
-
-                <button
-                  onClick={togglePlay}
-                  className="w-20 h-20 rounded-full bg-white text-black
-                            flex items-center justify-center text-3xl shadow-lg"
-                >
-                  {isPlaying ? "❚❚" : "▶"}
-                </button>
-
-                <button
-                  onClick={goToNextChapter}
-                  disabled={currentIndex >= chapters.length - 1}
-                  className="text-3xl disabled:opacity-30"
-                >
-                  ⏭
-                </button>
-              </div>
-
-              {/* JUMP + SPEED */}
-              <div className="flex items-center justify-center gap-6">
-                <button
-                  onClick={jumpBackward}
-                  className="px-4 py-2 rounded-full bg-white/10"
-                >
-                  ↺30s
-                </button>
-
-                <button
-                  onClick={jumpForward}
-                  className="px-4 py-2 rounded-full bg-white/10"
-                >
-                  30s↻
-                </button>
-
-                <button
-                  onClick={changeSpeed}
-                  className="px-4 py-2 rounded-full bg-white/10"
-                >
-                  {SPEEDS[speedIndex]}x
-                </button>
-              </div>
-
-              {/* PROGRESS */}
-              <div className="space-y-2">
-                <input
-                  type="range"
-                  min="0"
-                  max={totalDuration || 1}
-                  value={currentTime}
-                  onChange={(e) => handleSeek(Number(e.target.value))}
-                  className="w-full h-1 rounded-full bg-white/20 accent-red-500"
-                />
-
-                <div className="flex justify-between text-xs opacity-70">
-                  <span>{formatTime(currentTime)}</span>
-                  <span>{formatTime(totalDuration)}</span>
-                </div>
-              </div>
-            </div>
+          <div className="flex justify-center gap-12">
+            <button onClick={goToPreviousChapter}>⏮</button>
+            <button
+              onClick={togglePlay}
+              className="w-20 h-20 bg-white text-black rounded-full">
+              {isPlaying ? "❚❚" : "▶"}
+            </button>
+            <button onClick={goToNextChapter}>⏭</button>
           </div>
-        )}
-</>
-)}
+
+          <div className="flex justify-center gap-6">
+            <button onClick={jumpBackward}>↺30s</button>
+            <button onClick={jumpForward}>30s↻</button>
+            <button onClick={changeSpeed}>{SPEEDS[speedIndex]}x</button>
+          </div>
+
+          <input
+            type="range"
+            min="0"
+            max={totalDuration || 1}
+            value={currentTime}
+            onChange={(e) => handleSeek(Number(e.target.value))}
+            className="w-full h-1 bg-white/20"
+          />
+        </div>
+      </div>
+    )}
+  </>
+);
+}
