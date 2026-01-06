@@ -855,6 +855,8 @@ export default function AudioPlayer({
   const [totalDuration, setTotalDuration] = useState(0);
   const [speedIndex, setSpeedIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const isMobile = window.innerWidth < 768;
+
 
 
   /* ---------------- TIME HELPERS ---------------- */
@@ -1085,8 +1087,7 @@ export default function AudioPlayer({
 
   return (
     <>
-    <div className="fixed bottom-0 left-0 right-0 z-50"
-      onClick={() => {if (window.innerWidth < 768 && !isExpanded) {setIsExpanded(true);}}}>
+    <div className="fixed bottom-0 left-0 right-0 z-50">
       <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
 
@@ -1233,7 +1234,50 @@ export default function AudioPlayer({
         </div>
       </div>
 
-        {isExpanded && (
+
+                        {/* MOBILE MINI PLAYER */}
+            {isMobile && !isExpanded && (
+              <div
+                className="fixed bottom-0 left-0 right-0 z-50
+                          bg-black/90 backdrop-blur-xl
+                          px-4 py-3 flex items-center gap-3"
+                onClick={() => setIsExpanded(true)}
+              >
+                {/* Thumbnail */}
+                <div className="w-10 h-10 rounded-md overflow-hidden bg-white/10">
+                  <img
+                    src={
+                      book?.coverImage
+                        ? `${API_BASE}/uploads/${book.coverImage}`
+                        : "/placeholder-cover.jpg"
+                    }
+                    alt="cover"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Title */}
+                <p className="flex-1 text-sm truncate text-white">
+                  {chapter.title}
+                </p>
+
+                {/* Play / Pause */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    togglePlay();
+                  }}
+                  className="w-10 h-10 rounded-full bg-white text-black
+                            flex items-center justify-center"
+                >
+                  {isPlaying ? "❚❚" : "▶"}
+                </button>
+              </div>
+            )}
+
+
+          {/* fullscreen JSX */}
+        {isMobile && isExpanded && (
           <div className="fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col"
                onClick={(e) => e.stopPropagation()}
               >
