@@ -1285,60 +1285,149 @@ return (
   <>
     {/* ================= DESKTOP PLAYER ================= */}
     {!isMobile && (
-      <div className="fixed bottom-0 left-0 right-0 z-50">
-        <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
-          <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
+    <div className="fixed bottom-0 left-0 right-0 z-50">
+      <div className="backdrop-blur-xl bg-black/90 border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-6 py-4 space-y-3 text-white">
 
-            <p className="text-sm truncate text-center text-white/80">
-              🎧 {chapter.title}
-            </p>
+          {/* TITLE */}
+          <p className="text-sm truncate text-center text-white/80">
+            🎧 {chapter.title}
+          </p>
 
-            <div className="flex items-center gap-4">
+          {/* CONTROLS */}
+          <div className="flex items-center gap-4">
 
-              <button onClick={goToPreviousChapter} disabled={currentIndex === 0}
-                className="w-10 h-10 rounded-full bg-white text-black">
-                ⏮
+            {/* Previous Chapter */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                goToPreviousChapter();
+              }}
+              disabled={currentIndex === 0}
+              className="w-10 h-10 rounded-full bg-white text-black 
+                                flex items-center justify-center
+                               hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+              ⏮
               </button>
 
-              <button onClick={togglePlay}
-                className="w-10 h-10 rounded-full bg-white text-black">
-                {isPlaying ? "❚❚" : "▶"}
-              </button>
 
-              <button onClick={goToNextChapter}
-                disabled={currentIndex >= chapters.length - 1}
-                className="w-10 h-10 rounded-full bg-white text-black">
-                ⏭
-              </button>
 
-              <span className="text-xs w-14 text-right">
-                {formatTime(currentTime)}
-              </span>
 
-              <input
-                type="range"
-                min="0"
-                max={totalDuration || 1}
-                value={currentTime}
-                onChange={(e) => handleSeek(Number(e.target.value))}
-                className="flex-1 h-1 bg-white/20"
-              />
+            {/* PLAY */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                togglePlay();
+              }}
+              disabled={isBuffering}
+              className="w-10 h-10 rounded-full bg-white text-black
+                         flex items-center justify-center
+                         hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isPlaying ? "❚❚" : "▶"}
+            </button>
 
-              <span className="text-xs w-14">
-                {formatTime(totalDuration)}
-              </span>
 
-              <button onClick={jumpBackward}>↺30s</button>
-              <button onClick={jumpForward}>30s↻</button>
-              <button onClick={changeSpeed}>{SPEEDS[speedIndex]}x</button>
 
-            </div>
 
-            <audio
-              ref={audioRef}
-              onTimeUpdate={handleTimeUpdate}
-              onEnded={handleEnded}
+            {/* Next Chapter */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                goToNextChapter();
+              }}
+              disabled={!chapters || currentIndex >= chapters.length - 1}
+              className="w-10 h-10 rounded-full bg-white text-black 
+                               flex items-center justify-center
+                               hover:scale-105 transition 
+                               disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+            ⏭
+            </button>
+
+
+
+
+            {/* ELAPSED */}
+            <span className="text-xs text-white/70 w-14 tabular-nums text-right">
+              {formatTime(currentTime)}
+            </span>
+
+
+
+            {/* PROGRESS */}
+            <input
+              type="range"
+              min="0"
+              max={totalDuration || 1}
+              value={currentTime}
+              onChange={(e) => handleSeek(Number(e.target.value))}
+              className="flex-1 h-1 rounded-full appearance-none
+                         bg-white/20 accent-red-500 cursor-pointer"
             />
+
+
+
+            {/* TOTAL */}
+            <span className="text-xs text-white/70 w-14 tabular-nums">
+              {formatTime(totalDuration)}
+            </span>
+
+
+
+
+            {/* SPEED */}
+              <button
+              onClick={(e) => {
+                e.stopPropagation();
+                jumpBackward();
+              }}
+              className="text-xs px-2 py-1 rounded-md
+                        bg-black text-white hover:bg-white hover:text-black transition"
+              >
+                ↺30s
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  jumpForward();
+                }}
+                className="text-xs px-2 py-1 rounded-md
+                          bg-black text-white hover:bg-white hover:text-black transition"
+              >
+                30s↻
+              </button>
+
+              <button
+              onClick={(e) => {
+                e.stopPropagation();
+                changeSpeed();
+              }}
+              className="text-xs px-3 py-1 rounded-md
+                         bg-white/10 hover:bg-white/20 transition"
+              >
+                {SPEEDS[speedIndex]}x
+              </button> 
+
+          </div>
+
+          {isBuffering && (
+            <p className="text-xs text-white/50">
+              Buffering audio…
+            </p>
+          )}
+
+          <audio
+            ref={audioRef}
+            preload="metadata"
+            onTimeUpdate={handleTimeUpdate}
+            onWaiting={() => setIsBuffering(true)}
+            onPlaying={() => setIsBuffering(false)}
+            onEnded={handleEnded}
+            // onEnded={() => setIsPlaying(false)}
+          />
           </div>
         </div>
       </div>
@@ -1346,35 +1435,42 @@ return (
 
     {/* ================= MOBILE MINI PLAYER ================= */}
     {isMobile && !isExpanded && (
-      <div
-        className="fixed bottom-0 left-0 right-0 z-50
-                   bg-black/90 backdrop-blur-xl
-                   px-4 py-3 flex items-center gap-3"
-        onClick={() => setIsExpanded(true)}
-      >
-        <div className="w-10 h-10 rounded-md overflow-hidden">
-          <img
-            src={book?.coverImage
-              ? `${API_BASE}/uploads/${book.coverImage}`
-              : "/placeholder-cover.jpg"}
-            className="w-full h-full object-cover"
-          />
-        </div>
+              <div
+                className="fixed bottom-0 left-0 right-0 z-50
+                          bg-black/90 backdrop-blur-xl
+                          px-4 py-3 flex items-center gap-3"
+                onClick={() => setIsExpanded(true)}
+              >
+                {/* Thumbnail */}
+                <div className="w-10 h-10 rounded-md overflow-hidden bg-white/10">
+                  <img
+                    src={
+                      book?.coverImage
+                        ? `${API_BASE}/uploads/${book.coverImage}`
+                        : "/placeholder-cover.jpg"
+                    }
+                    alt="cover"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-        <p className="flex-1 text-sm truncate">
-          {chapter.title}
-        </p>
+                {/* Title */}
+                <p className="flex-1 text-sm truncate text-white">
+                  {chapter.title}
+                </p>
 
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            togglePlay();
-          }}
-          className="w-10 h-10 rounded-full bg-white text-black"
-        >
-          {isPlaying ? "❚❚" : "▶"}
-        </button>
-      </div>
+                {/* Play / Pause */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    togglePlay();
+                  }}
+                  className="w-10 h-10 rounded-full bg-white text-black
+                            flex items-center justify-center"
+                >
+                  {isPlaying ? "❚❚" : "▶"}
+                </button>
+              </div>
     )}
 
     {/* ================= MOBILE FULLSCREEN ================= */}
