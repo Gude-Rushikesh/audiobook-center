@@ -1476,7 +1476,7 @@ return (
     {/* ================= MOBILE FULLSCREEN ================= */}
     {isMobile && isExpanded && (
           <div className="fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col">
-              //  onClick={(e) => e.stopPropagation()}
+              {/* //  onClick={(e) => e.stopPropagation()} */}
               
             {/* HEADER */}
             <div className="p-4 flex items-center justify-between">
