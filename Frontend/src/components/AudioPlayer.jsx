@@ -1272,8 +1272,6 @@ export default function AudioPlayer({
                 >
                   {isPlaying ? "❚❚" : "▶"}
                 </button>
-              </div>
-            )}
 
 
           {/* fullscreen JSX */}
@@ -1386,10 +1384,10 @@ export default function AudioPlayer({
                   <span>{formatTime(totalDuration)}</span>
                 </div>
               </div>
-
             </div>
           </div>
         )}
-
-            </>
-  )}
+      </div>
+    )}
+</>
+)}
