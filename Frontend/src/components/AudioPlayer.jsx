@@ -855,8 +855,27 @@ export default function AudioPlayer({
   const [totalDuration, setTotalDuration] = useState(0);
   const [speedIndex, setSpeedIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const touchStartY = useRef(0);
+  const touchCurrentY = useRef(0);
   const isMobile = window.innerWidth < 768;
 
+
+
+    const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e) => {
+    touchCurrentY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = () => {
+    const delta = touchCurrentY.current - touchStartY.current;
+
+      if (delta > 100) {
+        setIsExpanded(false);
+      }
+    };
 
 
   /* ---------------- TIME HELPERS ---------------- */
@@ -895,7 +914,18 @@ export default function AudioPlayer({
     return `${m}:${s.toString().padStart(2, "0")}`;
   };
 
+    // this is newly added
+    useEffect(() => {
+    const onResize = () => {
+      isMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   /* ---------------- LOAD CHAPTER + RESUME ---------------- */
+  
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -1465,7 +1495,12 @@ return (
 
     {/* ================= MOBILE FULLSCREEN ================= */}
     {isMobile && isExpanded && (
-          <div className="fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col">
+          <div className={`fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col transform transition-transform duration-300 ease-out
+              ${isExpanded ? "translate-y-0" : "translate-y-full"}`}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              >
               {/* //  onClick={(e) => e.stopPropagation()} */}
               
             {/* HEADER */}
