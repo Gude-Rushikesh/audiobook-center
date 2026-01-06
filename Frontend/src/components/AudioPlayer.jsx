@@ -1277,118 +1277,7 @@ export default function AudioPlayer({
 
 
 //           {/* fullscreen JSX */}
-//         {isMobile && isExpanded && (
-//           <div className="fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col"
-//                onClick={(e) => e.stopPropagation()}
-//               >
-//             {/* HEADER */}
-//             <div className="p-4 flex items-center justify-between">
-//               <button
-//                 onClick={() => setIsExpanded(false)}
-//                 className="text-xl font-bold"
-//               >
-//                 ⬇
-//               </button>
-//               <span className="text-sm opacity-70">
-//                 Chapter {currentIndex + 1}
-//               </span>
-//               <div />
-//             </div>
-
-//             {/* CONTENT */}
-//             <div className="flex-1 flex flex-col items-center justify-center px-6">
-
-//               {/* BOOK POSTER */}
-//               <div className="w-64 h-100 rounded-2xl overflow-hidden shadow-2xl mb-2">
-//                 <img
-//                   src={
-//                     book?.coverImage ? `${API_BASE}/uploads/${book.coverImage}`:"/placeholder-cover.jpg"
-//                   }
-//                   alt={book?.title || "Book cover"}
-//                   className="w-full h-full object-cover"
-//                 />
-//               </div>
-
-//               {/* CHAPTER TITLE */}
-//               <p className="text-center text-lg font-semibold mt-3 mb-2">
-//                 {chapter.title}
-//               </p>
-
-//             </div>
-
-//             {/* CONTROLS AREA */}
-//             <div className="px-6 pb-8 space-y-6">
-
-//               {/* MAIN CONTROLS */}
-//               <div className="flex items-center justify-center gap-12">
-//                 <button
-//                   onClick={goToPreviousChapter}
-//                   disabled={currentIndex === 0}
-//                   className="text-3xl disabled:opacity-30"
-//                 >
-//                   ⏮
-//                 </button>
-
-//                 <button
-//                   onClick={togglePlay}
-//                   className="w-20 h-20 rounded-full bg-white text-black
-//                             flex items-center justify-center text-3xl shadow-lg"
-//                 >
-//                   {isPlaying ? "❚❚" : "▶"}
-//                 </button>
-
-//                 <button
-//                   onClick={goToNextChapter}
-//                   disabled={currentIndex >= chapters.length - 1}
-//                   className="text-3xl disabled:opacity-30"
-//                 >
-//                   ⏭
-//                 </button>
-//               </div>
-
-//               {/* JUMP + SPEED */}
-//               <div className="flex items-center justify-center gap-6">
-//                 <button
-//                   onClick={jumpBackward}
-//                   className="px-4 py-2 rounded-full bg-white/10"
-//                 >
-//                   ↺30s
-//                 </button>
-
-//                 <button
-//                   onClick={jumpForward}
-//                   className="px-4 py-2 rounded-full bg-white/10"
-//                 >
-//                   30s↻
-//                 </button>
-
-//                 <button
-//                   onClick={changeSpeed}
-//                   className="px-4 py-2 rounded-full bg-white/10"
-//                 >
-//                   {SPEEDS[speedIndex]}x
-//                 </button>
-//               </div>
-
-//               {/* PROGRESS */}
-//               <div className="space-y-2">
-//                 <input
-//                   type="range"
-//                   min="0"
-//                   max={totalDuration || 1}
-//                   value={currentTime}
-//                   onChange={(e) => handleSeek(Number(e.target.value))}
-//                   className="w-full h-1 rounded-full bg-white/20 accent-red-500"
-//                 />
-
-//                 <div className="flex justify-between text-xs opacity-70">
-//                   <span>{formatTime(currentTime)}</span>
-//                   <span>{formatTime(totalDuration)}</span>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         )}
+        
 // </>
 // )}
 
@@ -1490,54 +1379,117 @@ return (
 
     {/* ================= MOBILE FULLSCREEN ================= */}
     {isMobile && isExpanded && (
-      <div className="fixed inset-0 z-100 bg-black flex flex-col">
+          <div className="fixed inset-0 z-100 bg-black text-white md:hidden flex flex-col"
+               onClick={(e) => e.stopPropagation()}
+              >
+            {/* HEADER */}
+            <div className="p-4 flex items-center justify-between">
+              <button
+                onClick={() => setIsExpanded(false)}
+                className="text-xl font-bold"
+              >
+                ⬇
+              </button>
+              <span className="text-sm opacity-70">
+                Chapter {currentIndex + 1}
+              </span>
+              <div />
+            </div>
 
-        <div className="p-4 flex justify-between">
-          <button onClick={() => setIsExpanded(false)}>⬇</button>
-          <span>Chapter {currentIndex + 1}</span>
-          <div />
-        </div>
+            {/* CONTENT */}
+            <div className="flex-1 flex flex-col items-center justify-center px-6">
 
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <img
-            src={book?.coverImage
-              ? `${API_BASE}/uploads/${book.coverImage}`
-              : "/placeholder-cover.jpg"}
-            className="w-64 rounded-2xl mb-4"
-          />
+              {/* BOOK POSTER */}
+              <div className="w-64 h-100 rounded-2xl overflow-hidden shadow-2xl mb-2">
+                <img
+                  src={
+                    book?.coverImage ? `${API_BASE}/uploads/${book.coverImage}`:"/placeholder-cover.jpg"
+                  }
+                  alt={book?.title || "Book cover"}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-          <p className="text-lg font-semibold">{chapter.title}</p>
-        </div>
+              {/* CHAPTER TITLE */}
+              <p className="text-center text-lg font-semibold mt-3 mb-2">
+                {chapter.title}
+              </p>
 
-        <div className="px-6 pb-8 space-y-6">
+            </div>
 
-          <div className="flex justify-center gap-12">
-            <button onClick={goToPreviousChapter}>⏮</button>
-            <button
-              onClick={togglePlay}
-              className="w-20 h-20 bg-white text-black rounded-full">
-              {isPlaying ? "❚❚" : "▶"}
-            </button>
-            <button onClick={goToNextChapter}>⏭</button>
+            {/* CONTROLS AREA */}
+            <div className="px-6 pb-8 space-y-6">
+
+              {/* MAIN CONTROLS */}
+              <div className="flex items-center justify-center gap-12">
+                <button
+                  onClick={goToPreviousChapter}
+                  disabled={currentIndex === 0}
+                  className="text-3xl disabled:opacity-30"
+                >
+                  ⏮
+                </button>
+
+                <button
+                  onClick={togglePlay}
+                  className="w-20 h-20 rounded-full bg-white text-black
+                            flex items-center justify-center text-3xl shadow-lg"
+                >
+                  {isPlaying ? "❚❚" : "▶"}
+                </button>
+
+                <button
+                  onClick={goToNextChapter}
+                  disabled={currentIndex >= chapters.length - 1}
+                  className="text-3xl disabled:opacity-30"
+                >
+                  ⏭
+                </button>
+              </div>
+
+              {/* JUMP + SPEED */}
+              <div className="flex items-center justify-center gap-6">
+                <button
+                  onClick={jumpBackward}
+                  className="px-4 py-2 rounded-full bg-white/10"
+                >
+                  ↺30s
+                </button>
+
+                <button
+                  onClick={jumpForward}
+                  className="px-4 py-2 rounded-full bg-white/10"
+                >
+                  30s↻
+                </button>
+
+                <button
+                  onClick={changeSpeed}
+                  className="px-4 py-2 rounded-full bg-white/10"
+                >
+                  {SPEEDS[speedIndex]}x
+                </button>
+              </div>
+
+              {/* PROGRESS */}
+              <div className="space-y-2">
+                <input
+                  type="range"
+                  min="0"
+                  max={totalDuration || 1}
+                  value={currentTime}
+                  onChange={(e) => handleSeek(Number(e.target.value))}
+                  className="w-full h-1 rounded-full bg-white/20 accent-red-500"
+                />
+
+                <div className="flex justify-between text-xs opacity-70">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{formatTime(totalDuration)}</span>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div className="flex justify-center gap-6">
-            <button onClick={jumpBackward}>↺30s</button>
-            <button onClick={jumpForward}>30s↻</button>
-            <button onClick={changeSpeed}>{SPEEDS[speedIndex]}x</button>
-          </div>
-
-          <input
-            type="range"
-            min="0"
-            max={totalDuration || 1}
-            value={currentTime}
-            onChange={(e) => handleSeek(Number(e.target.value))}
-            className="w-full h-1 bg-white/20"
-          />
-        </div>
-      </div>
-    )}
+        )}
   </>
 );
 }
