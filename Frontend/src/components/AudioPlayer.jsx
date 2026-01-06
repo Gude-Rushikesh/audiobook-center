@@ -914,6 +914,44 @@ export default function AudioPlayer({
     return `${m}:${s.toString().padStart(2, "0")}`;
   };
 
+      useEffect(() => {
+      if (!("mediaSession" in navigator)) return;
+
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: chapter.title,
+        artist: book?.author || "Audiobook Center",
+        album: book?.title || "Audiobook",
+        artwork: [
+          {
+            src: `${API_BASE}/uploads/${book.coverImage}`,
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      });
+    }, [chapter]);
+
+
+    useEffect(() => {
+    if (!("mediaSession" in navigator)) return;
+
+    navigator.mediaSession.setActionHandler("play", togglePlay);
+    navigator.mediaSession.setActionHandler("pause", togglePlay);
+
+    navigator.mediaSession.setActionHandler("previoustrack", () => {
+      if (currentIndex > 0) {
+        onChangeChapter(currentIndex - 1);
+      }
+    });
+
+    navigator.mediaSession.setActionHandler("nexttrack", () => {
+      if (currentIndex < chapters.length - 1) {
+        onChangeChapter(currentIndex + 1);
+      }
+    });
+  }, [chapter, currentIndex]);
+
+
     // this is newly added
     useEffect(() => {
     const onResize = () => {
