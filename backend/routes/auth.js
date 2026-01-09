@@ -2,9 +2,9 @@ import express from "express";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import crypto from "crypto";
-import EmailToken from "../models/EmailToken.js";
-import { sendVerificationEmail } from "../utils/sendEmail.js";
+// import crypto from "crypto";
+// import EmailToken from "../models/EmailToken.js";
+// import { sendVerificationEmail } from "../utils/sendEmail.js";
 
 
 const router = express.Router();
@@ -16,12 +16,12 @@ const router = express.Router();
 
     let existingUser = await User.findOne({ email });
 
-    if (existingUser && !existingUser.isVerified) {
-      await User.deleteOne({ _id: existingUser._id });
-      await EmailToken.deleteMany({ userId: existingUser._id });
-    }
-
-    if (existingUser && existingUser.isVerified) {
+    // if (existingUser && !existingUser.isVerified) {
+    //   await User.deleteOne({ _id: existingUser._id });
+    //   await EmailToken.deleteMany({ userId: existingUser._id });
+    // }
+              // && existingUser.isVerified
+    if (existingUser) {
       return res.status(400).json({ error: "Email already exists" });
     }
 
@@ -36,13 +36,13 @@ const router = express.Router();
 
     await newUser.save();
 
-    const token = crypto.randomBytes(32).toString("hex");
+    // const token = crypto.randomBytes(32).toString("hex");
 
-    await EmailToken.create({
-      userId: newUser._id,
-      token,
-      expiresAt: Date.now() + 24 * 60 * 60 * 1000,
-    });
+    // await EmailToken.create({
+    //   userId: newUser._id,
+    //   token,
+    //   expiresAt: Date.now() + 24 * 60 * 60 * 1000,
+    // });
 
     // ✅ SEND RESPONSE FIRST
     res.json({
@@ -50,8 +50,8 @@ const router = express.Router();
     });
 
     // ✅ EMAIL IS FIRE-AND-FORGET
-    sendVerificationEmail(newUser.email, token)
-      .catch(err => console.error("Email error:", err.message));
+    // sendVerificationEmail(newUser.email, token)
+    //   .catch(err => console.error("Email error:", err.message));
 
   } catch (err) {
     console.error("Register error:", err);
@@ -61,30 +61,30 @@ const router = express.Router();
 
 
 
-        router.get("/verify-email", async (req, res) => {
-          try {
-            const { token } = req.query;
+        // router.get("/verify-email", async (req, res) => {
+        //   try {
+        //     const { token } = req.query;
 
-            const record = await EmailToken.findOne({ token });
-            if (!record) {
-              return res.status(400).json({ error: "Invalid or expired link" });
-            }
+        //     const record = await EmailToken.findOne({ token });
+        //     if (!record) {
+        //       return res.status(400).json({ error: "Invalid or expired link" });
+        //     }
 
-            if (record.expiresAt < Date.now()) {
-              return res.status(400).json({ error: "Link expired" });
-            }
+        //     if (record.expiresAt < Date.now()) {
+        //       return res.status(400).json({ error: "Link expired" });
+        //     }
 
-            await User.findByIdAndUpdate(record.userId, {
-              isVerified: true,
-            });
+        //     await User.findByIdAndUpdate(record.userId, {
+        //       isVerified: true,
+        //     });
 
-            await EmailToken.deleteOne({ _id: record._id });
+        //     await EmailToken.deleteOne({ _id: record._id });
 
-            res.json({ message: "Email verified successfully" });
-          } catch (err) {
-            res.status(500).json({ error: err.message });
-          }
-        });
+        //     res.json({ message: "Email verified successfully" });
+        //   } catch (err) {
+        //     res.status(500).json({ error: err.message });
+        //   }
+        // });
 
 
 
@@ -97,11 +97,11 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: "User not found" });
 
-    if (!user.isVerified) {
-    return res.status(403).json({
-      error: "Please verify your email before logging in",
-    });
-  }
+  //   if (!user.isVerified) {
+  //   return res.status(403).json({
+  //     error: "Please verify your email before logging in",
+  //   });
+  // }
 
 
     // compare password

@@ -57,9 +57,10 @@ export default function App() {
         <Route
           path="/book-to-audio"
           element={
-            localStorage.getItem("token")
+            isLoggedIn
+            // localStorage.getItem("token")
               ? <BookToAudio />
-              : <Navigate to="/login" />
+              : <Navigate to="/login" replace/>
           }
         />
       </Routes>

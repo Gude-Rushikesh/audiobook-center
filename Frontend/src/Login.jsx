@@ -31,6 +31,8 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
+      window.dispatchEvent(new Event("storage"));
+      
       // navigate("/book-to-audio"); // entry page
       setShowSuccess(true);
       setTimeout(() => {
