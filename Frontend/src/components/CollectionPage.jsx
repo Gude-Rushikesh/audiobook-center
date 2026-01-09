@@ -148,14 +148,13 @@ export default function CollectionPage() {
 
         {t.topBar.showSoundToggle && t.audio.ambient?.src && (
           <button
-            onClick={() => setMuted((m) => !m)}
-            className="text-sm opacity-80 hover:opacity-100"
+            onClick={() => setMuted(m => !m)}
+            className="text-sm opacity-80 hover:opacity-100 flex items-center gap-1"
           >
-            {muted ? "🔇 Muted" : "🔊 Sound"}
-            <span className="hidden sm:inline ml-1">
-              {muted ? "muted" : "Sound"}
-            </span>
+            <span>{muted ? "🔇" : "🔊"}</span>
+            <span>{muted ? "Muted" : "Sound"}</span>
           </button>
+
         )}
       </div>
 
