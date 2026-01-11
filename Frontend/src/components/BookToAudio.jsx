@@ -97,7 +97,7 @@ const API_BASE = import.meta.env.VITE_API_URL;
 const CATEGORY_MAP = [
       {
         title: "Fantasy & Epics",
-        match: ["harry potter", "song of ice and fire"]
+        match: ["harry potter", "song of ice and fire", "dune"]
       },
 
       {
