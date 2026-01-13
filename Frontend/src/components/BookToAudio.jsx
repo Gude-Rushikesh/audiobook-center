@@ -279,7 +279,7 @@ export default function BookToAudio() {
                     hover:-translate-y-2 hover:shadow-2xl"
         >
           <img
-            src={`${API_BASE}/uploads/${collection.coverImage}`}
+            src={`/uploads/${collection.coverImage}`}
             alt={collection.title}
             className="w-full h-full object-cover"
           />
