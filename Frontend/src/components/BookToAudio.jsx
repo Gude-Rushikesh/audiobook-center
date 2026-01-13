@@ -360,11 +360,11 @@ export default function BookToAudio() {
       <section className="flex flex-col items-center justify-center
                           text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-semibold text-white leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-display font-semibold text-white leading-tight">
           Welcome to Audiobook Center
         </h2>
 
-        <p className="max-w-2xl sm:max-w-2xl text-gray-900 mt-6 sm:mt-8 text-sm sm:text-base md:text-xl leading-relaxed font-display">
+        <p className="max-w-2xl sm:max-w-2xl text-gray-900 mt-6 sm:mt-8 text-sm sm:text-base md:text-2xl leading-relaxed font-display">
           A curated space for audiobooks — from epic fantasy and timeless classics
           to emotional stories and thought-provoking journeys.
           <br />
@@ -383,7 +383,7 @@ export default function BookToAudio() {
           className="mt-7 px-8 sm:px-10 py-3 rounded-full
                     bg-white text-black text-large font-semibold
                     tracking-wide shadow-sm
-                    hover:bg-black/90 transition"
+                    hover:bg-black/90 hover:text-[#FFD700] transition"
         >
           Explore Categories ↓
         </button>
