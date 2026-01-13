@@ -360,7 +360,7 @@ export default function BookToAudio() {
       <section className="flex flex-col items-center justify-center
                           text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
 
-        <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-6xl font-display font-semibold text-white leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-7xl lg:text-6xl font-display font-semibold text-white leading-tight">
           Welcome to Audiobook Center
         </h2>
 
@@ -371,7 +371,7 @@ export default function BookToAudio() {
           Choose a world, press play, and let the story unfold.
         </p>
 
-        <p className="mt-10 text-sm md:text-base lg:text-xl italic text-black font-semibold">
+        <p className="mt-10 text-sm md:text-base lg:text-xl italic text-[#FFD700] font-semibold">
           “Listening to a story is one of the oldest forms of human connection.”
         </p>
 
@@ -381,7 +381,7 @@ export default function BookToAudio() {
         <button
           onClick={() => scrollToId("categories")}
           className="mt-7 px-8 sm:px-10 py-3 rounded-full
-                    bg-black text-white text-large font-semibold
+                    bg-white text-black text-large font-semibold
                     tracking-wide shadow-sm
                     hover:bg-black/90 transition"
         >
