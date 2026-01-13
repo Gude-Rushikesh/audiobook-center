@@ -364,7 +364,7 @@ export default function BookToAudio() {
           Welcome to Audiobook Center
         </h2>
 
-        <p className="max-w-2xl sm:max-w-2xl text-gray-900 mt-6 sm:mt-8 text-sm sm:text-base md:text-2xl leading-relaxed font-display">
+        <p className="max-w-2xl sm:max-w-2xl text-white mt-6 sm:mt-8 text-sm sm:text-base md:text-2xl leading-relaxed font-display">
           A curated space for audiobooks — from epic fantasy and timeless classics
           to emotional stories and thought-provoking journeys.
           <br />
