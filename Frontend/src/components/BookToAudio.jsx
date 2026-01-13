@@ -303,16 +303,19 @@ export default function BookToAudio() {
 
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-[#fdd98d] to-[#fccd5f]">
+    <div className="min-h-screen bg-[#0B0F14] text-[#F9FAFB]">
+    {/* "min-h-screen bg-linear-to-b from-[#fdd98d] to-[#fccd5f]"> */}
 
-      {/* 🔝 NAVBAR */}
-            <section className="bg-black h-14 px-6 sticky top-0 z-30">
+
+      {/* 🔝 NAVBAR */}      
+            <section className="bg-black/70 backdrop-blur-md border-b border-white/10 h-14 px-6 sticky top-0 z-30">
+                                {/* "bg-black h-14 px-6 sticky top-0 z-30" */}
               <div className="grid grid-cols-2 md:grid-cols-3 items-center h-full">
 
                 {/* LEFT — BRAND */}
                 <div
                   onClick={() => navigate("/")}
-                  className="text-white text-lg md:text-2xl font-display font-medium cursor-pointer"
+                  className="text-white text-lg md:text-2xl font-display font-semibold tracking-wide cursor-pointer"
                 >
                   Audiobook Center
                 </div>
@@ -320,7 +323,7 @@ export default function BookToAudio() {
                 {/* CENTER — SEARCH */}
                 <div className="hidden md:flex justify-center">
                   <div className="flex items-center gap-2
-                                  bg-white/90 rounded-full
+                                  bg-[#121826] rounded-full border border-white/10 
                                   px-4 py-1.5 w-[60%]
                                   transition-all
                                   focus-within:ring-2 ring-black/20">
@@ -342,7 +345,7 @@ export default function BookToAudio() {
                 <div className="flex justify-end">
                   <button
                     onClick={handleLogout}
-                    className="bg-white text-black font-semibold font-display
+                    className="bg-[#D4AF37] text-black font-semibold font-display hover:bg-[#c9a634] transition
                               rounded-md h-8 px-4"
                   >
                     Logout 
@@ -360,18 +363,19 @@ export default function BookToAudio() {
       <section className="flex flex-col items-center justify-center
                           text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-gray-900 leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-white tracking-tight leading-tight">
           Welcome to Audiobook Center
         </h2>
 
-        <p className="max-w-2xl sm:max-w-2xl text-gray-900 mt-6 sm:mt-8 text-sm sm:text-base md:text-xl leading-relaxed font-display">
+        <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl
+               font-semibold tracking-tight text-white leading-tight">
           A curated space for audiobooks — from epic fantasy and timeless classics
           to emotional stories and thought-provoking journeys.
           <br />
           Choose a world, press play, and let the story unfold.
         </p>
 
-        <p className="mt-10 text-sm md:text-base lg:text-xl italic text-black font-semibold">
+        <p className="mt-10 text-sm md:text-base lg:text-xl italic text-gray-400 font-medium">
           “Listening to a story is one of the oldest forms of human connection.”
         </p>
 
