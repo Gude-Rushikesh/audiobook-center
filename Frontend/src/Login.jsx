@@ -2,7 +2,9 @@
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import API from "../utils/api"
+// import axios from "axios";
+// const API_BASE = import.meta.env.VITE_API_URL;
 // import bgImage from "../assets/photos/image2.jpg";
 
 export default function Login() {
@@ -11,7 +13,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
-  const API_BASE = import.meta.env.VITE_API_URL;
+
 
 
   
@@ -21,8 +23,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      // const API_BASE = import.meta.env.VITE_API_URL;
-      const res = await axios.post(`${API_BASE}/api/auth/login`, {
+      const res = await API.post("/api/auth/login", {
         email,
         password,
       });
@@ -37,7 +38,7 @@ export default function Login() {
       setShowSuccess(true);
       setTimeout(() => {
         navigate("/book-to-audio");
-      }, 1800);
+      }, 1200);
       } catch (err) {
           setError(err.response?.data?.error || "Login failed");
         }

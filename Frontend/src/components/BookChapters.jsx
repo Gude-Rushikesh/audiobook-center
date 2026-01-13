@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
+import API from "../utlis/api"
 import { useNavigate, useParams } from "react-router-dom";
 import AudioPlayer from "./AudioPlayer";
 
@@ -20,10 +21,7 @@ export default function BookChapters({ onSelectChapter }) {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const API_BASE = import.meta.env.VITE_API_URL;
-        const res = await axios.get(
-          `${API_BASE}/api/books/${bookId}`
-        );
+        const res = await API.get(`/api/books/${bookId}`);
         setBook(res.data);
       } catch (err) {
         console.error("Failed to load book", err);

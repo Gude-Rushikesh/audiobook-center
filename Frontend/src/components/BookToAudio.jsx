@@ -92,8 +92,12 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-const API_BASE = import.meta.env.VITE_API_URL;
+import API from "../utils/api"
+// import axios from "axios";
+// const API_BASE = import.meta.env.VITE_API_URL;
+
+
+
 const CATEGORY_MAP = [
       {
         title: "Fantasy & Epics",
@@ -177,8 +181,7 @@ export default function BookToAudio() {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const API_BASE = import.meta.env.VITE_API_URL;
-        const res = await axios.get(`${API_BASE}/api/collections`);
+        const res = await API.get(`/api/collections`);
         setCollections(res.data);
       } catch (err) {
         console.error("Failed to load collections");
