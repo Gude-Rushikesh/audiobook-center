@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import axios from "axios";
-import API from "../utlis/api"
+import API from "../utils/api"
 import { useNavigate, useParams } from "react-router-dom";
 import AudioPlayer from "./AudioPlayer";
 
