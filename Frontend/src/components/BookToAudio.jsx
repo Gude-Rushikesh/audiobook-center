@@ -94,7 +94,7 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../utils/api"
 // import axios from "axios";
-// const API_BASE = import.meta.env.VITE_API_URL;
+const API_BASE = import.meta.env.VITE_API_URL;
 
 
 
@@ -279,7 +279,7 @@ export default function BookToAudio() {
                     hover:-translate-y-2 hover:shadow-2xl"
         >
           <img
-            src={`/uploads/${collection.coverImage}`}
+            src={`${API_BASE}/uploads/${collection.coverImage}`}
             alt={collection.title}
             className="w-full h-full object-cover"
           />
