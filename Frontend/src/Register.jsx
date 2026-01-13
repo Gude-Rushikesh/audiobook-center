@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import API from "../utils/api"
+import API from "./utils/api"
 // import axios from "axios";
 // const API_BASE = import.meta.env.VITE_API_URL;
 
