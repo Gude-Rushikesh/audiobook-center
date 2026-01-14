@@ -303,10 +303,10 @@ export default function BookToAudio() {
 
 
   return (
-    <div className="min-h-screen bg-[#000000]">
+    <div className="min-h-screen bg-[#fefae0]">
 
       {/* 🔝 NAVBAR */}
-            <section className="bg-black h-14 px-6 sticky top-0 z-30">
+            <section className="bg-[#bc6c25] h-14 px-6 sticky top-0 z-30">
               <div className="grid grid-cols-2 md:grid-cols-3 items-center h-full">
 
                 {/* LEFT — BRAND */}
@@ -360,11 +360,11 @@ export default function BookToAudio() {
       <section className="flex flex-col items-center justify-center
                           text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-bold text-white leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-bold text-[#283618] leading-tight">
           Welcome to Audiobook Center
         </h2>
 
-        <p className="max-w-2xl sm:max-w-2xl text-white mt-6 sm:mt-8 text-sm sm:text-base md:text-2xl leading-relaxed font-display">
+        <p className="max-w-2xl sm:max-w-2xl text-[#606c38] mt-6 sm:mt-8 text-sm sm:text-base md:text-2xl leading-relaxed font-display">
           A curated space for audiobooks — from epic fantasy and timeless classics
           to emotional stories and thought-provoking journeys.
           <br />
@@ -460,7 +460,7 @@ export default function BookToAudio() {
           <div
               key={category.title}
               id={category.title}
-              className="bg-white/40 backdrop-blur-sm
+              className="bg-[#bc6c25] backdrop-blur-sm
                         rounded-2xl px-6 py-6 shadow-sm"
             >
 
