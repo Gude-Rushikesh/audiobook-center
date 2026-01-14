@@ -303,10 +303,10 @@ export default function BookToAudio() {
 
 
   return (
-    <div className="min-h-screen bg-[#1b4332]">
+    <div className="min-h-screen bg-[#582f0e]">
 
       {/* 🔝 NAVBAR */}
-            <section className="bg-[#1b4332] h-14 px-6 sticky top-0 z-30">
+            <section className="bg-[#582f0e] h-14 px-6 sticky top-0 z-30">
               <div className="grid grid-cols-2 md:grid-cols-3 items-center h-full">
 
                 {/* LEFT — BRAND */}
@@ -360,7 +360,7 @@ export default function BookToAudio() {
       <section className="flex flex-col items-center justify-center
                           text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-bold text-[#081c15] leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-Extrabold text-[#081c15] leading-tight">
           Welcome to Audiobook Center
         </h2>
 
@@ -389,46 +389,6 @@ export default function BookToAudio() {
         </button>
 
       </section>
-
-
-
-      {/* 🅱️ HERO — Inspired & Curious */}
-        {/* <section className="flex flex-col items-center justify-center
-                            text-center px-6 pt-20 pb-24">
-
-          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight">
-            Welcome to Audiobook Center
-          </h2>
-
-          <p className="max-w-2xl text-gray-700 mt-6 text-base md:text-lg leading-relaxed">
-            Discover audiobooks across fantasy, classics, romance,
-            and ideas that stay with you long after the story ends.
-          </p>
-
-          <p className="mt-6 text-sm md:text-base italic text-gray-500">
-            “Listening to a story is one of the oldest forms of human connection.”
-          </p>
-
-          <button
-            onClick={() => scrollToId("categories")}
-            className="mt-10 px-10 py-3 rounded-full
-                      bg-black text-white text-sm font-semibold
-                      tracking-wide shadow-lg
-                      hover:-translate-y-[2px]
-                      hover:shadow-xl
-                      transition-all duration-300"
-          >
-            Explore Categories ↓
-          </button>
-
-          visual cue
-          <div className="mt-10 text-black/30 text-sm animate-bounce">
-            ↓
-          </div>
-
-        </section> */}
-
-
 
       {/* 🧭 CATEGORY QUICK NAV — Colored */}
       <section className="flex flex-wrap justify-center  gap-4 md:gap-3
@@ -460,7 +420,7 @@ export default function BookToAudio() {
           <div
               key={category.title}
               id={category.title}
-              className="bg-[#2d6a4f] backdrop-blur-sm
+              className="bg-[#a68a64] backdrop-blur-sm
                         rounded-2xl px-6 py-6 shadow-sm"
             >
 
