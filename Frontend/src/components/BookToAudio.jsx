@@ -303,10 +303,10 @@ export default function BookToAudio() {
 
 
   return (
-    <div className="min-h-screen bg-[#fefae0]">
+    <div className="min-h-screen bg-[#1b4332]">
 
       {/* 🔝 NAVBAR */}
-            <section className="bg-[#bc6c25] h-14 px-6 sticky top-0 z-30">
+            <section className="bg-[#1b4332] h-14 px-6 sticky top-0 z-30">
               <div className="grid grid-cols-2 md:grid-cols-3 items-center h-full">
 
                 {/* LEFT — BRAND */}
@@ -360,7 +360,7 @@ export default function BookToAudio() {
       <section className="flex flex-col items-center justify-center
                           text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-bold text-[#283618] leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-bold text-[#081c15] leading-tight">
           Welcome to Audiobook Center
         </h2>
 
@@ -460,7 +460,7 @@ export default function BookToAudio() {
           <div
               key={category.title}
               id={category.title}
-              className="bg-[#bc6c25] backdrop-blur-sm
+              className="bg-[#2d6a4f] backdrop-blur-sm
                         rounded-2xl px-6 py-6 shadow-sm"
             >
 
