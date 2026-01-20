@@ -202,7 +202,7 @@ export default function BookToAudio() {
           const filteredCollections = searchQuery.trim()
             ? collections.filter(col =>
                 col.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                col.author.toLowerCase().includes(searchQuery.toLowerCase())
+                col.author?.toLowerCase().includes(searchQuery.toLowerCase())
               )
             : collections;
 
