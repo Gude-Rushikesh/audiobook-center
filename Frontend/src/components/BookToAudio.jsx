@@ -213,6 +213,11 @@ export default function BookToAudio() {
             const items = filteredCollections.filter(col => {
               if (usedIds.has(col._id)) return false;
 
+               if (searchQuery.trim()) {
+                  usedIds.add(col._id);
+                  return true;
+                }
+
               const matched = category.match.some(key =>
                 col.title.toLowerCase().includes(key) ||
                 col.author?.toLowerCase().includes(key)
