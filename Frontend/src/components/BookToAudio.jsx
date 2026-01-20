@@ -359,11 +359,11 @@ export default function BookToAudio() {
             
       <section className="flex flex-col items-center justify-center
                           text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
-        <marquee>
+        {/* <marquee></marquee> */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-extrabold text-white leading-tight">
           Welcome to Audiobook Center
         </h2>
-        </marquee>
+        
 
         <p className="max-w-2xl sm:max-w-2xl text-[#606c38] mt-6 sm:mt-8 text-sm sm:text-base md:text-2xl leading-relaxed font-display">
           A curated space for audiobooks — from epic fantasy and timeless classics
