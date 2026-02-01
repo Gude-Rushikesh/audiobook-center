@@ -366,16 +366,17 @@ export default function BookToAudio() {
         </h2>
         
 
-        <p className="max-w-2xl sm:max-w-2xl text-[#606c38] mt-6 sm:mt-8 text-sm sm:text-base md:text-2xl leading-relaxed font-display">
+        <p className="max-w-2xl sm:max-w-2xl text-[#3c1801] mt-6 sm:mt-8 text-sm sm:text-base md:text-2xl leading-relaxed font-handwriting">
           A curated space for audiobooks — from epic fantasy and timeless classics
           to emotional stories and thought-provoking journeys.
           <br />
           Choose a world, press play, and let the story unfold.
         </p>
 
-        <p className="mt-10 text-sm md:text-base lg:text-xl font-handwriting text-[#FFD700] font-semibold">
+        <p className="mt-10 text-sm md:text-base lg:text-xl font-handwriting text-black font-semibold">
           “Listening to a story is one of the oldest forms of human connection.”
         </p>
+        
 
         {/* soft divider */}
         <div className="w-20 h-0.5 bg-black/10 rounded-full mt-14" />
