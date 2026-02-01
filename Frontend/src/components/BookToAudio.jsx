@@ -154,7 +154,7 @@ const CATEGORY_MAP = [
 
     const CATEGORY_STYLES = {
         "Fantasy & Epics": "bg-indigo-400 text-black font-semibold",
-        "Romance & Emotion": "bg-rose-600 text-black font-semibold",
+        "Romance & Emotion": "bg-rose-500 text-black font-semibold",
         "Philosophy & Life": "bg-amber-400 text-black font-semibold",
         "Classics": "bg-emerald-500 text-black font-semibold",
         "Science Fiction": "bg-sky-300 text-black font-semibold",
@@ -383,7 +383,7 @@ export default function BookToAudio() {
           to emotional stories and thought-provoking journeys.
         </p>
 
-        <p className="max-w-xl text-sm sm:text-base md:text-2xl leading-relaxed text-center mt-1">
+        <p className="max-w-xl whitespace-nowrap text-sm sm:text-base md:text-2xl leading-relaxed text-center mt-1">
           Choose a world, press play, and let the story unfold.
         </p>
 
