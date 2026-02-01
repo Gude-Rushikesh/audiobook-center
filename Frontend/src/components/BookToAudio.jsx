@@ -303,16 +303,16 @@ export default function BookToAudio() {
 
 
   return (
-    <div className="min-h-screen bg-[#582f0e]">
+    <div className="min-h-screen bg-white">
 
       {/* 🔝 NAVBAR */}
-            <section className="bg-[#582f0e] h-14 px-6 sticky top-0 z-30">
+            <section className="bg-white h-14 px-6 sticky top-0 z-30">
               <div className="grid grid-cols-2 md:grid-cols-3 items-center h-full">
 
                 {/* LEFT — BRAND */}
                 <div
                   onClick={() => navigate("/")}
-                  className="text-white text-lg md:text-2xl font-display font-medium cursor-pointer"
+                  className="text-black text-lg md:text-2xl font-display font-medium cursor-pointer"
                 >
                   Audiobook Center
                 </div>
@@ -320,12 +320,12 @@ export default function BookToAudio() {
                 {/* CENTER — SEARCH */}
                 <div className="hidden md:flex justify-center">
                   <div className="flex items-center gap-2
-                                  bg-white/90 rounded-full
+                                  bg-black/90 rounded-full
                                   px-4 py-1.5 w-[60%]
                                   transition-all
                                   focus-within:ring-2 ring-black/20">
 
-                    <span className="text-gray-500 text-sm">🔍</span>
+                    <span className="text-white text-sm">🔍</span>
 
                     <input
                       type="text"
@@ -342,7 +342,7 @@ export default function BookToAudio() {
                 <div className="flex justify-end">
                   <button
                     onClick={handleLogout}
-                    className="bg-white text-black font-semibold font-display
+                    className="bg-black text-white font-semibold font-display
                               rounded-md h-8 px-4"
                   >
                     Logout 
@@ -360,7 +360,8 @@ export default function BookToAudio() {
       <section className="flex flex-col items-center justify-center
                           text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
         {/* <marquee></marquee> */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-extrabold text-white leading-tight">
+        
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-extrabold text-black leading-tight">
           Welcome to Audiobook Center
         </h2>
         
