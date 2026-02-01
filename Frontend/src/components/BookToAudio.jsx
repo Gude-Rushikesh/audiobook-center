@@ -375,7 +375,7 @@ export default function BookToAudio() {
 
         <div className="mt-6 sm:mt-8 flex flex-col items-center text-[#3c1801] font-handwriting">
   
-        <p className="max-w-3xl text-sm sm:text-base md:text-2xl leading-relaxed text-center">
+        <p className="max-w-3xl  whitespace-nowrap text-sm sm:text-base md:text-2xl leading-relaxed text-center">
           A curated space for audiobooks — from epic fantasy and timeless classics
         </p>
 
