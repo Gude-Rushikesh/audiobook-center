@@ -303,7 +303,7 @@ export default function BookToAudio() {
 
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#ff00e6]">
 
       {/* 🔝 NAVBAR */}
             <section className="bg-white h-14 px-6 sticky top-0 z-30">
