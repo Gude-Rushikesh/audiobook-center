@@ -312,7 +312,7 @@ export default function BookToAudio() {
                 {/* LEFT — BRAND */}
                 <div
                   onClick={() => navigate("/")}
-                  className="text-black text-lg md:text-2xl font-display font-medium cursor-pointer"
+                  className="text-black text-lg md:text-2xl font-display font-bold cursor-pointer"
                 >
                   Audiobook Center
                 </div>
