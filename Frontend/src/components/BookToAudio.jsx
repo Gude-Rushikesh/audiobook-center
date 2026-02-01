@@ -379,11 +379,11 @@ export default function BookToAudio() {
           A curated space for audiobooks — from epic fantasy and timeless classics
         </p>
 
-        <p className="max-w-2xl text-sm sm:text-base md:text-2xl leading-relaxed text-center mt-2">
+        <p className="max-w-2xl text-sm sm:text-base md:text-2xl leading-relaxed text-center mt-1">
           to emotional stories and thought-provoking journeys.
         </p>
 
-        <p className="max-w-xl text-sm sm:text-base md:text-xl leading-relaxed text-center mt-4">
+        <p className="max-w-2xl text-sm sm:text-base md:text-xl leading-relaxed text-center mt-1">
           Choose a world, press play, and let the story unfold.
         </p>
 
