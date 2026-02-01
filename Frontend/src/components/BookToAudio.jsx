@@ -400,7 +400,7 @@ export default function BookToAudio() {
 
         <button
           onClick={() => scrollToId("categories")}
-          className="mt-7 px-8 sm:px-10 py-3 rounded-full
+          className="mt-4 px-8 sm:px-10 py-3 rounded-full
                     bg-white text-black text-large font-semibold
                     tracking-wide shadow-sm
                     hover:bg-black/90 hover:text-[#FFD700] transition"
@@ -412,7 +412,7 @@ export default function BookToAudio() {
 
       {/* 🧭 CATEGORY QUICK NAV — Colored */}
       <section className="flex flex-wrap justify-center  gap-4 md:gap-3
-                          px-6 pb-16">
+                          px-6 pb-8">
 
         {categorizedData.map((category) => (
           <button
