@@ -373,7 +373,7 @@ export default function BookToAudio() {
           Choose a world, press play, and let the story unfold.
         </p>
 
-        <p className="mt-10 text-sm md:text-base lg:text-xl italic text-[#FFD700] font-semibold">
+        <p className="mt-10 text-sm md:text-base lg:text-xl font-handwriting text-[#FFD700] font-semibold">
           “Listening to a story is one of the oldest forms of human connection.”
         </p>
 

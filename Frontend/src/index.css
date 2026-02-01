@@ -49,6 +49,7 @@ body{
 :root {
   --font-display: "Cinzel", serif;
   --font-ui: "Inter", system-ui, sans-serif;
+  --font-handwriting: "Playwrite Cuba Guides", cursive;
 }
 
 /* ===============================
@@ -60,6 +61,10 @@ body{
 
 .font-ui {
   font-family: var(--font-ui);
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting);
 }
 
 /* ===============================
