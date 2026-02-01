@@ -306,7 +306,7 @@ export default function BookToAudio() {
     <div className="min-h-screen bg-[#fb8600]">
 
       {/* 🔝 NAVBAR */}
-            <section className="bg-white h-14 px-6 sticky top-0 z-30">
+            <section className="bg-[#fb8600] h-14 px-6 sticky top-0 z-30">
               <div className="grid grid-cols-2 md:grid-cols-3 items-center h-full">
 
                 {/* LEFT — BRAND */}
@@ -320,12 +320,12 @@ export default function BookToAudio() {
                 {/* CENTER — SEARCH */}
                 <div className="hidden md:flex justify-center">
                   <div className="flex items-center gap-2
-                                  bg-black/90 rounded-full
+                                  bg-white/90 rounded-full
                                   px-4 py-1.5 w-[60%]
                                   transition-all
                                   focus-within:ring-2 ring-black/20">
 
-                    <span className="text-white text-sm">🔍</span>
+                    <span className="text-black text-sm">🔍</span>
 
                     <input
                       type="text"
