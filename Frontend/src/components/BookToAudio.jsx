@@ -440,7 +440,7 @@ export default function BookToAudio() {
           <div
               key={category.title}
               id={category.title}
-              className="bg-[#a68a64] backdrop-blur-sm
+              className="bg-[#FFF1DB] backdrop-blur-sm
                         rounded-2xl px-6 py-6 shadow-sm"
             >
 
