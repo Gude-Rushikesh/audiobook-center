@@ -412,7 +412,7 @@ export default function BookToAudio() {
 
       {/* 🧭 CATEGORY QUICK NAV — Colored */}
       <section className="flex flex-wrap justify-center  gap-4 md:gap-3
-                          px-6 pb-8">
+                          px-6 pb-16">
 
         {categorizedData.map((category) => (
           <button
