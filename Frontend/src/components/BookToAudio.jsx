@@ -383,7 +383,7 @@ export default function BookToAudio() {
           to emotional stories and thought-provoking journeys.
         </p>
 
-        <p className="max-w-2xl text-sm sm:text-base md:text-xl leading-relaxed text-center mt-1">
+        <p className="max-w-xl text-sm sm:text-base md:text-2xl leading-relaxed text-center mt-1">
           Choose a world, press play, and let the story unfold.
         </p>
 
