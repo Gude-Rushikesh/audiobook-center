@@ -153,11 +153,11 @@ const CATEGORY_MAP = [
     ];
 
     const CATEGORY_STYLES = {
-        "Fantasy & Epics": "bg-indigo-500 text-black font-semibold",
-        "Romance & Emotion": "bg-rose-700 text-black font-semibold",
+        "Fantasy & Epics": "bg-indigo-400 text-black font-semibold",
+        "Romance & Emotion": "bg-rose-600 text-black font-semibold",
         "Philosophy & Life": "bg-amber-400 text-black font-semibold",
         "Classics": "bg-emerald-500 text-black font-semibold",
-        "Science Fiction": "bg-sky-400 text-black font-semibold",
+        "Science Fiction": "bg-sky-300 text-black font-semibold",
         };
 
 
