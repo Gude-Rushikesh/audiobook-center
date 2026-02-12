@@ -1,0 +1,44 @@
+# Vercel Speed Insights Implementation
+
+## Summary
+Successfully implemented Vercel Speed Insights in the audiobook-center React application following the official Vercel documentation.
+
+## Changes Made
+
+### 1. Installed Dependencies
+- Added `@vercel/speed-insights@^1.3.1` package to project dependencies
+- Updated `package-lock.json` to reflect the new dependency and its sub-dependencies
+
+### 2. Modified Files
+- **src/App.jsx**: Added Speed Insights integration
+  - Imported `SpeedInsights` component from `@vercel/speed-insights/react`
+  - Added `<SpeedInsights />` component after the Routes section, before the closing fragment tag
+  - This ensures Speed Insights tracks all route navigations in the application
+
+## Implementation Details
+
+The implementation follows the official Vercel documentation for React applications (Create React App / Vite). The `SpeedInsights` component:
+- Is a wrapper around the tracking script
+- Provides seamless integration with React
+- Automatically tracks route changes and performance metrics
+- Will be initialized when the app is deployed to Vercel
+
+## Build Verification
+
+✅ Build completed successfully with no errors
+✅ All dependencies installed correctly
+✅ Code changes are minimal and non-breaking
+✅ Existing functionality preserved
+
+## Next Steps for Deployment
+
+Once this is deployed to Vercel:
+1. Enable Speed Insights in the Vercel dashboard (Project → Speed Insights tab)
+2. After deployment, the `/_vercel/speed-insights/script.js` script will be available
+3. Performance metrics will start being collected automatically
+4. Data can be viewed in the Vercel dashboard under the Speed Insights tab
+
+## Files Modified
+- `Frontend/package.json` - Added @vercel/speed-insights dependency
+- `Frontend/package-lock.json` - Updated with new dependency tree
+- `Frontend/src/App.jsx` - Added SpeedInsights component

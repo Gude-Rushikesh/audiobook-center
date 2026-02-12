@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import Home from "./home.jsx";
 import Register from "./Register.jsx";
@@ -64,6 +65,7 @@ export default function App() {
           }
         />
       </Routes>
+      <SpeedInsights />
     </>
     </div>
   );
