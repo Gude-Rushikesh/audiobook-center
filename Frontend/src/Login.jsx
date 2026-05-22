@@ -38,7 +38,7 @@ export default function Login() {
       setShowSuccess(true);
       setTimeout(() => {
         navigate("/book-to-audio");
-      }, 1200);
+      }, 100);
       } catch (err) {
           setError(err.response?.data?.error || "Login failed");
         }
