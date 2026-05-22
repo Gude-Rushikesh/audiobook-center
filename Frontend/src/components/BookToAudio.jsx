@@ -358,7 +358,7 @@ export default function BookToAudio() {
       >
         {/* <marquee></marquee> */}
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[Cinzel] font-extrabold text-black leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-[Cinzel] font-extrabold text-black leading-tight">
           Welcome to Audiobook Center
         </h2>
 
