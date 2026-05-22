@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import Collection from "../models/Collection.js";
 
 const router = express.Router();
@@ -29,11 +30,14 @@ router.get("/", async (req, res) => {
 });
 
 /* =====================
-   GET COLLECTION BY ID
+   GET COLLECTION BY ID OR SLUG
 ===================== */
 router.get("/:id", async (req, res) => {
   try {
-    const collection = await Collection.findById(req.params.id)
+    const { id } = req.params;
+    const query = mongoose.Types.ObjectId.isValid(id) ? { _id: id } : { slug: id };
+
+    const collection = await Collection.findOne(query)
       .populate("books")
       .populate("bookId");
 

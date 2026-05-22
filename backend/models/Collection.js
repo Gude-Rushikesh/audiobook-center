@@ -7,6 +7,15 @@ const collectionSchema = new mongoose.Schema(
       required: true,
     },
 
+    // ✅ ADD THIS — clean URL slug e.g. "harry-potter-series"
+    slug: {
+      type: String,
+      unique: true,
+      sparse: true, // allows null for old records without breaking uniqueness
+      lowercase: true,
+      trim: true,
+    },
+
     type: {
       type: String,
       enum: ["series", "standalone"],
@@ -22,7 +31,6 @@ const collectionSchema = new mongoose.Schema(
       required: true,
     },
 
-    // For series
     books: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -30,19 +38,17 @@ const collectionSchema = new mongoose.Schema(
       },
     ],
 
-    // For standalone
     bookId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Book",
     },
 
-    // ✅ ADD THIS
     theme: {
       type: Object,
       default: {},
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model("Collection", collectionSchema);

@@ -152,13 +152,16 @@ const CATEGORY_MAP = [
       }
     ];
 
-    const CATEGORY_STYLES = {
+const CATEGORY_STYLES = {
         "Fantasy & Epics": "bg-indigo-400 text-black font-semibold",
         "Romance & Emotion": "bg-rose-500 text-black font-semibold",
         "Philosophy & Life": "bg-amber-400 text-black font-semibold",
         "Classics": "bg-emerald-500 text-black font-semibold",
         "Science Fiction": "bg-sky-300 text-black font-semibold",
         };
+
+const getCollectionPath = (collection) =>
+  `/collection/${collection.slug || collection._id}`;
 
 
 
@@ -272,7 +275,7 @@ export default function BookToAudio() {
 
         const BookCard = ({ collection }) => (
         <div
-          onClick={() => navigate(`/collection/${collection._id}`)}
+          onClick={() => navigate(getCollectionPath(collection))}
           className="relative min-w-40 sm:min-w-50 h-60 sm:h-75 md:h-82.5 rounded-2xl overflow-hidden
                     shadow-md cursor-pointer
                     transition-all duration-300
