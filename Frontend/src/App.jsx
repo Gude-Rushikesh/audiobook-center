@@ -10,16 +10,18 @@ import CollectionPage from "./components/CollectionPage.jsx";
 import AudioPlayer from "./components/AudioPlayer.jsx";
 import VerifyEmail from "./components/VerifyEmail";
 
+// ✅ NEW: ProtectedRoute wrapper
+function ProtectedRoute({ isLoggedIn, children }) {
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+}
 
 export default function App() {
-
-  // 🔹 ADDED: global state to hold currently playing chapter
-  // This is the SINGLE source of truth for audio
   const [currentChapter, setCurrentChapter] = useState(null);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    !!localStorage.getItem("token")
-  );
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
   useEffect(() => {
     const listener = () => {
@@ -30,41 +32,40 @@ export default function App() {
   }, []);
 
   return (
-     <div className="font-ui">
-    <>
+    <div className="font-ui">
       <Routes>
+        {/* ✅ PUBLIC routes — no login needed */}
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-
-        <Route path="/collection/:collectionId" element={<CollectionPage />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
 
-
-        {/* 🔹 CHANGED: pass setter so BookDetails can select chapter */}
-        {/* <Route
-          path="/book/:bookId"
-          element={<BookChapters onSelectChapter={setCurrentChapter} />}
-        /> */}
-
-          {/* Standalone books */}
+        {/* 🔐 PROTECTED routes — redirect to /login if not logged in */}
+        <Route
+          path="/collection/:collectionId"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <CollectionPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/chapters/:bookId"
-          element={<BookChapters onSelectChapter={setCurrentChapter} />}
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <BookChapters onSelectChapter={setCurrentChapter} />
+            </ProtectedRoute>
+          }
         />
-
-        {/* 🔐 Protected route untouched */}
         <Route
           path="/book-to-audio"
           element={
-            isLoggedIn
-            // localStorage.getItem("token")
-              ? <BookToAudio />
-              : <Navigate to="/login" replace/>
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <BookToAudio />
+            </ProtectedRoute>
           }
         />
       </Routes>
-    </>
     </div>
   );
 }
