@@ -4,6 +4,14 @@ import Collection from "../models/Collection.js";
 
 const router = express.Router();
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 /* =========================
    CREATE BOOK
 ========================= */
@@ -25,12 +33,19 @@ router.post("/", async (req, res) => {
 });
 
 /* =========================
-   GET BOOK BY ID (IMPORTANT)
+   GET BOOK BY ID OR SLUG (IMPORTANT)
 ========================= */
 router.get("/:id", async (req, res) => {
   try {
-    const book = await Book.findById(req.params.id)
-      .populate("chapters");
+    const { id } = req.params;
+    const query = id.match(/^[a-f\d]{24}$/i) ? { _id: id } : { slug: id };
+
+    let book = await Book.findOne(query).populate("chapters");
+
+    if (!book && !id.match(/^[a-f\d]{24}$/i)) {
+      const books = await Book.find().populate("chapters");
+      book = books.find((item) => slugify(item.title) === id);
+    }
 
     if (!book) {
       return res.status(404).json({ error: "Book not found" });

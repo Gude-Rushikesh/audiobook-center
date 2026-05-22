@@ -15,6 +15,9 @@ const slugify = (value = "") =>
 const getCollectionSlug = (collection) =>
   collection?.slug || slugify(collection?.title);
 
+const getBookPath = (book) =>
+  `/chapters/${book?.slug || slugify(book?.title) || book?._id}`;
+
 
 export default function CollectionPage() {
   const { collectionId } = useParams();
@@ -70,7 +73,12 @@ export default function CollectionPage() {
         ? collection.bookId._id
         : collection.bookId;
 
-    navigate(`/chapters/${bookId}`, { replace: true });
+    const bookPath =
+      typeof collection.bookId === "object"
+        ? getBookPath(collection.bookId)
+        : `/chapters/${bookId}`;
+
+    navigate(bookPath, { replace: true });
   }
 }, [collection, collectionId, navigate]);
 
@@ -234,7 +242,7 @@ export default function CollectionPage() {
               onClick={() => {
                 whooshRef.current?.play();
                 setTimeout(() => {
-                  navigate(`/chapters/${book._id}`);
+                  navigate(getBookPath(book));
                 }, t.booksRail.card.hover.transitionMs);
               }}
               onMouseEnter={(e) => {

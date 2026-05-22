@@ -6,6 +6,16 @@ import AudioPlayer from "./AudioPlayer";
 
 const API_BASE = import.meta.env.VITE_API_URL;
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const getBookSlug = (book) => book?.slug || slugify(book?.title);
+
 
 export default function BookChapters({ onSelectChapter }) {
   const navigate = useNavigate();
@@ -32,6 +42,14 @@ export default function BookChapters({ onSelectChapter }) {
 
     fetchBook();
   }, [bookId]);
+
+  useEffect(() => {
+    const bookSlug = getBookSlug(book);
+
+    if (bookSlug && bookId !== bookSlug) {
+      navigate(`/chapters/${bookSlug}`, { replace: true });
+    }
+  }, [book, bookId, navigate]);
 
       if (loading) {
       return (
