@@ -1,5 +1,13 @@
 import mongoose from "mongoose";
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const collectionSchema = new mongoose.Schema(
   {
     title: {
@@ -50,5 +58,13 @@ const collectionSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+collectionSchema.pre("validate", function setSlug(next) {
+  if (!this.slug && this.title) {
+    this.slug = slugify(this.title);
+  }
+
+  next();
+});
 
 export default mongoose.model("Collection", collectionSchema);

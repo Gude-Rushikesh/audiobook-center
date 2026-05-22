@@ -160,8 +160,16 @@ const CATEGORY_STYLES = {
         "Science Fiction": "bg-sky-300 text-black font-semibold",
         };
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const getCollectionPath = (collection) =>
-  `/collection/${collection.slug || collection._id}`;
+  `/collection/${collection.slug || slugify(collection.title) || collection._id}`;
 
 
 

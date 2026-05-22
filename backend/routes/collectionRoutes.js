@@ -4,6 +4,16 @@ import Collection from "../models/Collection.js";
 
 const router = express.Router();
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const populateCollection = (query) => query.populate("books").populate("bookId");
+
 /* =====================
    CREATE COLLECTION
 ===================== */
@@ -37,9 +47,12 @@ router.get("/:id", async (req, res) => {
     const { id } = req.params;
     const query = mongoose.Types.ObjectId.isValid(id) ? { _id: id } : { slug: id };
 
-    const collection = await Collection.findOne(query)
-      .populate("books")
-      .populate("bookId");
+    let collection = await populateCollection(Collection.findOne(query));
+
+    if (!collection && !mongoose.Types.ObjectId.isValid(id)) {
+      const collections = await populateCollection(Collection.find());
+      collection = collections.find((item) => slugify(item.title) === id);
+    }
 
     if (!collection) {
       return res.status(404).json({ error: "Collection not found" });

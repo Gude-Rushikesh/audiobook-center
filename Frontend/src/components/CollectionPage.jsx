@@ -4,6 +4,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import { resolveMedia } from "../utils/resolveMedia";
 const API_BASE = import.meta.env.VITE_API_URL;
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const getCollectionSlug = (collection) =>
+  collection?.slug || slugify(collection?.title);
+
 
 export default function CollectionPage() {
   const { collectionId } = useParams();
@@ -46,6 +57,13 @@ export default function CollectionPage() {
      Standalone redirect
   -------------------------- */
   useEffect(() => {
+  const collectionSlug = getCollectionSlug(collection);
+
+  if (collectionSlug && collectionId !== collectionSlug) {
+    navigate(`/collection/${collectionSlug}`, { replace: true });
+    return;
+  }
+
   if (collection?.type === "standalone" && collection.bookId) {
     const bookId =
       typeof collection.bookId === "object"
@@ -54,7 +72,7 @@ export default function CollectionPage() {
 
     navigate(`/chapters/${bookId}`, { replace: true });
   }
-}, [collection, navigate]);
+}, [collection, collectionId, navigate]);
 
   /* -------------------------
      Ambient audio
