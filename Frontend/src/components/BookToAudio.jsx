@@ -304,67 +304,63 @@ export default function BookToAudio() {
 
   return (
     <div className="min-h-screen bg-[#fb8600]">
-
       {/* 🔝 NAVBAR */}
-            <section className="bg-[#fb8600] h-14 px-6 sticky top-0 z-30">
-              <div className="grid grid-cols-2 md:grid-cols-3 items-center h-full">
+      <section className="bg-[#fb8600] h-14 px-6 sticky top-0 z-30">
+        <div className="grid grid-cols-2 md:grid-cols-3 items-center h-full">
+          {/* LEFT — BRAND */}
+          <div
+            onClick={() => navigate("/")}
+            className="text-black text-lg md:text-2xl font-display font-bold cursor-pointer"
+          >
+            Audiobook Center
+          </div>
 
-                {/* LEFT — BRAND */}
-                <div
-                  onClick={() => navigate("/")}
-                  className="text-black text-lg md:text-2xl font-display font-bold cursor-pointer"
-                >
-                  Audiobook Center
-                </div>
-
-                {/* CENTER — SEARCH */}
-                <div className="hidden md:flex justify-center">
-                  <div className="flex items-center gap-2
+          {/* CENTER — SEARCH */}
+          <div className="hidden md:flex justify-center">
+            <div
+              className="flex items-center gap-2
                                   bg-white/90 rounded-full
                                   px-4 py-1.5 w-[60%]
                                   transition-all
-                                  focus-within:ring-2 ring-black/20">
+                                  focus-within:ring-2 ring-black/20"
+            >
+              <span className="text-black text-sm">🔍</span>
 
-                    <span className="text-black text-sm">🔍</span>
-
-                    <input
-                      type="text"
-                      placeholder="Search by title or author"
-                      className="w-full bg-transparent outline-none
+              <input
+                type="text"
+                placeholder="Search by title or author"
+                className="w-full bg-transparent outline-none
                                 text-sm text-gray-900"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                  </div>
-                </div>
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+          </div>
 
-                {/* RIGHT — ACTION */}
-                <div className="flex justify-end">
-                  <button
-                    onClick={handleLogout}
-                    className="bg-black text-white font-semibold font-display
+          {/* RIGHT — ACTION */}
+          <div className="flex justify-end">
+            <button
+              onClick={handleLogout}
+              className="bg-black text-white font-semibold font-display
                               rounded-md h-8 px-4"
-                  >
-                    Logout 
-                  </button>
-                </div>
-
-              </div>
-            </section>
-
-
-
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </section>
 
       {/* 🎧 HERO SECTION 🅰️ HERO — Calm & Reflective*/}
-            
-      <section className="flex flex-col items-center justify-center
-                          text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28">
+
+      <section
+        className="flex flex-col items-center justify-center
+                          text-center px-6 sm:px-6 pt-16 sm:pt-18 pb-20 sm:pb-28"
+      >
         {/* <marquee></marquee> */}
-        
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-ui font-extrabold text-black leading-tight">
+
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-[Cinzel] font-extrabold text-black leading-tight">
           Welcome to Audiobook Center
         </h2>
-        
 
         {/* <p className="max-w-2xl sm:max-w-2xl text-[#3c1801] mt-6 sm:mt-8 text-sm sm:text-base md:text-2xl leading-relaxed font-handwriting">
           A curated space for audiobooks — from epic fantasy and timeless classics
@@ -374,26 +370,23 @@ export default function BookToAudio() {
         </p> */}
 
         <div className="mt-6 sm:mt-8 flex flex-col items-center text-[#3c1801] font-handwriting">
-  
-        <p className="max-w-3xl  whitespace-nowrap text-sm sm:text-base md:text-2xl leading-relaxed text-center">
-          A curated space for audiobooks — from epic fantasy and timeless classics
-        </p>
+          <p className="max-w-3xl  whitespace-nowrap text-sm sm:text-base md:text-2xl leading-relaxed text-center">
+            A curated space for audiobooks — from epic fantasy and timeless
+            classics
+          </p>
 
-        <p className="max-w-2xl text-sm sm:text-base md:text-2xl leading-relaxed text-center mt-1">
-          to emotional stories and thought-provoking journeys.
-        </p>
+          <p className="max-w-2xl text-sm sm:text-base md:text-2xl leading-relaxed text-center mt-1">
+            to emotional stories and thought-provoking journeys.
+          </p>
 
-        <p className="max-w-xl whitespace-nowrap text-sm sm:text-base md:text-2xl leading-relaxed text-center mt-1">
-          Choose a world, press play, and let the story unfold.
-        </p>
-
-      </div>
-
+          <p className="max-w-xl whitespace-nowrap text-sm sm:text-base md:text-2xl leading-relaxed text-center mt-1">
+            Choose a world, press play, and let the story unfold.
+          </p>
+        </div>
 
         <p className="mt-10 text-sm md:text-base lg:text-xl font-handwriting text-black font-semibold">
           “Listening to a story is one of the oldest forms of human connection.”
         </p>
-
 
         {/* soft divider */}
         <div className="w-20 h-0.5 bg-black/10 rounded-full mt-14" />
@@ -407,13 +400,13 @@ export default function BookToAudio() {
         >
           Explore Categories ↓
         </button>
-
       </section>
 
       {/* 🧭 CATEGORY QUICK NAV — Colored */}
-      <section className="flex flex-wrap justify-center  gap-4 md:gap-3
-                          px-6 pt-2 pb-16">
-
+      <section
+        className="flex flex-wrap justify-center  gap-4 md:gap-3
+                          px-6 pt-2 pb-16"
+      >
         {categorizedData.map((category) => (
           <button
             key={category.title}
@@ -427,37 +420,30 @@ export default function BookToAudio() {
             {category.title}
           </button>
         ))}
-
       </section>
-
-
-
 
       {/* 📚 CATEGORY ROWS */}
       <section id="categories" className="space-y-20 px-6 pb-24 font-display">
-        
         {categorizedData.map((category) => (
           <div
-              key={category.title}
-              id={category.title}
-              className="bg-[#f0bc69] backdrop-blur-sm
+            key={category.title}
+            id={category.title}
+            className="bg-[#f0bc69] backdrop-blur-sm
                         rounded-2xl px-6 py-6 shadow-sm"
-            >
-
-
+          >
             <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-semibold text-gray-900">
-                  {category.title}
-                </h3>
-              </div>
-                
+              <h3 className="text-2xl font-semibold text-gray-900">
+                {category.title}
+              </h3>
+            </div>
+
             <div className="relative">
               {/* RIGHT ARROW */}
               <button
                 onClick={() =>
                   rowRefs.current[category.title]?.scrollBy({
                     left: 400,
-                    behavior: "smooth"
+                    behavior: "smooth",
                   })
                 }
                 className="absolute right-0 top-1/2 -translate-y-1/2 z-10
@@ -465,21 +451,23 @@ export default function BookToAudio() {
                           rounded-full w-10 h-10
                           flex items-center justify-center
                           shadow hover:bg-white transition"
-              >→</button>
+              >
+                →
+              </button>
 
-                {/* SCROLL ROW */}
-                <div
-                  ref={(el) => (rowRefs.current[category.title] = el)}
-                  className="flex gap-6 sm:gap-10 md:gap-14 overflow-x-auto pb-4 pt-2 no-scrollbar"
-                >
-                  {category.items.map((collection) => (
-                    <BookCard key={collection._id} collection={collection} />
-                  ))}
-                </div>
+              {/* SCROLL ROW */}
+              <div
+                ref={(el) => (rowRefs.current[category.title] = el)}
+                className="flex gap-6 sm:gap-10 md:gap-14 overflow-x-auto pb-4 pt-2 no-scrollbar"
+              >
+                {category.items.map((collection) => (
+                  <BookCard key={collection._id} collection={collection} />
+                ))}
               </div>
             </div>
-          ))}
-        </section>
-      </div>
-    );
+          </div>
+        ))}
+      </section>
+    </div>
+  );
   }
