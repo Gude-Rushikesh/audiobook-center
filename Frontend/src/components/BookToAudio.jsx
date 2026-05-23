@@ -90,7 +90,7 @@
 // }
 
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../utils/api"
 // import axios from "axios";
@@ -171,6 +171,32 @@ const slugify = (value = "") =>
 const getCollectionPath = (collection) =>
   `/collection/${collection.slug || slugify(collection.title) || collection._id}`;
 
+const normalize = (value = "") => value.toString().toLowerCase().trim();
+
+const getCollectionSearchText = (collection) => {
+  const books = Array.isArray(collection.books) ? collection.books : [];
+  const standaloneBook =
+    collection.bookId && typeof collection.bookId === "object"
+      ? collection.bookId
+      : null;
+
+  return [
+    collection.title,
+    collection.description,
+    ...books.flatMap((book) => [book.title, book.author]),
+    standaloneBook?.title,
+    standaloneBook?.author,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+};
+
+const collectionMatchesKeys = (collection, keys) => {
+  const searchText = getCollectionSearchText(collection);
+  return keys.some((key) => searchText.includes(key));
+};
+
 
 
 export default function BookToAudio() {
@@ -217,38 +243,55 @@ export default function BookToAudio() {
 
 
       // 🔍 SEARCH FILTER (ADD THIS)
-          const filteredCollections = searchQuery.trim()
-            ? collections.filter(col =>
-                col.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                col.author?.toLowerCase().includes(searchQuery.toLowerCase())
-              )
-            : collections;
+          const filteredCollections = useMemo(() => {
+            const query = normalize(searchQuery);
+
+            if (!query) return collections;
+
+            return collections.filter((collection) =>
+              getCollectionSearchText(collection).includes(query)
+            );
+          }, [collections, searchQuery]);
 
           // 🧭 CATEGORY LOGIC (UNCHANGED, JUST USE filteredCollections)
-          const usedIds = new Set();
+          const categorizedData = useMemo(() => {
+            const usedIds = new Set();
 
-          const categorizedData = CATEGORY_MAP.map(category => {
-            const items = filteredCollections.filter(col => {
-              if (usedIds.has(col._id)) return false;
+            const categories = CATEGORY_MAP.map((category) => {
+              const items = filteredCollections.filter((collection) => {
+                if (usedIds.has(collection._id)) return false;
 
-              const matched = category.match.some(key =>
-                col.title.toLowerCase().includes(key) ||
-                col.author?.toLowerCase().includes(key)
+                const matched = collectionMatchesKeys(collection, category.match);
+
+                if (matched) {
+                  usedIds.add(collection._id);
+                  return true;
+                }
+
+                return false;
+              });
+
+              return {
+                title: category.title,
+                items,
+              };
+            }).filter((category) => category.items.length > 0);
+
+            if (searchQuery.trim()) {
+              const uncategorizedItems = filteredCollections.filter(
+                (collection) => !usedIds.has(collection._id)
               );
 
-              if (matched) {
-                usedIds.add(col._id);
-                return true;
+              if (uncategorizedItems.length > 0) {
+                categories.push({
+                  title: "Search Results",
+                  items: uncategorizedItems,
+                });
               }
+            }
 
-              return false;
-            });
-
-            return {
-              title: category.title,
-              items
-            };
-          }).filter(cat => cat.items.length > 0);
+            return categories;
+          }, [filteredCollections, searchQuery]);
 
 
         useEffect(() => {
@@ -366,6 +409,27 @@ export default function BookToAudio() {
             </button>
           </div>
         </div>
+
+        <div className="md:hidden pb-3">
+          <div
+            className="flex items-center gap-2
+                              bg-white/90 rounded-full
+                              px-4 py-2 w-full
+                              transition-all
+                              focus-within:ring-2 ring-black/20"
+          >
+            <span className="text-black text-sm">🔍</span>
+
+            <input
+              type="text"
+              placeholder="Search by title or author"
+              className="w-full bg-transparent outline-none
+                              text-sm text-gray-900"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+        </div>
       </section>
 
       {/* 🎧 HERO SECTION 🅰️ HERO — Calm & Reflective*/}
@@ -442,6 +506,12 @@ export default function BookToAudio() {
 
       {/* 📚 CATEGORY ROWS */}
       <section id="categories" className="space-y-20 px-6 pb-24 font-display">
+        {categorizedData.length === 0 && (
+          <div className="text-center text-black font-semibold py-16">
+            No books found
+          </div>
+        )}
+
         {categorizedData.map((category) => (
           <div
             key={category.title}

@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
 ===================== */
 router.get("/", async (req, res) => {
   try {
-    const collections = await Collection.find();
+    const collections = await populateCollection(Collection.find());
     res.json(collections);
   } catch (err) {
     res.status(500).json({ error: err.message });
