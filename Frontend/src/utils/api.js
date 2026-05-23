@@ -27,6 +27,10 @@ API.interceptors.response.use(
         );
 
         localStorage.setItem("token", res.data.token);
+        if (res.data.user) {
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+        }
+
         original.headers.Authorization = `Bearer ${res.data.token}`;
 
         return API(original);

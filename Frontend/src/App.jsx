@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import Home from "./home.jsx";
 import Register from "./Register.jsx";
@@ -11,7 +12,15 @@ import AudioPlayer from "./components/AudioPlayer.jsx";
 import VerifyEmail from "./components/VerifyEmail";
 
 // ✅ NEW: ProtectedRoute wrapper
-function ProtectedRoute({ isLoggedIn, children }) {
+function ProtectedRoute({ authLoading, isLoggedIn, children }) {
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0f1a] text-white">
+        <div className="w-10 h-10 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
   }
@@ -21,14 +30,43 @@ function ProtectedRoute({ isLoggedIn, children }) {
 export default function App() {
   const [currentChapter, setCurrentChapter] = useState(null);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
-    const listener = () => {
+    const syncAuthState = () => {
       setIsLoggedIn(!!localStorage.getItem("token"));
     };
-    window.addEventListener("storage", listener);
-    return () => window.removeEventListener("storage", listener);
+
+    const bootstrapSession = async () => {
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/auth/refresh`,
+          {},
+          { withCredentials: true }
+        );
+
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        setIsLoggedIn(true);
+      } catch {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        setIsLoggedIn(false);
+      } finally {
+        setAuthLoading(false);
+      }
+    };
+
+    bootstrapSession();
+
+    window.addEventListener("storage", syncAuthState);
+    window.addEventListener("auth-changed", syncAuthState);
+
+    return () => {
+      window.removeEventListener("storage", syncAuthState);
+      window.removeEventListener("auth-changed", syncAuthState);
+    };
   }, []);
 
   return (
@@ -44,7 +82,7 @@ export default function App() {
         <Route
           path="/collection/:collectionId"
           element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <ProtectedRoute authLoading={authLoading} isLoggedIn={isLoggedIn}>
               <CollectionPage />
             </ProtectedRoute>
           }
@@ -52,7 +90,7 @@ export default function App() {
         <Route
           path="/chapters/:bookId"
           element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <ProtectedRoute authLoading={authLoading} isLoggedIn={isLoggedIn}>
               <BookChapters onSelectChapter={setCurrentChapter} />
             </ProtectedRoute>
           }
@@ -60,7 +98,7 @@ export default function App() {
         <Route
           path="/book-to-audio"
           element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <ProtectedRoute authLoading={authLoading} isLoggedIn={isLoggedIn}>
               <BookToAudio />
             </ProtectedRoute>
           }

@@ -183,9 +183,16 @@ export default function BookToAudio() {
 
 
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await API.post("/api/auth/logout");
+    } catch (err) {
+      console.error("Logout failed", err);
+    }
+
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    window.dispatchEvent(new Event("auth-changed"));
     navigate("/", { replace: true });
   };
 

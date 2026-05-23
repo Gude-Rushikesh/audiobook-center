@@ -32,7 +32,7 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      window.dispatchEvent(new Event("storage"));
+      window.dispatchEvent(new Event("auth-changed"));
       
       // navigate("/book-to-audio"); // entry page
       setShowSuccess(true);

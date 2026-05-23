@@ -25,6 +25,34 @@ const REFRESH_EXPIRE = "7d";
             { expiresIn: REFRESH_EXPIRE }
           );
 
+        const getSafeUser = (user) => ({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          isVerified: user.isVerified,
+        });
+
+        const requireAuth = async (req, res, next) => {
+          try {
+            const authHeader = req.headers.authorization;
+            const token = authHeader?.startsWith("Bearer ")
+              ? authHeader.split(" ")[1]
+              : null;
+
+            if (!token) return res.sendStatus(401);
+
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const user = await User.findById(decoded.id);
+
+            if (!user) return res.sendStatus(401);
+
+            req.user = user;
+            next();
+          } catch {
+            res.sendStatus(401);
+          }
+        };
+
 
 /* -------- REGISTER -------- */
  router.post("/register", async (req, res) => {
@@ -85,7 +113,7 @@ router.post("/login", async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    res.json({ token: accessToken, user });
+    res.json({ token: accessToken, user: getSafeUser(user) });
   }catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -113,8 +141,13 @@ router.post("/login", async (req, res) => {
         if (!user) return res.sendStatus(401);
 
         const newAccess = signAccess(user);
-        res.json({ token: newAccess });
+        res.json({ token: newAccess, user: getSafeUser(user) });
       });
+    });
+
+    // -------- CURRENT USER --------
+    router.get("/me", requireAuth, (req, res) => {
+      res.json({ user: getSafeUser(req.user) });
     });
 
 

@@ -89,7 +89,18 @@ export default function AudioPlayer({
         fetch(`${API_BASE}/api/auth/refresh`, {
           method: "POST",
           credentials: "include",
-        });
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Refresh failed");
+            return res.json();
+          })
+          .then((data) => {
+            localStorage.setItem("token", data.token);
+            if (data.user) {
+              localStorage.setItem("user", JSON.stringify(data.user));
+            }
+          })
+          .catch(() => {});
       }, 10 * 60 * 1000); // every 10 min
 
       return () => clearInterval(interval);
